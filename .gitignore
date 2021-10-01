@@ -339,3 +339,6 @@ pip-selfcheck.json
 static_cdn
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm,venv,virtualenv
+
+### vs code ###
+.vscode
