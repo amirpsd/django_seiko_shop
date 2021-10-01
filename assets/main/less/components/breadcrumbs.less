@@ -1,0 +1,39 @@
+.breadcrumbs {
+	margin: 0;
+	margin-top: -@margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-top: -@margin-bottom-mobile;
+	}
+	padding: 29px 0;
+	@media screen and (max-width: @screen-sm-max) {
+		padding: 20px 0;
+	}
+	list-style: none;
+	li {
+		display: inline-block;
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: 700;
+		color: @custom-color-alt;
+		text-transform: uppercase;
+		span {
+			padding-left: 7px;
+		}
+		a {
+			padding-left: 7px;
+			padding-right: 5px;
+			color: @custom-color-alt;
+			text-decoration: none;
+			font-weight: 400;
+			text-decoration: none;
+			align-content: center;
+			.transition (color 0.2s ease);
+			&:hover {
+				color: @custom-color;
+			}
+		}
+	}
+	li:first-child span {
+		padding-left: 0;
+	}
+}

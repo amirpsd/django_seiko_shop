@@ -1,0 +1,46 @@
+.services-list {
+	margin: 0 0 @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+	padding: 0;
+	list-style: none;
+	font-size: 14px;
+	li {
+		margin-bottom: 30px;
+		border-bottom: 1px solid @grey-border-color;
+	}
+	li:last-child {
+		border-bottom: 0;
+	}
+}
+.services-list li:last-child {
+	margin-bottom: 0;
+}
+.services-list .box-left-icon {
+	margin-bottom: 20px;
+	.box-text {
+		font-size: 14px;
+		line-height: 1.2em;
+		font-weight: 300;
+		color: @text-color;
+		.title {
+			font-family: @custom-font-1;
+			font-size: 17px;
+			font-weight: 700;
+			margin-bottom: 5px;
+			color: @custom-color-alt;
+			text-transform: none;
+		}
+	}
+	.box-icon {
+		width: 60px;
+		i.icon {
+			display: inline-block;
+			font-size: 30px;
+			line-height: 60px;
+			width: 60px;
+			height: 60px;
+		}
+	}
+}

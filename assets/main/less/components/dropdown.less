@@ -1,0 +1,224 @@
+/* ------------------------*/
+/*       Dropdown          */
+/* ------------------------*/
+
+.dropdown-link {
+	position: relative;
+	.dropdown-container {
+		position: absolute;
+		z-index: 1009;
+		top: 40px;
+		left: 0;
+		right: auto;
+		min-width: 50px;
+		padding: 15px;
+		background: #ffffff;
+		list-style: none;
+		border-bottom: 2px solid @custom-color;
+		opacity: 0;
+		visibility: hidden;
+		.box-shadow(0 0 10px rgba(0,0,0,0.1));
+		.transition (~'opacity 0.2s ease 0s, visibility 0.2s linear 0s');
+		text-align: left;
+		&:after, &:before {
+			bottom: 100%;
+			left: 20px;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		&:after {
+			border-color: rgba(255, 255, 255, 0);
+			border-bottom-color: #ffffff;
+			border-width: 6px;
+			margin-left: -6px;
+		}
+		&:before {
+			border-color: rgba(204, 204, 204, 0);
+			border-bottom-color: #efefef;
+			border-width: 7px;
+			margin-left: -7px;
+		}
+		&.right {
+			left: auto;
+			right: 0;
+			&:after, &:before {
+				right: 20px;
+				left: auto;
+			}
+		}
+	}
+}
+@media screen and (min-width: @mobile-menu-breikpoint) {
+	.dropdown-link .dropdown-container {
+		top: -5000px;
+	}
+	.dropdown-link:hover > .dropdown-container {
+		opacity: 1;
+		visibility: visible;
+		top: 40px;
+	}
+}
+@media screen and (max-width: (@mobile-menu-breikpoint - 1)) {
+	.dropdown-link:not(.header-cart):hover > .dropdown-container {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.dropdown-link.header-cart.active > .dropdown-container {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+.dropdown-link.header-cart.variant-2 .dropdown-container:after,
+.dropdown-link.header-cart.variant-2 .dropdown-container:before {
+	display: none;
+}
+
+/* language*/
+.header-language .dropdown-container {
+	min-width: 92px;
+	padding: 7px 10px;
+	color: @text-dark-color;
+	li.active {
+		font-weight: bold;
+	}
+	li a {
+		color: @text-dark-color;
+		display: block;
+		font-size: 12px;
+		line-height: 15px;
+		padding: 5px 0;
+		img {
+			margin-right: 7px;
+		}
+		&:focus, &:active {
+			text-decoration: none;
+		}
+		&:hover {
+			text-decoration: none;
+			color: @custom-color;
+		}
+	}
+}
+/* currency*/
+.header-currency .dropdown-container {
+	min-width: 55px;
+	padding: 7px 10px;
+	color: @text-dark-color;
+	li.active {
+		font-weight: bold;
+	}
+	li a {
+		color: @text-dark-color;
+		display: block;
+		font-size: 12px;
+		line-height: 15px;
+		padding: 5px 0;
+		span.symbol {
+			margin-right: 7px;
+		}
+		&:hover {
+			text-decoration: none;
+			color: @custom-color;
+		}
+	}
+}
+/* account */
+.header-account .dropdown-container {
+	min-width: 100px;
+	padding: 20px;
+	color: @text-ligth-color;
+	.title {
+		font-size: 20px;
+		line-height: 1.2em;
+		color: @text-dark-color;
+		font-weight: bold;
+		margin-bottom: 5px;
+		text-transform: uppercase;
+		text-align: center;
+	}
+	form {
+		margin: 15px 0 0 0;
+	}
+	input.form-control {
+		margin-bottom: 20px;
+		min-width: 260px;
+	}
+	button.btn {
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.top-text {
+		margin: 10px 0 10px;
+		font-size: 13px;
+		line-height: 1.2em;
+		text-align: center;
+		color: @text-ligth-color;
+	}	
+	.bottom-text {
+		font-size: 17px;
+		line-height: 1.2em;
+		text-align: center;
+		color: @text-dark-color;
+	}
+}
+@media screen and (max-width: (@mobile-menu-breikpoint - 1)) {
+	/* language*/
+	.header-language .dropdown-container {
+		min-width: 150px;
+		padding: 0;
+		color: @text-dark-color;
+		li {
+			padding: 0 15px;
+			border-bottom: 1px solid @grey-border-color;
+		}
+		li.active {
+			font-weight: bold;
+		}
+		li a {
+			color: @text-dark-color;
+			display: block;
+			font-size: 14px;
+			line-height: 15px;
+			padding: 10px 0;
+			img {
+				margin-right: 7px;
+			}
+			&:hover {
+				text-decoration: none;
+				color: @custom-color;
+			}
+		}
+	}
+	/* currency*/
+	.header-currency .dropdown-container {
+		min-width: 150px;
+		padding: 0;
+		color: @text-dark-color;
+		li {
+			padding: 0 15px;
+			border-bottom: 1px solid @grey-border-color;
+		}
+		li.active {
+			font-weight: bold;
+		}
+		li a {
+			color: @text-dark-color;
+			display: block;
+			font-size: 14px;
+			line-height: 15px;
+			padding: 10px 0;
+			span.symbol {
+				margin-right: 7px;
+			}
+			&:hover {
+				text-decoration: none;
+				color: @custom-color;
+			}
+		}
+	}
+}

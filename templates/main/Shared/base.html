@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}
+    فروشگاه سیکو
+    {% endblock %}</title>
+    <meta name="author" content="BigSteps">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="{% static 'main/icon/favicon.ico' %}">
+    {% include 'main/Shared/HeaderReferences.html' %}
+</head>
+
+<body class="boxed rtl">
+<!-- Loader -->
+<div id="loader-wrapper" class="off">
+    <div class="cube-wrapper">
+        <div class="cube-folding">
+            <span class="leaf1"></span>
+            <span class="leaf2"></span>
+            <span class="leaf3"></span>
+            <span class="leaf4"></span>
+        </div>
+    </div>
+</div>
+<!-- /Loader -->
+<div class="fixed-btns">
+    <!-- Back To Top -->
+    <a href="#" class="top-fixed-btn back-to-top"><i class="icon icon-arrow-up"></i></a>
+    <!-- /Back To Top -->
+</div>
+<div id="wrapper">
+    <!-- Page -->
+    <div class="page-wrapper">
+
+        {% include 'main/Shared/Header.html' %}
+        {% block content %}
+
+        {% endblock %}
+        <a class="back-to-top back-to-top-mobile" href="#">
+            <i class="icon icon-angle-up"></i> بالا
+        </a>
+    </div>
+    <!-- Page Content -->
+</div>
+
+
+{% include 'main/Shared/Footer.html' %}
+{% include 'main/Shared/FooterReferences.html' %}
+</body>
+
+</html>

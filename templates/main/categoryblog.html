@@ -1,0 +1,111 @@
+{% extends 'main/Shared/base.html' %}
+{% load humanize %}
+{#{% block title %}#}
+{#    دسته بندی وبلاگ {{ category.title }}#}
+{#{% endblock %}#}
+{% block content %}
+    <!-- Page Content -->
+    <main class="page-main">
+        <div class="container">
+            <!-- Page Title -->
+            <div class="page-title">
+                <div class="title center">
+                    <h1>{% block title %}دسته بندی : {{ category.title }}{% endblock %}</h1>
+                </div>
+
+            </div>
+            <!-- /Page Title -->
+            <!-- Two columns -->
+            <div class="row">
+                <!-- Center column -->
+                <div class="col-md-8">
+                    {% for category_list in object_list %}
+                        <div class="blog-post">
+                            <div class="blog-photo">
+                                <a href="{% url 'blog:detail' category_list.slug %}"><img
+                                        src="{{ category_list.image.url }}" alt="{{ category_list.title }}"></a>
+                            </div>
+                            <div class="blog-content">
+                                <h2 class="blog-title"><a
+                                        href="{% url 'blog:detail' category_list.slug %}">{{ category_list.title }}</a>
+                                </h2>
+                                <div class="blog-meta">
+                                    <div class="pull-left">
+                                        <span> تاریخ انتشار </span>
+                                        <span> {{ category_list.publish | naturaltime }} </span>
+                                        <span> نویسنده توسط<a href="#"> مدیر </a> </span>
+                                        <span class="last"> <a
+                                                href="#"> {{ category_list.comments.count }} نظر </a> </span>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="share-button toRight">
+                                            <span class="toggle">اشتراک</span>
+                                            <ul class="social-list">
+                                                <li>
+                                                    <a href="#" class="icon icon-google google"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-fancy fancy"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-pinterest pinterest"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-twitter-logo twitter"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-facebook-logo facebook"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="blog-text">
+                                    <p>{{ category_list.description | striptags | safe | linebreaksbr | truncatewords:30 }}</p>
+                                </div>
+                                <a href="{% url 'blog:detail' category_list.slug %}" class="btn">مطالعه بیشتر</a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                    {% if is_paginated %}
+                        <ul class="pagination pull-right">
+                            {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}"><i
+                                        class="icon icon-angle-right"></i></a></li>
+                            {% endif %}
+                            {% for page in paginator.page_range %}
+                                <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                                </li>
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li><a href="?page={{ page_obj.next_page_number }}"><i class="icon icon-angle-left"></i></a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <!-- /Center column -->
+                <!-- Right column -->
+                <div class="col-md-4" style="direction: rtl">
+
+                    <div class="sideblock half">
+                        <h2>دسته بندی</h2>
+                        <ul class="tags">
+                            <li class="active"><a href="{{ request.path }}"> <span
+                                    class="value"> <span> {{ category.title }} </span> </span>
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="sideblock half">
+                    </div>
+                    <!-- /Right column -->
+                </div>
+                <!-- /Two columns -->
+            </div>
+        </div>
+    </main>
+    <!-- /Page Content -->
+
+{% endblock %}

@@ -1,0 +1,183 @@
+.rating, .product-item-rating {
+	display: inline-block;
+    vertical-align: top;
+	i.spr-icon {
+		font-size: 13px;
+		top: 0;
+		width: 1.3em;
+		height: 1.3em;
+		margin-right: 2px;
+	} 
+	i.spr-icon.spr-icon-star-half-alt, i.spr-icon.spr-icon-star  {
+		color: @custom-color;
+	}
+	.spr-badge-caption {
+		padding-left: 3px;
+	}
+}
+.product-item .rating, .product-item .product-item-rating {
+	display: block;
+	margin: 10px 0 0;
+	i.spr-icon {
+		font-size: 12px;
+		top: 0;
+		width: 1.2em;
+		height: 1.2em;
+		margin-right: 1px;
+	} 
+	.spr-badge-caption {
+		display: none;
+	}
+	.spr-badge[data-rating='0.0'] {
+		display: none;
+	}
+}
+.product-variant-3 .product-item .rating {
+    display: block;
+    clear: both;
+}
+.product-info-block {
+	.spr-badge {
+		display: inherit;
+	}
+	.spr-badge:before, .spr-badge:after {
+		display: none;
+	}	
+}
+.products-listview .product-item .rating {
+	i.spr-icon {
+		font-size: 14px;
+		margin-right: 2px;
+	} 
+}
+
+#shopify-product-reviews .spr-container {
+	padding: 0;
+	border: 0;
+	.spr-header-title, .spr-review-header-title {
+		font-size: 16px;
+		line-height: 1.5em;
+		font-family: @custom-font-1;
+		font-weight: 700;
+		text-transform: uppercase;
+		padding: 0;
+		margin: 0 0 5px 0;
+		color: @custom-color-alt;
+		border: 0;
+	}	
+	h3.spr-review-header-title {
+		font-size: 14px;
+	}
+	.spr-review-header-byline {
+		font-style: normal;
+		font-size: 13px;
+		opacity: 1;
+		display: inline-block;
+		color: @custom-color-alt;
+		strong {
+			color: @custom-color;
+		}
+	}
+	.spr-review-content {
+		margin: 0;
+	}
+	.spr-review-reportreview {
+		font-size: 13px;
+		line-height: 16px;
+	}
+	.spr-review-content-body {
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.spr-form-label {
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.spr-summary-starrating, .spr-starratings {
+		.spr-icon {
+			font-size: 13px;
+			top: 0;
+			width: 1.3em;
+			height: 1.3em;
+			margin-right: 2px;
+		} 
+		.spr-icon.spr-icon-star-half-alt, .spr-icon.spr-icon-star  {
+			color: @custom-color;
+		}
+		.spr-badge-caption {
+			padding-left: 3px;
+		}
+	}
+	.spr-form-review-rating {
+		.spr-icon {
+			font-size: 18px;
+			top: 0;
+			width: 1.3em;
+			height: 1.3em;
+			margin-right: 2px;
+		} 
+		.spr-icon.spr-icon-star  {
+			color: @custom-color-alt;
+			&:hover, &.spr-icon-star-hover  {
+				color: @custom-color;
+				opacity: 1;
+			}
+		}
+		.spr-badge-caption {
+			padding-left: 3px;
+		}
+	}
+	
+	input.spr-form-input:not(.spr-starrating) {
+		.form-control;
+		margin-bottom: 0;
+	}
+	div.spr-form-input textarea {
+		.form-control;
+		margin-bottom: 0;
+		height: 160px;
+	}
+}
+
+.rounded  #shopify-product-reviews .spr-container input.spr-form-input:not(.spr-starrating) {
+	border-radius: 4px;
+}
+
+// btn-primary
+.btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:hover {
+	background-color: @btn-bg-color; 
+	border-color: @btn-border-color;
+}
+
+
+// hack for shopify adminmode
+
+html {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+.sidebar-wrapper{
+	top:0 !important;
+}
+#admin_bar_iframe {
+  margin-top: 0 !important;
+  display: none !important;
+}
+.productStack {
+	top: auto !important;
+}
+
+// form errors
+.errors {
+	margin: 20px 0;
+	font-family: @custom-font-1;
+}
+.errors ul {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 400;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	color: red;
+}

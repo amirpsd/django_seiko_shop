@@ -1,0 +1,151 @@
+// Default Variables
+@inside-car-arrow-bg: @custom-color-alt;
+@inside-car-arrow-hover-bg: @custom-color;
+@inside-car-arrow-color: #ffffff;
+@inside-car-prev-character: "\e923";
+@inside-car-next-character: "\e922";
+@inside-car-font-family: 'icomoon-reg';
+.carousel-inside {
+	position: relative;
+	overflow: hidden;
+	.carousel-control {
+		position: absolute;
+		display: block;
+		height: 35px;
+		width: 20px;
+		line-height: 0px;
+		font-size: 0px;
+		cursor: pointer;
+		background: @inside-car-arrow-bg;
+		color: @inside-car-arrow-color;
+		top: 50%;
+		padding: 0;
+		margin-top: -17px;
+		border: none;
+		outline: none;
+		opacity: 1;
+		.transition (~"left 0.3s ease 0.3s, right 0.3s ease 0.3s");
+		text-shadow: none;
+		&:hover,
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			background: @inside-car-arrow-hover-bg;
+		}
+	}
+	.carousel-control:before {
+		font-family: @inside-car-font-family;
+		font-size: 22px;
+		line-height: 35px;
+		color: @inside-car-arrow-color;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	.carousel-control.prev {
+		left: -22px;
+		right: auto;
+		&:before {
+			content: @inside-car-prev-character;
+		}
+	}
+	.carousel-control.next {
+		right: -22px;
+		left: auto;
+		&:before {
+			content: @inside-car-next-character;
+			margin-left: 2px;
+		}
+	}
+}
+
+.product-variant-3 .carousel-inside {
+	.carousel-control {
+		width: 35px;
+	}
+	.carousel-control.prev {
+		left: -37px;
+	}
+	.carousel-control.next {
+		right: -37px;
+	}
+}
+
+@slideSpeed: 0.3s;
+.carousel-inside.slide .carousel-inner > .item {
+	-webkit-transition: @slideSpeed ease-in-out left;
+	-moz-transition: @slideSpeed ease-in-out left;
+	-o-transition: @slideSpeed ease-in-out left;
+	transition: @slideSpeed ease-in-out left;
+}
+
+.product-item .product-item-inside:hover {
+	.carousel-inside .carousel-control {
+		opacity: 1;
+	}
+	.carousel-control.prev {
+		left: 0;
+	}
+	.carousel-control.next {
+		right: 0;
+	}
+}
+
+@media screen and (max-width: @screen-sm-max) {
+	.carousel-inside {
+		.carousel-control {
+			opacity: 1;
+		}
+		.carousel-control.prev {
+			left: 0;
+		}
+		.carousel-control.next {
+			right: 0;
+		}
+	}
+}
+
+@media screen and (max-width: @screen-sm-max) {
+	.carousel-control.prev {
+		display: none;
+	}
+	.carousel-control.next {
+		display: none;
+	}
+}
+
+// add fade effect
+.carousel-inside.fade {
+	opacity: 1;
+}
+
+.carousel-inside.fade .item {
+	transition: opacity ease-out .5s;
+	left: 0;
+	opacity: 0;
+	top: 0;
+	position: absolute;
+	width: 100%;
+	display: block;
+}
+
+.carousel-inside.fade .item:first-child {
+	top: auto;
+	opacity: 1;
+	position: relative;
+}
+
+.carousel-inside.fade .item.active {
+	opacity: 1;
+}
+.carousel-inside.slide .carousel-inner > .item {
+  width: ~'calc(100% + 1px)';
+}
+.carousel-inside.slide .carousel-inner > .item.active {
+  display: table;
+}
+.carousel-inside .item a {
+  display: table-cell;
+  vertical-align: middle;
+   width: 100%;
+}

@@ -1,0 +1,385 @@
+{% extends 'main/Shared/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load comment_tags %}
+{% load humanize %}
+{% block title %}
+    محصول   {{ product.title | truncatechars:10 }}
+{% endblock %}
+{% block content %}
+    <!-- Page Content -->
+    <main class="page-main" style="margin-top: 65px;">
+        <div class="block">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li>/<a href="#">{{ product.category_to_str }}</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="block product-block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-3 hidden-quickview">
+                        <div class="box-icon-row">
+                            <div class="box-left-icon-bg">
+                                <div class="box-icon"><i class="icon icon-gift"></i></div>
+                                <div class="box-text">
+                                    <div class="title"> پیشنهاد ویژه: 1 + 2 = 4</div>
+                                    هدیه بگیرید!
+                                </div>
+                            </div>
+                            <div class="box-left-icon-bg">
+                                <div class="box-icon"><i class="icon icon-dollar-bills"></i></div>
+                                <div class="box-text">
+                                    <div class="title"> کارت پاداش رایگان</div>
+                                    ارزش 10 تومان ، 50 تومان ، 100 تومان
+                                </div>
+                            </div>
+                            <div class="box-left-icon-bg">
+                                <div class="box-icon"><i class="icon icon-undo"></i></div>
+                                <div class="box-text">
+                                    <div class="title"> برگشت سفارش</div>
+                                    ظرف 5 روز برمی گردد
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;direction: rtl" class="col-sm-6 col-md-6 col-lg-5">
+                        <div class="product-info-block classic">
+                            <div class="product-name-wrapper">
+                                <h1 class="product-name">{{ product.title }}</h1>
+                                <div class="product-labels">
+                                    {% if product.is_new_product %}
+                                        <span class="product-label new"> جدید </span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="product-availability">موجودی: <span>در انبار </span></div>
+                            <div class="product-description">
+                                <p style="font-size: 15px;">{{ product.description | striptags | safe }}</p>
+                            </div>
+                            <div class="countdown-circle hidden-xs">
+                                <div class="countdown-wrapper">
+                                    <h3 class="text-center">{{ product.publish | naturaltime }}</h3>
+                                </div>
+                            </div>
+                            <div class="product-options">
+                                <div class="product-size swatches">
+                                    <span class="option-label">سایز ها:</span>
+                                    <div class="select-wrapper-sm">
+                                        <select class="form-control input-sm size-variants">
+
+                                        </select>
+                                    </div>
+                                    <ul class="size-list">
+                                        {% for product_size in product.size.all %}
+                                            <li><a href="#" data-value='{{ product_size }}'><span
+                                                    class="value">{{ product_size }}</span></a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="product-color swatches">
+                                    <span class="option-label">رنگ ها:</span>
+                                    <div class="select-wrapper-sm">
+                                        <select class="form-control input-sm">
+                                            <option value="{{ product.color }}">{{ product.color }}</option>
+                                        </select>
+                                    </div>
+                                    <ul class="color-list">
+                                        {% for product_color in product.color.all %}
+                                            <li>
+                                                <h2>
+                                                    {{ product_color }}
+                                                </h2>
+                                            </li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                                <div class="product-qty">
+                                    <div class="qty qty-changer">
+                                        <fieldset>
+                                            {% if request.user.is_authenticated %}
+                                                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                                    {{ cart_product_form }}
+                                                    {% csrf_token %}
+                                                    <button type="submit"
+                                                            data-loading-text='<i class="icon icon-spinner spin"></i><span>Add to cart</span>'
+                                                            class="btn btn-lg btn-loading"><i
+                                                            class="icon icon-cart"></i><span>افزودن به سبد خرید</span>
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-actions">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="product-meta">
+                                            <span><a href="{% url 'favorite:add' product.id %}"><i
+                                                    class="icon icon-heart"> </i> افزودن به لیست خواسته ها </a> </span>
+                                        </div>
+                                        <div class="social">
+                                            <div class="share-button toLeft">
+                                                <span class="toggle">اشتراک</span>
+                                                <ul class="social-list">
+                                                    <li>
+                                                        <a href="#" class="icon icon-google google"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="icon icon-fancy fancy"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="icon icon-pinterest pinterest"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="icon icon-twitter-logo twitter"></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="icon icon-facebook-logo facebook"></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="price">
+                                            <span class="special-price"><span>تومان{{ product.price }}</span></span>
+                                        </div>
+                                        <div class="actions">
+                                            <a href="#" class="btn btn-lg product-details"><i
+                                                    class="icon icon-external-link"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-4">
+                        <!-- Product Gallery -->
+                        <div class="main-image">
+                            <img src="{{ product.image_1.url }}" class="zoom" alt="{{ product.title }}"
+                                 data-zoom-image="{{ product.image_1.url }}"/>
+                            <div class="dblclick-text"><span>برای بزرگنمایی دوبار کلیک کنید</span></div>
+                            
+                            <a href="{{ product.image_1.url }}" class="zoom-link"><i
+                                    class="icon icon-zoomin"></i></a>
+                        </div>
+                        <div class="product-previews-wrapper">
+                            <div class="product-previews-carousel" id="previewsGallery">
+                                <a href="#" data-image="{{ product.image_1.url }}"
+                                   data-zoom-image="{{ product.image_1.url }}"><img
+                                        src="{{ product.image_1.url }}" alt="{{ product.title }}"/></a>
+                                <a href="#" data-image="{{ product.image_2.url }}"
+                                   data-zoom-image="{{ product.image_2.url }}"><img
+                                        src="{{ product.image_2.url }}" alt="{{ product.title }}"/></a>
+                                <a href="#" data-image="{{ product.image_3.url }}"
+                                   data-zoom-image="{{ product.image_3.url }}"><img
+                                        src="{{ product.image_3.url }}" alt="{{ product.title }}"/></a>
+
+                            </div>
+                        </div>
+                        <!-- /Product Gallery -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="block">
+            <div class="tabaccordion">
+                <div class="container" style="text-align: right;direction: rtl">
+                    <!-- Nav tabs -->
+                    <ul class="nav-tabs product-tab" role="tablist">
+                        <li><a href="#Tab1" role="tab" data-toggle="tab"> شرح </a></li>
+                        <li><a href="#Tab4" role="tab" data-toggle="tab"> برچسب ها </a></li>
+                        <li><a href="#Tab5" role="tab" data-toggle="tab"> بررسی ها </a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="Tab1">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" style="font-size: 15px;">
+                                    <tbody>
+                                    <tr>
+                                        <td> <strong> وضعیت موجودی  </strong></td>
+                                        <td>{% if product.publish == pub %}ناموجود{% else %}موجود{% endif %}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> عنوان </strong> </td>
+                                        <td> {{ product.title }} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> قیمت </strong> </td>
+                                        <td> {{ product.price }} هزار تومان</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong> رنگ ها</strong></td>
+                                        <td>{{ product.color_to_str }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong> سایز ها </strong></td>
+                                        <td>{{ product.size_to_str }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> وزن </strong></td>
+                                        <td>{{ product.weight }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Tab4">
+                        <h2>برچسب ها</h2>
+                            <ul class="tags">
+                                {% for category in product.category.active %}
+                                    <li><a href="{% url 'seiko:category' category.slug %}"> <span
+                                            class="value"> <span>{{ category }}</span> </span> </a></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="divider"></div>
+{#                            <h3>Add your tag</h3>#}
+{#                            <form class="contact-form white" action="#">#}
+{#                                <label>Tag<span class="required">*</span></label>#}
+{#                                <input class="form-control input-lg">#}
+{#                                <div>#}
+{#                                    <button class="btn btn-lg">ارسال برچسب</button>#}
+{#                                </div>#}
+{#                                <div class="required-text">* فیلدهای مورد نیاز</div>#}
+{#                            </form>#}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Tab5">
+                            {# comment #}
+                            <div class="container" style="font-size: 25px;">
+                                {% render_comments object request %}
+                                {% include_bootstrap %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Blog Carousel -->
+                        <div class="title">
+                            <h2>وبلاگ های داغ</h2>
+                            <div class="carousel-arrows"></div>
+                        </div>
+                        <!-- Blog Carousel Item -->
+                        <div class="blog-carousel">
+                            {% for blog in blog %}
+                                <div class="blog-item">
+                                    <a href="{% url 'blog:detail' blog.slug %}" class="blog-item-photo"> <img
+                                            class="product-image-photo"
+                                            src="{{ blog.image.url }}"
+                                            alt="{{ blog.title }}"> </a>
+                                    <div class="blog-item-info">
+                                        <a href="{% url 'blog:detail' blog.slug %}"
+                                           class="blog-item-title">{{ blog.title }}</a>
+                                        <div class="blog-item-teaser">{{ blog.description | safe | striptags | truncatewords:30 }}</div>
+                                        <div class="blog-item-links"><span class="pull-right"> <span><a
+                                                href="{% url 'blog:detail' blog.slug %}"
+                                                class="readmore">مشاهده بیشتر</a></span> </span>
+                                            <span class="pull-left"> <span> نویسنده:<a href="#">ادمین</a></span> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- /Blog Carousel -->
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Deal Carousel -->
+                        <div class="title">
+
+                            <div class="toggle-arrow"></div>
+                            <div class="carousel-arrows"></div>
+                            <h2 class="custom-color">پیشنهاد ویژه</h2>
+                        </div>
+                        <div class="collapsed-content">
+                            <div class="deal-carousel-2 products-grid product-variant-5">
+                                {% for special_offer in product_special_offer %}
+                                    <!-- Product Item -->
+                                    <div class="product-item large">
+                                        <div class="product-item-inside">
+                                            <div class="product-item-info">
+                                                <!-- Product Photo -->
+                                                <div class="product-item-photo">
+                                                    <!-- product main photo -->
+                                                    <div class="product-item-gallery-main">
+                                                        <a href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"><img
+                                                                class="product-image-photo"
+                                                                src="{{ special_offer.image_1.url }}"
+                                                                alt="{{ special_offer.title }}"></a>
+                                                        <a href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"
+                                                           title="Quick View"
+                                                           class="quick-view-link quick-view-btn"> <i
+                                                                class="icon icon-eye"></i><span>مشاهده بیشتر</span></a>
+                                                    </div>
+                                                    <!-- /product main photo  -->
+                                                    {% if request.user.is_authenticated %}
+                                                        <a href="{% url 'favorite:add' special_offer.id %}"
+                                                           title="Add to Wishlist"
+                                                           class="no_wishlist"> <i
+                                                                class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
+                                                        </a>
+                                                    {% endif %}
+                                                    <!-- Product Label -->
+                                                    {% if special_offer.is_new_product %}
+                                                        <div class="product-item-label label-new"><span>جدید</span>
+                                                        </div>{% endif %}
+                                                    <!-- /Product Label -->
+                                                </div>
+                                                <!-- /Product Photo -->
+                                                <!-- Product Details -->
+                                                <div class="product-item-details">
+                                                    <div class="product-item-name"><a title="Cover up tunic"
+                                                                                      href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"
+                                                                                      class="product-item-link">{{ special_offer.title }}</a>
+                                                    </div>
+                                                    <div class="product-item-description">لورم ایپسوم متن ساختگی با
+                                                        تولید سادگی
+                                                        نامفهوم
+                                                        از صنعت چاپ و با استفاده از طراحان گرافیک است
+                                                    </div>
+                                                    <div class="price-box"> <span class="price-container"> <span
+                                                            class="price-wrapper"> <span
+                                                            class="price">{{ special_offer.price }} تومان </span></span>
+															</span>
+                                                    </div>
+                                                    <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i></div>
+                                                    <a href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"
+                                                       class="btn "
+                                                       data-product="789123"><i
+                                                            class="icon "></i><span>مشاهده محصول</span></a>
+                                                </div>
+                                                <!-- /Product Details -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Product Item -->
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <!-- /Deal Carousel -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- /Page Content -->
+
+
+{% endblock %}

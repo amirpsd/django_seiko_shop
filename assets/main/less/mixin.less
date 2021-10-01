@@ -1,0 +1,58 @@
+.transform(@transform) {
+    -webkit-transform: @transform;
+    -moz-transform: @transform;
+    -ms-transform: @transform; /* note that you have @transform here */
+    -o-transform: @transform;
+    transform: @transform; 
+}
+.vertical-align {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.horizontal-align {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+// mixin for multiline
+.multiLineEllipsis(@lineHeight: 1.2em, @lineCount: 1){
+  overflow: hidden;
+  position: relative;
+  line-height: @lineHeight;
+  max-height: @lineHeight * @lineCount; 
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+  }
+}
+.vert-wrapper {
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+.vert {
+	display: table-cell;
+	vertical-align: middle;
+}

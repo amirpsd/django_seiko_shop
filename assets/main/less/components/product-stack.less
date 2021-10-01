@@ -1,0 +1,338 @@
+.productStack {
+	position: fixed;
+	right: 0;
+	bottom: -134px;
+	width: 100%;
+	z-index: 1004;
+	visibility: visible;
+	pointer-events: none;
+	.transition (all 0.3s ease);
+	.productstack-content {
+		height: 134px;
+		clear: both;
+		background: #ffffff;
+		border-top: 4px solid @custom-color;
+		box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.4);
+		pointer-events: auto;
+		overflow-y: hidden;
+	}
+	&.disable {
+		bottom: -184px;
+		visibility: hidden;
+		z-index: -10000;
+	}
+	&.open {
+		bottom: 0;
+	}
+	.toggleStack {
+		position: relative;
+		z-index: 1;
+		display: block;
+		float: right;
+		background: @custom-color;
+		color: #ffffff;
+		width: auto;
+		height: 50px;
+		font-size: 20px;
+		line-height: 50px;
+		text-decoration: none;
+		padding: 0 10px;
+		pointer-events: auto;
+		white-space: nowrap;
+		.icon {
+			font-size: 30px;
+			vertical-align: sub;
+			padding: 0 10px 0 0;
+		}
+		&:after {
+			content: '';
+			display: table;
+		}
+	}
+	.total-cart {
+		float: right;
+		min-width: 200px;
+		max-width: 290px;
+		padding: 15px 10px;
+		color: @custom-color-alt;
+		.items-total {
+			font-size: 16px;
+			line-height: 20px;
+			text-align: left;
+			padding: 10px 0;
+			margin: 0 0 10px;
+		}
+		.count,
+		.price {
+			display: inline-block;
+			float: right;
+			padding-left: 10px;
+			font-size: 18px;
+			font-weight: bold;
+			color: @custom-color;
+		}
+		.subtotal {
+			font-size: 16px;
+			line-height: 20px;
+			padding: 10px 0;
+		}
+	}
+	.action-cart {
+		float: right;
+		min-width: 210px;
+		padding: 15px 10px;
+		.btn {
+			display: block;
+			width: 100%;
+			margin-bottom: 8px;
+		}
+	}
+	.products-list-wrapper {
+		display: inline-block;
+		width: ~'calc(100% - 500px)';
+		overflow-x: auto;
+		overflow-y: hidden;
+		padding: 10px 15px 5px;
+	}
+	.products-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		white-space: nowrap;
+		&.loaded {
+			opacity: 0;
+			.transition (opacity 0.2s ease);
+		}
+		.transition (opacity 0.2s ease);
+		li {
+			display: inline-block;
+			position: relative;
+			margin: 0 5px 0 0;
+			a {
+				display: block;
+			}
+			img {
+				height: 100px;
+			}
+		}
+		li:hover {
+			.actions {
+				opacity: 1;
+				bottom: 0;
+			}
+		}
+		.item-qty {
+			position: absolute;
+			right: 0;
+			top: 0;
+			display: block;
+			line-height: 20px;
+			font-size: 14px;
+			padding: 0 5px;
+			color: #ffffff;
+			background-color: @custom-color;
+		}
+		.actions {
+			position: absolute;
+			bottom: 0;
+			opacity: 0;
+			left: 0;
+			width: 100%;
+			&.open {
+				height: 100%;
+			}
+			.transition (opacity 0.2s ease);
+			.action {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 50%;
+				height: 32px;
+				font-size: 20px;
+				line-height: 32px;
+				color: @custom-color;
+				text-align: center;
+				background: rgba(255, 255, 255, 0.8);
+				.transition (all 0.2s ease);
+				&:hover {
+					background: @custom-color;
+					color: #ffffff;
+				}
+			}
+			.action.edit {
+				width: ~'calc(50% - 1px)';
+			}
+			.action.edit:after {
+				content: '';
+				width: 1px;
+				height: 14px;
+				position: absolute;
+				right: -1px;
+				top: 9px;
+				background-color: #999;
+				z-index: 1;
+			}
+			.action.delete:after {
+				content: '';
+				width: 1px;
+				height: 32px;
+				position: absolute;
+				left: -1px;
+				top: 0;
+				background: rgba(255, 255, 255, 0.8);
+			}
+			.action.delete {
+				left: 50%;
+			}
+		}
+		.edit-qty {
+			position: absolute;
+			top: -100%;
+			opacity: 0;
+			padding: 5%;
+			width: 100%;
+			height: ~'calc(100% - 32px)';
+			background: rgba(255, 255, 255, 0.8);
+			input {
+				width: 100%;
+				height: 24px;
+				line-height: 20px;
+				padding: 0 0 0 5px;
+				margin-bottom: 4px;
+				text-align: center;
+			}
+			button {
+				display: block;
+				width: 100%;
+				font-size: 12px;
+				line-height: 24px;
+				height: 24px;
+				padding: 0 5px;
+				text-transform: uppercase;
+			}
+		}
+		.actions.open .edit-qty {
+			top: 0;
+			opacity: 1;
+		}
+	}
+}
+
+body.touch {
+	.productStack .products-list .actions .action.edit {
+		display: none;
+	}
+	.productStack .products-list .actions .action.delete {
+		left: 0;
+		width: 100%;
+	}
+	.productStack .products-list .actions .action.delete:after {
+		display: none;
+	}
+}
+@media screen and (max-width: (@mobile-menu-breikpoint - 1)) {
+	.productStack .toggleStack {
+		height: 45px;
+		font-size: 18px;
+		line-height: 45px;
+		padding: 0 8px;
+		.icon {
+			font-size: 26px;
+			padding: 0 8px 0 0;
+		}
+	}
+}
+@media screen and (min-width: @mobile-menu-breikpoint) {
+	body.open-panel .productStack {
+		right: 0;
+		left: @sidebar-width;
+		width: auto;
+	}
+}
+@media (max-width: 767px) {
+	.productStack {
+		bottom: -280px;
+		&.disable {
+			bottom: -326px;
+		}
+		.productstack-content {
+			height: 280px;
+		}
+		.products-list-wrapper,
+		.action-cart,
+		.total-cart {
+			float: none;
+			width: 100%;
+			min-width: none;
+			max-width: none;
+		}
+		.total-cart {
+			padding: 10px 15px;
+			border-top: 1px solid @grey-border-color;
+			.btn {
+				display: inline-block;
+				width: auto;
+			}
+		}
+		.total-cart .items-total,
+		.total-cart .subtotal {
+			line-height: 25px;
+			padding: 0;
+		}
+		.action-cart {
+			overflow: hidden;
+			padding: 10px 10px;
+			border-top: 1px solid @grey-border-color;
+			.btn {
+				display: block;
+				float: left;
+				margin: 0 5px;
+				width: ~'calc(50% - 10px)';
+			}
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.productStack {
+		.products-list-wrapper,
+		.action-cart,
+		.total-cart {
+			float: none;
+			width: 100%;
+		}
+		.total-cart {
+			overflow: hidden;
+			padding: 8px 15px;
+			border-top: 1px solid @grey-border-color;
+			.btn {
+				display: inline-block;
+				width: auto;
+			}
+		}
+		.total-cart .items-total {
+			float: left;
+			width: 30%;
+			text-align: left;
+		}
+		.total-cart .subtotal {
+			float: right;
+			width: 60%;
+		}
+		.action-cart {
+			overflow: hidden;
+			padding: 10px 10px 5px;
+			border-top: 1px solid @grey-border-color;
+			.btn {
+				display: block;
+				float: left;
+				margin: 0 5px 5px;
+				width: 100%;
+			}
+		}
+	}
+}
+
+body.touch .productStack .products-list .actions {
+	opacity: 1;
+}

@@ -1,0 +1,48 @@
+{% extends 'account_panel/shared/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+اطلاعات شخصی
+{% endblock %}
+{% block content %}
+    <div class="card card-primary col-md-6 mx-auto">
+        <div class="card-header">
+            <h3 class="card-title">اطلاعات شخصی</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="post" role="form">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="form-group">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.phone_number|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    <span style="color: red;">تغیر رمز عبور.</span>
+                    <a href="{% url 'password_change' %}">تغیر رمز</a>
+                </div>
+                <div class="form-group">
+                    <span style="color: red;">رمز عبور خود را فراموش کردید.</span>
+                    <a href="{% url 'password_reset' %}">بازیابی رمز عبور</a>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <br>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">ویرایش</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

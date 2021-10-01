@@ -1,0 +1,9 @@
+{% for cat in cat.children.active %}
+    <li>
+        <a href="{% url 'seiko:category' cat.slug %}">{{ cat.title }}
+        </a>
+    </li>
+    {% if cat.children.active %}
+        {% include 'main/partial/category_nav.html' %}
+    {% endif %}
+{% endfor %}

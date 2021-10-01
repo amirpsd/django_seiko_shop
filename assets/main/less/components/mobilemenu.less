@@ -1,0 +1,190 @@
+/* mobilemenu */
+
+@media screen and (max-width: (@mobile-menu-breikpoint - 1)) {
+	.mobilemenu {
+		position: fixed;
+		z-index: 1009;
+		left: 0;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 100%;
+		visibility: hidden;
+		.transition (visibility 0s ease 0.6s);
+	}
+	.mobilemenu-content {
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		max-width: 480px;
+		line-height: 50px;
+		font-weight: bold;
+		overflow: auto;
+		-webkit-transform: translateX(-120%);
+		transform: translateX(-120%);
+		background: #ffffff;
+		.transition (all 0.5s cubic-bezier(.25,1,.30,1) 0.3s);
+	}
+	.mobilemenu-header {
+	  position: fixed;
+	  z-index: 2;
+	  left: 0;
+	  top: -50px;
+	  width: 100%;
+	  max-width: 480px;
+	  height: 50px;
+	  font-size: 16px;
+	  font-weight: bold;
+	  line-height: 50px;
+	  padding: 0 20px;
+	  background: @custom-color;
+	  color: #ffffff;
+	  text-transform: uppercase;
+	  z-index: 2;
+	  .transition (top 0.3s ease 0s);
+	}
+	.mobilemenu-toggle {
+		text-decoration: none;
+		&:hover, &:focus {
+			text-decoration: none;
+		}
+	}
+	.mobilemenu .mobilemenu-toggle {
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  height: 100%;
+	  width: 100%;
+	  color: #ffffff;
+	  &:before, &:after {
+		  content: '';
+		  position: absolute;
+		  top: 22px;
+		  right: 20px;
+		  height: 3px;
+		  width: 20px;
+		  background-color: #ffffff;
+		  -webkit-backface-visibility: hidden;
+		  backface-visibility: hidden;
+	  }
+		&:before {
+			.rotate (45deg);
+	    }
+		&:after {
+			.rotate (-45deg);
+		}
+	}
+	.mobilemenu.active {
+		visibility: visible;
+		.transition (visibility 0s ease 0s);
+		.mobilemenu-content {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+			.transition (all 0.5s cubic-bezier(.25,1,.30,1) 0s);
+		}
+		.mobilemenu-header {
+			top: 0;
+			.transition (top 0.3s ease 0.5s);
+		}
+	}
+	.navbar ul.nav {
+		display: block;
+		padding-top: 50px;
+		li {
+			position: relative;
+			padding: 0;
+			.transition (all 0.1s ease);
+			a {
+				display: block;
+				font-size: 15px;
+				line-height: 20px;
+				padding: 12px 50px 12px 20px;
+				font-weight: bold;
+				color: @custom-color-alt;
+				text-transform: uppercase;
+				background: transparent;
+				text-decoration: none;
+				border-bottom: 1px solid @grey-border-color;	
+				.transition (all 0.1s ease);
+			}
+			&:hover, &.submenu-open {
+				& > a {
+					background-color: #f8f8f8;
+					color: @custom-color;
+					text-decoration: none;
+				}
+			}
+			.arrow {
+				position: absolute;
+				z-index: 100;
+				width: 50px;
+				height: 45px;
+				top: 0;
+				right: 0;
+				font-family: 'icomoon-reg';
+				font-size: 18px;
+				line-height: 45px;
+				text-align: center;
+				cursor: pointer;
+				.transition (all 0.2s ease);
+			}
+			.arrow:before {
+				color: @custom-color-alt;
+				content: "\e922";
+			}
+			.arrow:hover:before {
+				color: @custom-color;
+			}
+			&.submenu-open > .arrow {
+			  .rotate (90deg);
+			}
+			ul {
+				display: none;
+				padding: 0;
+				margin: 0;
+				opacity: 0;
+				list-style: none;
+				.transition (opacity 0.1s ease);
+				a {
+					padding-left: 40px;
+				}
+				ul a {
+					padding-left: 60px;
+				}
+				ul ul a {
+					padding-left: 80px;
+				}
+				ul ul ul a {
+					padding-left: 100px;
+				}
+				ul ul ul a {
+					padding-left: 120px;
+				}
+			}
+			&.submenu-open > ul {
+				opacity: 1;
+			}
+		}
+	}
+}
+@media screen and (min-width: 481px) {
+	.mobilemenu:after {
+	  /* overlay layer */
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 120%;
+	  height: 120%;
+	  background: transparent;
+	  cursor: pointer;
+	  .transition (background 0.3s ease 0.3s);
+	}
+	.mobilemenu.active:after {
+	  background: rgba(0, 0, 0, 0.6);
+	  .transition (background 0.3s ease 0);
+	}
+}

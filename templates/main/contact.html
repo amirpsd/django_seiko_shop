@@ -1,0 +1,75 @@
+{% extends 'main/Shared/base.html' %}
+{% block title %}
+    ثبت نام در خبر نامه
+{% endblock %}
+
+{% block content %}
+    <!-- Page Content -->
+    <main class="page-main">
+        <div class="block">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li>/<span>ثبت نام در خبر نامه</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="text-wrapper">
+                            <h2>اطلاعات تماس</h2>
+                            <div class="address-block">
+                                <h3>ADDRESS 1</h3>
+                                <ul class="simple-list">
+                                    <li><i class="icon icon-location-pin"></i>آدرس : خوی خیابان صمدزاده
+                                    </li>
+                                    <li><i class="icon icon-phone"></i>تلفن : 0936366</li>
+                                    <li><i class="icon icon-phone"></i>فکس : 044364</li>
+                                    <li><i class="icon icon-close-envelope"></i>ایمیل: <a
+                                            href="mailto:support@seiko.com">rtl-html@example.com</a></li>
+                                </ul>
+                            </div>
+                            <div class="address-block last">
+                                <h3>آدرس 2</h3>
+                                <ul class="simple-list">
+                                    <li><i class="icon icon-location-pin"></i>آدرس : خوی خیابان صمدزاده
+                                    </li>
+                                    <li><i class="icon icon-phone"></i>تلفن : 0936366</li>
+                                    <li><i class="icon icon-phone"></i>فکس : 044364</li>
+                                    <li><i class="icon icon-close-envelope"></i>ایمیل: <a
+                                            href="mailto:support@seiko.com">rtl-html@example.com</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="text-wrapper">
+                            <h2>برای با خبر شدن از اضافه شدن محصول جدید در خبرنامه ثبت نام کنید.</h2>
+                            <form style="direction: rtl" class="contact-form white" name="contactform"
+                                  method="post">
+                                {% csrf_token %}
+                                <label>نام<span class="required">*</span></label>
+                                <input type="text" class="form-control input-lg" {{ form.name }}>
+                                <label>ایمیل<span class="required"></span></label>
+                                <input type="email" class="form-control input-lg" {{ form.email }}>
+                                {% if form.email.errors %}
+                                    {% for error in form.email.errors %}
+                                        <span style="color: red ;" class="errors">
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                {% endif %}
+                                <button class="btn btn-lg" type="submit">ارسال</button>
+                                </span>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- /Page Content -->
+{% endblock %}

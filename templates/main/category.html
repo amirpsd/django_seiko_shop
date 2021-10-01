@@ -1,0 +1,174 @@
+{% extends 'main/Shared/base.html' %} {% load static %} {% block title %} دسته بندی {{ category.title }} {% endblock %} {% block content %}
+<!-- Page Content -->
+<main class="page-main">
+    <div class="block">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                <li>/<span>{{ category.title }}</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Two columns -->
+        <div class="row">
+            <!-- Left column -->
+
+            <!-- /Left column -->
+            <!-- Center column -->
+            <div class="col-md-12 aside">
+                <!-- Page Title -->
+                <div class="page-title">
+                    <div class="title center">
+                        <h1>{{ category.title }}</h1>
+                    </div>
+                </div>
+                <!-- /Page Title -->
+                    <!-- Categories -->
+                    {% if category.has_image %}
+                        <div class="categories">
+                            <div class="row">
+                                {% for category_image in categoryimage %}
+                                    <div class="col-xs-6 col-sm-3">
+                                        <a href="" class="category-block">
+                                            <div class="category-image">
+                                                <img src="{{ category_image.images.url }}"
+                                                     alt="{{ category_image.title }}">
+                                            </div>
+                                            <div class="category-title">
+                                                {{ category_image.title }}
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    <!-- /Categories -->
+                <!-- Filter Row -->
+                <div class="filter-row">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-7 col-lg-5 col-left">
+                            <div class="filter-button">
+                                <a href="#" class="btn filter-col-toggle"><i
+                                            class="icon icon-filter"></i><span>فیلتر</span></a>
+                            </div>
+
+                            <div class="select-wrapper-sm">
+                                <select class="form-control input-sm">
+                                        <option value="featured">تاریخ</option>
+                                        <option value="price">قیمت</option>
+                                    </select>
+                            </div>
+                            <div class="form-label"> : مرتب سازی</div>
+                            <div class="directions">
+                                <a href="#"><i class="icon icon-arrow-down"></i></a>
+                                <a href="#"><i class="icon icon-arrow-up"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-lg-2 hidden-xs">
+                            <div class="view-mode">
+                                <a href="#" class="grid-view"><i class="icon icon-th"></i></a>
+                                <a href="#" class="list-view"><i class="icon icon-th-list"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-lg-5 col-right">
+                            <div class="select-wrapper-sm">
+                                <select class="form-control input-sm">
+                                        <option value="featured">12</option>
+                                        <option value="rating">36</option>
+                                        <option value="price">100</option>
+                                    </select>
+                            </div>
+                            <div class="form-label"> : مشاهده</div>
+
+                        </div>
+                    </div>
+                    <div class="bg-striped"></div>
+                </div>
+                <!-- /Filter Row -->
+                <!-- Total -->
+                <div class="items-total">تعداد {{ object_list.count }} کل</div>
+                <!-- /Total -->
+                <!-- Products Grid -->
+                <div class="products-grid four-in-row product-variant-5">
+
+                    <!-- Product Item -->
+                    {% for cat in object_list %}
+                    <div class="product-item large colorvariants category2">
+                        <div class="product-item-inside">
+                            <div class="product-item-info">
+                                <!-- Product Photo -->
+                                <div class="product-item-photo">
+                                    <!-- product main photo -->
+                                    <div class="product-item-gallery-main">
+                                        <a href="{% url 'seiko:detail' cat.slug cat.id %}"><img class="product-image-photo" src="{{ cat.image_1.url }}" alt=""></a>
+                                        <a href="{% url 'seiko:detail' cat.slug cat.id %}" title="Quick View" class="quick-view-link quick-view-btn"> <i class="icon icon-eye"></i><span>مشاهده سریع</span></a>
+                                    </div>
+                                    <!-- /product main photo  -->
+
+                                    <!-- Product Actions -->
+                                    {% if request.user.is_authenticated %}
+                                    <a href="{% url 'favorite:add' cat.id %}" title="افزودن به علاقه مندی ها" class="no_wishlist"> <i class="icon icon-heart"></i><span>افزودن به علاقه مندی
+                                            ها </span>
+                                    </a>
+                                    {% endif %}
+                                    <div class="product-item-actions">
+                                        <div class="share-button toBottom">
+                                            <span class="toggle"></span>
+                                            <ul class="social-list">
+                                                <li>
+                                                    <a href="#" class="icon icon-google google"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-fancy fancy"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-pinterest pinterest"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-twitter-logo twitter"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-facebook-logo facebook"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /Product Actions -->
+                                </div>
+                                <!-- /Product Photo -->
+                                <!-- Product Details -->
+                                <div class="product-item-details">
+                                    <div class="product-item-name"><a title="Long sleeve overall" href="{% url 'seiko:detail' cat.slug cat.id %}" class="product-item-link">{{ cat.title }}</a>
+                                    </div>
+                                    <div class="product-item-description"></div>
+                                    <div class="price-box"> <span class="price-container"> <span
+                                                    class="price-wrapper"><span class="special-price">{{ cat.price }}
+                                                    تومان</span> </span>
+                                        </span>
+                                    </div>
+
+                                    <a href="{% url 'seiko:detail' cat.slug cat.id %}" class="btn " data-product="789123"><i class="icon "></i><span>مشاهده محصول</span></a>
+                                </div>
+                                <!-- /Product Details -->
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- /Product Item -->
+                </div>
+
+
+                <!-- /Products Grid -->
+
+            </div>
+            <!-- /Center column -->
+        </div>
+        <!-- /Two columns -->
+    </div>
+</main>
+<!-- /Page Content -->
+
+{% endblock %}

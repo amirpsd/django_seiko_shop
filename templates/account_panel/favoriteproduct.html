@@ -1,0 +1,72 @@
+{% extends 'account_panel/shared/base.html' %}
+{% load humanize %}
+{% block title %}
+
+    لیست علاقه مندی ها
+
+{% endblock %}
+{% block content %}
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">علاقه مندی ها</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover">
+                                {% if favorite %}
+                                    <tr>
+                                        <th>محصول</th>
+                                        <th>تصویر</th>
+                                        <th>وضعیت</th>
+                                        <th>تاریخ</th>
+                                        <th>قیمت</th>
+                                        <th>سایز ها</th>
+                                        <th>رنگ ها</th>
+                                        <th class="remove">حذف محصول</th>
+                                    </tr>
+                                {% endif %}
+                                {% for favorite in favorite %}
+
+                                    {% for favorite_products in favorite.products.all %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'seiko:detail' favorite_products.slug favorite_products.id %}">{{ favorite_products.title }}</a>
+                                            </td>
+                                            <td><img src="{{ favorite_products.image_1.url }}" height="60px"
+                                                     width="100px" alt="{{ favorite_products.title }}"
+                                                     style="border-radius: 5px;"></td>
+                                            <td>{% if favorite_products.status %}
+                                                منتشر شده
+                                            {% else %}
+                                                منتشر نشده
+                                            {% endif %} </td>
+                                            <td>{{ favorite_products.publish | naturaltime }}</td>
+                                            <td><span>{{ favorite_products.price }} تومان</span></td>
+                                            <td>{{ favorite_products.size_to_str }}</td>
+                                            <td>{{ favorite_products.color_to_str }}</td>
+                                            <td><a href="{% url 'favorite:remove' favorite_products.id %}"
+                                                   class="remove">حذف</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    {% empty %}
+                                    <h3 class="text-center">لیست علاقه مندی های شما خالی است</h3>
+                                {% endfor %}
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+{% endblock %}

@@ -1,0 +1,336 @@
+.cart-table {
+	background: #fff;
+	margin-bottom: @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+	.table-header, .table-row {
+		display: table;
+		table-layout: fixed;
+		position: relative;
+		width: 100%;
+		& > div {
+			display: table-cell;
+			vertical-align: middle;
+		} 
+	}
+	.table-row {
+		border-bottom: 2px solid @grey-border-color;
+		border-top: 2px solid @grey-border-color;
+		margin-bottom: 7px;
+		& > div {
+			border-left: 1px solid @grey-border-color;
+		}
+		& > div:first-child {
+			border-left: none;
+		} 
+	}
+	.table-header {
+		font-size: 17px;
+		line-height: 1.2em;
+		font-weight: 700;
+		padding: 20px 0;
+		text-align: center;
+		color: @custom-color-alt;
+	}
+	.table-footer {
+		padding: 20px 0 15px;
+		display: table;
+		width: 100%;
+		.btn {
+			margin: 0 12px 15px;
+		}
+		.btn:first-child {
+			margin-left: 24px;
+		}
+		.btn:first-child + .btn  {
+			margin-right: 24px;
+		}
+	}
+	.photo {
+		width: 14%;
+	}
+	.name {
+		width: 44%;
+	}
+	.price, .qty, .subtotal {
+		width: 12%;
+	}	
+	.remove, .continue {
+		width: 6%;
+	}
+	.table-row {
+		.photo {
+			width: 14%;
+			text-align: center;
+			padding: 0 50px;
+			img {
+				width: 100%; 
+				max-width: 140px;
+			}
+		}
+		.name {
+			padding: 0 50px;
+			small {
+				color: @custom-color-alt;
+				font-size: 0.8em;
+				font-weight: 400;
+			}
+		}
+		.name, name a, .price, .subtotal {
+			font-size: 19px;
+			line-height: 22px;
+			font-weight: 700;
+			color: @custom-color;
+			.transition (color 0.2s ease);
+		}
+		name a:hover {
+			color: @custom-color;
+			text-decoration: underline;
+		}
+		.price, .subtotal {
+			text-align: center;
+		}
+		.qty {
+			text-align: center;
+			input[type="text"] {
+				background-color: transparent;
+				border: 0;
+				font-size: 19px;
+				line-height: 22px;
+				font-weight: 700;
+				color: @custom-color;
+			}
+		}
+		.remove {
+			text-align: center;
+			a {
+				font-size: 20px;
+				line-height: 1em;
+				color: @custom-color-alt;
+				text-decoration: none;
+				.transition (color 0.2s ease);
+				&:hover {
+					color: @custom-color;
+				}
+			}
+		}	
+		.continue {
+			text-align: center;
+			a {
+				font-size: 20px;
+				line-height: 1em;
+				color: @custom-color-alt;
+				text-decoration: none;
+				.transition (color 0.2s ease);
+				&:hover {
+					color: @custom-color;
+				}
+			}
+		}
+	}
+}
+.cart-table .table-row .continue span, .cart-table .table-row .remove span {
+	display: none;
+}
+.total-price {
+	border: 0;
+	padding: 0;
+	margin: 0 0 20px;
+	width: 100%;
+	max-width: 400px;
+	float: right;
+	background-color: transparent;
+	td {
+		width: 50%;
+		padding: 0 0 0 10px;
+		text-align: right;
+	}
+	font-size: 17px;
+	line-height: 1.7em;
+	color: @custom-color-alt;
+	font-weight: bold;
+	.total {
+		font-size: 20px;
+		color: @custom-color;
+	}
+}
+.cart-action {
+	text-align: right;
+	margin-bottom: 30px;
+	width: 100%;
+	clear: both;
+	.btn {
+		margin-bottom: 10px;
+	}
+	a {
+		font-size: 17px;
+		line-height: 1.2em;
+		color: @custom-color;
+		text-decoration:  none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+.total-wrapper {
+	float: right;
+}
+
+@media screen and (max-width: @screen-md-max) {
+	.cart-table {
+		.table-row .photo {
+			padding: 0 20px;
+		}
+		.table-header {
+			font-size: 15px;
+		}
+	}
+}
+@media screen and (max-width: @screen-sm-max) {
+	.total-wrapper {
+		float: none;
+	}
+	.cart-table {
+		margin-bottom: 15px;
+		.table-header {
+			padding: 10px 0;
+			font-size: 14px;
+		}
+		.table-row {
+			.photo {
+				padding: 0 10px;
+			}
+			.name {
+				padding: 0 10px;
+			}
+			.name, name a, .price, .subtotal {
+				font-size: 15px;
+				line-height: 18px;
+			}
+			.qty {
+				input[type="text"] {
+					font-size: 15px;
+					line-height: 18px;
+				}
+			}
+		}
+	}
+	.cart-table .table-footer .btn {
+		margin-right: 10px;
+	}
+	.cart-table .price, .cart-table .qty, .cart-table .subtotal {
+		width: 15%;
+	}
+	.cart-table .name {
+		width: 35%;
+	}
+	.table-header {
+			font-size: 15px;
+	}
+}
+@media screen and (max-width: 667px) {
+	.cart-table {
+		.table-row .photo {
+			padding: 0 20px;
+		}
+		.table-header {
+			padding: 10px 0;
+			font-size: 14px;
+		}
+		.table-row .name {
+			padding: 0 30px;
+			font-size: 14px;
+		}
+	}
+}
+@media screen and (max-width: 667px) {
+	.cart-table .table-row {
+		border-bottom-width: 1px;
+		border-top: 0;
+	}
+	.cart-table .table-header {
+		display: none;
+	}
+	.cart-table .table-row {
+		display:  block;
+		overflow: hidden;
+		padding-bottom: 40px;
+		padding-top: 20px;
+	}
+	.cart-table .table-row .photo {
+		display: block;
+		width: 33.33333%;
+		float: left;
+		padding: 0 10px;
+	}
+	.cart-table .table-row .name {
+		display: block;
+		float: right;
+		width: 66.66666%;
+		padding: 40px 0 20px;
+	}
+	.cart-table.wishlist .table-row .name {
+		padding: 50px 0 20px;
+	}
+	.cart-table .table-row .remove {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 10px 15px;
+		width: auto;
+	}	
+	.cart-table .table-row .continue {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		padding: 10px 15px;
+		width: auto;
+	}
+	.cart-table .table-row .continue span, .cart-table .table-row .remove span {
+		display: inline-block;
+		font-size: 15px;
+		line-height: 20px;
+		padding-right: 8px;
+	}
+	.cart-table .table-row .continue i.icon, .cart-table .table-row .remove i.icon {
+		vertical-align: bottom;
+   		font-size: 20px;
+	}
+	.cart-table .table-row {
+		& > div {
+			border-left: none;
+		}
+	}
+	.cart-table .qty, .cart-table .price, .cart-table .subtotal {
+		display: block;
+		position: absolute;
+		width: 33.33333%;
+		bottom: 10px;
+		left: 0;
+	}
+	.cart-table .subtotal {
+		left: auto;
+		right: 0;
+		padding: 0 10px;
+	}
+	.cart-table .qty{
+		left: 33.33333%;
+	}
+	.cart-table .table-footer .btn {
+		margin: 0 15px 15px;
+		width: ~'calc(100% - 30px)';
+		max-width: 300px;
+		float: none !important;
+		&:first-child {
+			margin-left: 15px;
+		}
+		&:first-child + .btn  {
+			margin-right: 15px;
+		}
+	}
+	.cart-table .table-footer {
+	    padding: 10px 0 0;
+		text-align: center;
+	}
+}

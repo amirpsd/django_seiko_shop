@@ -1,0 +1,224 @@
+{% load static %}
+<!-- ProductStack -->
+<div class="productStack disable hide_on_scroll"><a href="#" class="toggleStack"><i class="icon icon-cart"></i> (6)
+    محصول</a>
+    <div class="productstack-content">
+        <div class="products-list-wrapper">
+            <ul class="products-list">
+                <li>
+                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo"
+                                                                               src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                               alt=""></a> <span
+                        class="item-qty">3</span>
+                    <div class="actions"><a href="#" class="action edit" title="Edit item"><i
+                            class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i
+                            class="icon icon-trash-alt"></i></a>
+                        <div class="edit-qty">
+                            <input type="number" value="3">
+                            <button type="button" class="btn">درخواست دادن</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo"
+                                                                               src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                               alt=""></a> <span
+                        class="item-qty">3</span>
+                    <div class="actions"><a class="action edit" href="#" title="Edit item"><i
+                            class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i
+                            class="icon icon-trash-alt"></i></a>
+                        <div class="edit-qty">
+                            <input type="number" value="3">
+                            <button type="button" class="btn">درخواست دادن</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo"
+                                                                               src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                               alt=""></a> <span
+                        class="item-qty">3</span>
+                    <div class="actions"><a class="action edit" href="#" title="Edit item"><i
+                            class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i
+                            class="icon icon-trash-alt"></i></a>
+                        <div class="edit-qty">
+                            <input type="number" value="3">
+                            <button type="button" class="btn">درخواست دادن</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo"
+                                                                               src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                               alt=""></a> <span
+                        class="item-qty">3</span>
+                    <div class="actions"><a class="action edit" href="#" title="Edit item"><i
+                            class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i
+                            class="icon icon-trash-alt"></i></a>
+                        <div class="edit-qty">
+                            <input type="number" value="3">
+                            <button type="button" class="btn">Apply</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo"
+                                                                               src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                               alt=""></a> <span
+                        class="item-qty">3</span>
+                    <div class="actions"><a class="action edit" href="#" title="Edit item"><i
+                            class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i
+                            class="icon icon-trash-alt"></i></a>
+                        <div class="edit-qty">
+                            <input type="number" value="3">
+                            <button type="button" class="btn">درخواست دادن</button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo"
+                                                                               src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                               alt=""></a> <span
+                        class="item-qty">3</span>
+                    <div class="actions"><a class="action edit" href="#" title="Edit item"><i
+                            class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i
+                            class="icon icon-trash-alt"></i></a>
+                        <div class="edit-qty">
+                            <input type="number" value="3">
+                            <button type="button" class="btn">درخواست دادن</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="action-cart">
+            <button type="button" class="btn" title="Checkout"><span> تسویه حساب </span></button>
+            <button type="button" class="btn" title="Go to Cart"><span> رفتن به سبد خرید </span></button>
+        </div>
+        <div class="total-cart">
+            <div class="items-total"> موارد <span class="count"> 6 </span></div>
+            <div class="subtotal"> جمع کل <span class="price"> 2.150 </span></div>
+        </div>
+    </div>
+</div>
+<!-- /ProductStack -->
+
+<!-- Modal Quick View -->
+<div class="modal quick-view zoom" id="quickView">
+    <div class="modal-dialog">
+        <div class="modalLoader-wrapper">
+            <div class="modalLoader bg-striped"></div>
+        </div>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#10006;</button>
+        </div>
+        <div class="modal-content">
+            <iframe></iframe>
+        </div>
+    </div>
+</div>
+<!-- /Modal Quick View -->
+
+<!-- Footer -->
+<footer class="page-footer variant2 fullboxed">
+    <div class="footer-top">
+        <div class="container">
+            <!-- newsletter -->
+            <div class="newsletter variant2 row">
+                <div class="col-sm-3">
+                    <a href="/" title="Logo"><img src="{% static 'main/images/logo-footer.png' %}" alt
+                                                  class="img-responsive"/></a>
+                </div>
+                <div class="col-sm-9">
+                    <!-- input-group -->
+                    <form action="#">
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i
+                      class="icon icon-close-envelope"></i></button>
+              </span>
+                        </div>
+                    </form>
+                    <!-- /input-group -->
+                </div>
+            </div>
+            <!-- /newsletter -->
+        </div>
+    </div>
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-lg-3">
+                    <div class="footer-block collapsed-mobile">
+                        <div class="title">
+                            <h4>اطلاعات</h4>
+                            <div class="toggle-arrow"></div>
+                        </div>
+                        <div class="collapsed-content">
+                            <ul class="marker-list">
+                                <li><a href="{% url 'seiko:about' %}"> درباره ما </a></li>
+                                <li><a href="{% url 'account:profile' %}"> حساب من </a></li>
+                                <li><a href="{% url 'seiko:about' %}"> خط مشی رازداری </a></li>
+                                <li><a href="{% url 'blog:list' %}"> وبلاگ ما </a></li>
+                                <li><a href="{% url 'seiko:search' %}"> جستجو </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <div class="footer-block collapsed-mobile">
+                        <div class="title">
+                            <h4>MY ACCOUNT</h4>
+                            <div class="toggle-arrow"></div>
+                        </div>
+                        <div class="collapsed-content">
+                            <ul class="marker-list">
+                                <li><a href="{% url 'account:profile' %}"> حساب من </a></li>
+                                <li><a href="{% url 'login' %}"> ورود به سیستم </a></li>
+                                <li><a href="{% url 'cart:cart_detail' %}"> سبد خرید من </a></li>
+                                <li><a href="{% url 'contact:home' %}"> ثبت نام در خبرنامه </a></li>
+                                <li><a href="{% url 'seiko:search' %}"> جستجو </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <div class="footer-block collapsed-mobile">
+                        <div class="title">
+                            <h4>CUSTOMER CARE</h4>
+                            <div class="toggle-arrow"></div>
+                        </div>
+                        <div class="collapsed-content">
+                            <ul class="marker-list">
+                                <li><a href="{% url 'blog:list' %}"> وبلاگ ما </a></li>
+                                <li><a href="{% url 'seiko:search' %}"> جستجو </a></li>
+                                <li><a href="{% url 'contact:home' %}"> ثبت نام در خبرنامه </a></li>
+                                <li><a href="{% url 'seiko:about' %}"> درباره ما </a></li>
+                                <li><a href="{% url 'seiko:about' %}"> خط مشی رازداری </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <div class="footer-block collapsed-mobile">
+                        <div class="title">
+                            <h4>CONTACT US</h4>
+                            <div class="toggle-arrow"></div>
+                        </div>
+                        <div class="collapsed-content">
+                            <ul class="simple-list">
+                                <li><i class="icon icon-phone"></i>+01 234 567 89</li>
+                                <li><i class="icon icon-close-envelope"></i><a href="mailto:support@seiko.com">support@seiko.com</a>
+                                </li>
+                                <li><i class="icon icon-clock"></i>8:00 - 19:00, Monday - Saturday</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- /Footer -->

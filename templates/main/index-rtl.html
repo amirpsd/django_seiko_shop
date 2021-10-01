@@ -1,0 +1,397 @@
+{% extends 'main/Shared/base.html' %} {% load static %} {% load humanize %} {% block title %} فروشگاه
+    سیکو {% endblock %} {% block content %}
+    <!-- Page Content -->
+    <main class="page-main">
+        <div class="block fullwidth full-nopad bottom-space">
+            <div class="container">
+                <div class="mainSlider" data-thumb="true" data-thumb-width="230" data-thumb-height="100">
+                    <div class="sliderLoader">بارگذاری...</div>
+                    <!-- Slider main container -->
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            {% for slide in slider %}
+                                <div class="swiper-slide" data-thumb="{{ slide.image.url }}"
+                                     data-href="">
+                                    <!-- _blank or _self ( _self is default )-->
+                                    <div class="wrapper">
+                                        <figure><img src="{{ slide.image.url }}" alt="{{ slide.title }}"></figure>
+                                        <div class="text2-1 animate" data-animate="flipInY" data-delay="0"> سیکو</div>
+                                        <div class="text2-2 animate" data-animate="bounceIn" data-delay="500"> فصل فروش
+                                        </div>
+                                        <div class="text2-3 animate" data-animate="bounceIn" data-delay="1000">{{ slide.title }}
+                                        </div>
+                                        <div class="text2-5 animate" data-animate="hinge" data-delay="2000"> حراج</div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- pagination -->
+                        <div class="swiper-pagination"></div>
+                        <!-- pagination thumbs -->
+                        <div class="swiper-pagination-thumbs">
+                            <div class="thumbs-wrapper">
+                                <div class="thumbs"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <!-- Wellcome text -->
+                <div class="text-center bottom-space">
+                    <h1 class="size-lg no-padding">به فروشگاه <span class="logo-font custom-color">سیکو</span> خوش آمدید
+                    </h1>
+                    <div class="line-divider"></div>
+                    <p class="custom-color-alt">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
+                        از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
+                        <br> مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و
+                        سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت
+                        بیشتری را برای طراحان رایانه ای .
+                    </p>
+                </div>
+                <!-- /Wellcome text -->
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="box style2 bgcolor1 text-center">
+                            <div class="box-icon"><i class="icon icon-truck"></i></div>
+                            <h3 class="box-title"> حمل و نقل رایگان </h3>
+                            <div class="box-text"> ارسال رایگان برای همه سفارشات بیش از 199 دلار</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="box style2 bgcolor2 text-center">
+                            <div class="box-icon"><i class="icon icon-dollar"></i></div>
+                            <h3 class="box-title"> برگشت پول </h3>
+                            <div class="box-text"> 100٪ ضمانت استرداد پول</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="box style2 bgcolor3 text-center">
+                            <div class="box-icon"><i class="icon icon-help"></i></div>
+                            <h3 class="box-title">پشتیبانی آنلاین</h3>
+                            <div class="box-text">پشتیبانی سریع خدمات 24/7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block bottom-space">
+            <div class="container">
+                <ul class="filters filters-product style2">
+                    <li><a href="#" class="filter-label">محصولات<span class="count">{{ object_list.count }}</span></a></li>
+                </ul>
+                <div class="products-grid-wrapper isotope-wrapper">
+                    <div class="products-grid isotope four-in-row product-variant-5">
+
+                        <!-- Product Item -->
+
+                        {% for product in object_list %}
+                            <div class="product-item previews-2 large category1 category2">
+                                <div class="product-item-inside">
+                                    <div class="product-item-info">
+                                        <!-- Product Photo -->
+                                        <div class="product-item-photo">
+                                            <!-- Product Label -->
+                                            {% if product.is_new_product %}
+                                                <div class="product-item-label label-new"><span>جدید</span></div>
+                                            {% endif %}
+
+                                            <!-- /Product Label -->
+                                            <!-- product main photo -->
+                                            <div class="product-item-gallery-main">
+                                                <a href="{% url 'seiko:detail' product.slug product.id %}"><img
+                                                        class="product-image-photo" src="{{ product.image_1.url }}"
+                                                        alt=""></a>
+                                                <a href="{% url 'seiko:detail' product.slug product.id %}"
+                                                   title="Quick View" class="quick-view-link quick-view-btn"> <i
+                                                        class="icon icon-eye"></i><span>مشاهده بیشتر</span></a>
+                                            </div>
+                                            <!-- /product main photo  -->
+
+                                            <!-- Product Actions -->
+                                            {% if request.user.is_authenticated %}
+                                                <a href="{% url 'favorite:add' product.id %}"
+                                                   title="افزودن به علاقه مندی ها" class="no_wishlist"> <i
+                                                        class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
+                                                </a>
+                                            {% endif %}
+                                            <div class="product-item-actions">
+                                                <div class="share-button toBottom">
+                                                    <span class="toggle"></span>
+                                                    <ul class="social-list">
+                                                        <li>
+                                                            <a href="#" class="icon icon-google google"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="icon icon-fancy fancy"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="icon icon-pinterest pinterest"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="icon icon-twitter-logo twitter"></a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="icon icon-facebook-logo facebook"></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <!-- /Product Actions -->
+                                            <!-- product carousel -->
+                                            <div class="product-item-gallery-previews-wrapper">
+                                                <div class="product-item-gallery-previews">
+                                                    <div class="item">
+                                                        <a href="#"><img
+                                                                src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                data-image="images/products/product-25.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="item">
+                                                        <a href="#"><img
+                                                                src="{% static 'main/images/products/product-9.jpg' %}"
+                                                                data-image="images/products/product-25-1.jpg"
+                                                                alt=""></a>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-arrows"></div>
+                                            </div>
+                                            <!-- /product carousel -->
+                                        </div>
+                                        <!-- /Product Photo -->
+                                        <!-- Product Details -->
+                                        <div class="product-item-details">
+                                            <div class="product-item-name">
+                                                <a title="Mesh bodycon dress"
+                                                   href="{% url 'seiko:detail' product.slug product.id %}"
+                                                   class="product-item-link">
+                                                    <h3>{{ product.title }}</h3>
+                                                </a>
+                                                <h3>{{ product.publish | naturaltime }}</h3>
+
+                                            </div>
+                                            <div class="product-item-description">{{ product.description | truncatechars:20 }}</div>
+                                            <div class="price-box"> <span class="price-container"> <span
+                                                    class="price-wrapper"> <span
+                                                    class="special-price">{{ product.price }} تومان</span> </span>
+                                        </span>
+                                            </div>
+                                            <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
+                                                    class="icon icon-star-fill"></i><i
+                                                    class="icon icon-star-fill"></i><i
+                                                    class="icon icon-star-fill"></i><i class="icon icon-star-fill"></i>
+                                            </div>
+                                            <a href="{% url 'seiko:detail' product.slug product.id %}" class="btn "
+                                               data-product="789123"><i
+                                                    class="icon "></i><span>مشاهده محصول</span></a>
+                                        </div>
+                                        <!-- /Product Details -->
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!-- /Product Item -->
+                    </div>
+                </div>
+                {% if is_paginated %}
+                    <ul class="pagination pull-right">
+                        {% if page_obj.has_previous %}
+                            <li><a href="?page={{ page_obj.previous_page_number }}"><i
+                                    class="icon icon-angle-right"></i></a></li>
+                        {% endif %} {% for page in paginator.page_range %}
+                        <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                        </li>
+                    {% endfor %} {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}"><i
+                                class="icon icon-angle-left"></i></a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="block banners-with-pad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <a href="#" class="banner-wrap">
+                            <div class="banner style-17 autosize-text image-hover-scale" data-fontratio="4.6">
+                                <img src="{% static 'main/images/banners/banner.jpg' %}" alt="Banner">
+                                <div class="banner-caption vertb horl">
+                                    <div class="vert-wrapper">
+                                        <div class="vert">
+                                            <div class="text-1">مجموعه مد</div>
+                                            <div class="text-2 text-hoverslide" data-hcolor="#ffffff"><span><span
+                                                    class="text">زیر شلواری</span><span class="hoverbg"></span></span>
+                                            </div>
+                                            <div class="text-3"> برای گرفتن یک مثال پیش پا افتاده ، کدام یک از ما هرگز
+                                                دست به کار نمی شویم
+                                                <br> ورزش بدنی
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#bannerLink" class="banner-wrap">
+                            <div class="banner style-18 autosize-text image-hover-scale" data-fontratio="4.6">
+                                <img src="{% static 'main/images/banners/banner.jpg' %}" alt="Banner">
+                                <div class="banner-caption vertl horl">
+                                    <div class="vert-wrapper">
+                                        <div class="vert">
+                                            <div class="text-1"> بزرگتر</div>
+                                            <div class="text-2">BRA عالی</div>
+                                            <div class="banner-btn text-hoverslide" data-hcolor="# fff"> <span> <span
+                                                    class="text"> پیشنهادات ویژه </span> <span class="hoverbg"> </span> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                        <a href="#bannerLink" class="banner-wrap">
+                            <div class="banner style-19 autosize-text image-hover-scale" data-fontratio="4.6">
+                                <img src="{% static 'main/images/banners/banner.jpg' %}" alt="Banner">
+                                <div class="banner-caption vertb horl">
+                                    <div class="vert-wrapper">
+                                        <div class="vert">
+                                            <div class="text-1"> شب مد</div>
+                                            <div class="text-2"> وارد شد</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#bannerLink" class="banner-wrap">
+                            <div class="banner style-20 autosize-text image-hover-scale" data-fontratio="4.6">
+                                <img src="{% static 'main/images/banners/banner-1.jpg' %}" alt="Banner">
+                                <div class="banner-caption vertb horr">
+                                    <div class="vert-wrapper">
+                                        <div class="vert">
+                                            <div class="text-1"> همیشه به روز <span class="text-corner"> </span>
+                                            </div>
+                                            <div class="text-2"> پوشاک شهری</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Blog Carousel -->
+            <div class="title">
+                <h2>وبلاگ های داغ</h2>
+                <div class="carousel-arrows"></div>
+            </div>
+            <!-- Blog Carousel Item -->
+            <div class="blog-carousel">
+                {% for blog in blog %}
+                    <div class="blog-item">
+                        <a href="{% url 'blog:detail' blog.slug %}" class="blog-item-photo"> <img
+                                class="product-image-photo" src="{{ blog.image.url }}" alt="{{ blog.title }}"> </a>
+                        <div class="blog-item-info">
+                            <a href="{% url 'blog:detail' blog.slug %}" class="blog-item-title">{{ blog.title }}</a>
+                            <div class="blog-item-teaser">{{ blog.description | safe | striptags | truncatewords:30 }}</div>
+                            <div class="blog-item-links"><span class="pull-right"> <span><a
+                                    href="{% url 'blog:detail' blog.slug %}"
+                                    class="readmore">مشاهده بیشتر</a></span> </span>
+                                <span class="pull-left"> <span> نویسنده:<a href="#">ادمین</a></span> </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- /Blog Carousel Item -->
+            </div>
+            <!-- /Blog Carousel -->
+        </div>
+
+        <div class="col-md-6">
+            <!-- Deal Carousel -->
+            <div class="title">
+                <h2 class="custom-color">پیشنهاد ویژه</h2>
+                <div class="toggle-arrow"></div>
+                <div class="carousel-arrows"></div>
+            </div>
+            <div class="collapsed-content">
+                <div class="deal-carousel-2 products-grid product-variant-5">
+                    {% for special_offer in product_special_offer %}
+                        <!-- Product Item -->
+                        <div class="product-item large">
+                            <div class="product-item-inside">
+                                <div class="product-item-info">
+                                    <!-- Product Photo -->
+                                    <div class="product-item-photo">
+                                        <!-- product main photo -->
+                                        <div class="product-item-gallery-main">
+                                            <a href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"><img
+                                                    class="product-image-photo" src="{{ special_offer.image_1.url }}"
+                                                    alt="{{ special_offer.title }}"></a>
+                                            <a href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"
+                                               title="Quick View" class="quick-view-link quick-view-btn"> <i
+                                                    class="icon icon-eye"></i><span>مشاهده بیشتر</span></a>
+                                        </div>
+                                        <!-- /product main photo  -->
+                                        {% if request.user.is_authenticated %}
+                                            <a href="{% url 'favorite:add' special_offer.id %}" title="Add to Wishlist"
+                                               class="no_wishlist"> <i class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
+                                            </a>
+                                        {% endif %}
+                                        <!-- Product Label -->
+                                        {% if special_offer.is_new_product %}
+                                            <div class="product-item-label label-new"><span>جدید</span></div>{% endif %}
+                                        <!-- /Product Label -->
+                                    </div>
+                                    <!-- /Product Photo -->
+                                    <!-- Product Details -->
+                                    <div class="product-item-details">
+                                        <div class="product-item-name"><a title="Cover up tunic"
+                                                                          href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"
+                                                                          class="product-item-link">{{ special_offer.title }}</a>
+                                        </div>
+                                        <div class="product-item-description">لورم ایپسوم متن ساختگی با تولید سادگی
+                                            نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
+                                        </div>
+                                        <div class="price-box"> <span class="price-container"> <span
+                                                class="price-wrapper"> <span
+                                                class="price">{{ special_offer.price }} تومان </span></span>
+                                    </span>
+                                        </div>
+                                        <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
+                                                class="icon icon-star-fill"></i><i class="icon icon-star-fill"></i><i
+                                                class="icon icon-star-fill"></i><i class="icon icon-star-fill"></i>
+                                        </div>
+                                        <a href="{% url 'seiko:detail' special_offer.slug special_offer.id %}"
+                                           class="btn " data-product="789123"><i
+                                                class="icon "></i><span>مشاهده محصول</span></a>
+                                    </div>
+                                    <!-- /Product Details -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Product Item -->
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- /Deal Carousel -->
+        </div>
+
+
+    </main>
+    <!-- /Page Content -->
+
+
+{% endblock %}

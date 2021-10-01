@@ -1,0 +1,101 @@
+{% extends 'main/Shared/base.html' %} {% load static %} {% load comment_tags %} {% load humanize %} {% block title %} وبلاگ {{ blog.title | truncatechars:10 }} {% endblock %} {% block content %}
+<!-- Page Content -->
+<main class="page-main">
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <div class="title center">
+                <h1>وبلاگ</h1>
+            </div>
+            <div class="text-wrapper">
+                <p class="text-center" style="font-size: 30px;">
+                    از خبر های روز لباس و پوشاک دنیا با خبر بشوید</p>
+            </div>
+        </div>
+        <!-- /Page Title -->
+        <!-- Two columns -->
+        <div class="row">
+            <!-- Center column -->
+            <div class="col-md-8">
+                <div class="blog-post">
+                    <div class="blog-photo">
+                        <img src="{{ blog.image.url }}" alt="Blog Single">
+                    </div>
+                    <div class="blog-content">
+                        <h2 class="blog-title">{{ blog.title }}</h2>
+                        <div class="blog-meta">
+                            <div class="pull-left">
+                                <span>تاریخ انتشار</span>
+                                <span>{{ blog.publish | naturaltime }}</span>
+                                <span> نویسنده <a href="#">ادمین</a></span>
+                                <span class="last"><a href="#">{{ blog.comments.count }} نظر</a></span>
+                            </div>
+                            <div class="pull-right">
+                                <div class="share-button toRight">
+                                    <span class="toggle">Share</span>
+                                    <ul class="social-list">
+                                        <li>
+                                            <a href="#" class="icon icon-google google"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="icon icon-fancy fancy"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="icon icon-pinterest pinterest"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="icon icon-twitter-logo twitter"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="icon icon-facebook-logo facebook"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-text" style="font-size: 15px;">
+                            <p>{{ blog.description| striptags | safe | linebreaks }}</p>
+                        </div>
+                        <div class="blog-tags">
+                            <div class="pull-left">
+                                <span>دسته بندی</span>
+                                <ul class="tags">
+                                    {% for category in blog.category.active %}
+                                    <li><a href="{% url 'blog:category' category.slug %}"><span class="value"><span>{{ category.title }}</span></span></a>
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog-comments" style="font-size:20px;">
+                            <h3>نظرات</h3>
+                            {% render_comments blog request %} {% include_bootstrap %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Center column -->
+            <!-- Right column -->
+            <div class="col-md-4">
+                <div class="sideblock half">
+                    <h2>دسته بندی</h2>
+                    <ul class="tags">
+                        {% for category in blog.category.active %}
+                        <li><a href="{% url 'blog:category' category.slug %}"><span class="value"><span>{{ category.title }}</span></span></a></li>
+                        {% endfor %}
+                        <li>
+                            <a href="{% url 'favorite-blog:add' blog.id %}" class="btn" data-product="789123"><i
+                                        class="icon "></i><span>افزودن به علاقه مندی ها</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- /Right column -->
+        </div>
+        <!-- /Two columns -->
+    </div>
+</main>
+<!-- /Page Content -->
+{% endblock %}

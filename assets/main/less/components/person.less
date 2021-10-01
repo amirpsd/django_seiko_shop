@@ -1,0 +1,56 @@
+.person {
+	margin-bottom: @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+	color: @custom-color-alt;
+	.person-photo {
+		text-align: center;
+		.image-hover-scale;
+		img {
+			width: 100%;
+		}
+	}
+	.person-info {
+		padding: 40px 0 20px;
+		p {
+			font-size: 17px;
+			line-height: 20px;
+		}
+	}
+	.person-name {
+		font-size: 26px;
+		line-height: 28px;
+		font-weight: 500;
+		margin-bottom: 5px;
+		a {
+			color: @custom-color-alt;
+			text-decoration: none;
+			.transition (color 0.2s ease);
+			&:hover {
+				color: @custom-color;
+			}		
+		}
+	}
+	.person-subname {
+		font-size: 18px;
+		line-height: 22px;
+		font-style: italic;
+		margin-bottom: 10px;
+	}
+	.person-links {
+		text-align: right;
+		a {
+			display: inline-block;
+			vertical-align: top;
+			padding: 5px;
+			font-size:  20px;
+			color: @custom-color-alt;
+			text-decoration: none;
+			.transition (color 0.2s ease);
+			&:hover {
+				color: @custom-color;
+			}
+		}
+	}
+}

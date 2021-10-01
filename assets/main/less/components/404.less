@@ -1,0 +1,142 @@
+.page_404 {
+	text-align: center;
+	background: url('../images/404-bg.jpg') no-repeat;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.text-404 {
+	position: absolute;
+	left: 0;
+	top: 40%;
+	display: inline-block;
+	width: 100%;
+	height: ~'calc(2vw + 20px)';
+	font-size: ~'calc(1vw + 20px)';
+	line-height: ~'calc(2vw + 20px)';
+	font-weight: bold;
+	background: #f7f7f7;
+	color: #d1d1d1;
+	text-transform: uppercase;
+}
+
+.page_404 .btn,
+.empty-cart .btn,
+.empty-category .btn {
+	font-weight: 300;
+	padding: 0.75vw ~'calc(0.5vw + 10px)';
+	height: ~'calc(2.8vw + 20px)';
+	font-size: ~'calc(0.8vw + 15px)';
+	line-height: 1.4em;
+	margin-bottom: 50px;
+}
+
+.image-404 {
+	margin-top: 4vh;
+	position: relative;
+	display: inline-block;
+	img {
+		max-width: 100%;
+	}
+}
+
+.empty-cart,
+.empty-category {
+	text-align: center;
+	background: url('../images/empty-cart-bg.jpg') no-repeat;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.image-empty-cart {
+	margin-top: 10vh;
+	margin-bottom: 2vh;
+	position: relative;
+	display: inline-block;
+	img {
+		max-width: 500px;
+		width: 100%;
+	}
+}
+
+.text-empty-cart-1,
+.text-empty-cart-2 {
+	position: absolute;
+	left: 0;
+	top: 12%;
+	display: inline-block;
+	width: 100%;
+	padding-left: 5%;
+	font-family: @custom-font-2;
+	font-size: 41px;
+	line-height: 1em;
+	font-weight: bold;
+	color: #d1d1d1;
+	text-transform: uppercase;
+}
+
+.text-empty-cart-2 {
+	left: 0;
+	top: 33%;
+	padding-left: 0;
+	font-size: 71px;
+}
+
+@media screen and (max-width: 500px) {
+	.text-empty-cart-1 {
+		font-size: 7vw;
+	}
+	.text-empty-cart-2 {
+		font-size: 12vw;
+	}
+}
+
+.image-empty-category {
+	margin-top: 10vh;
+	margin-bottom: 2vh;
+	position: relative;
+	display: inline-block;
+	img {
+		max-width: 590px;
+		width: 100%;
+	}
+}
+
+.text-empty-category-1,
+.text-empty-category-2 {
+	position: absolute;
+	left: 0;
+	top: 2%;
+	display: inline-block;
+	width: 100%;
+	font-size: 33px;
+	line-height: 1em;
+	font-weight: 700;
+	color: #d1d1d1;
+	text-transform: uppercase;
+}
+
+.text-empty-category-2 {
+	left: 0;
+	top: auto;
+	bottom: 12%;
+	font-size: 20px;
+	text-transform: none;
+}
+
+@media screen and (max-width: 590px) {
+	.text-empty-category-1 {
+		font-size: 5vw;
+	}
+	.text-empty-category-2 {
+		font-size: 3.5vw;
+	}
+}

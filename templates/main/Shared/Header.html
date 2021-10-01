@@ -1,0 +1,172 @@
+{% load tags %}
+{% load static %}
+{% url 'seiko:home' as home %}
+<!-- Header -->
+{% if request.user.is_authenticated %}
+    {% if not request.user.first_name  or not request.user.last_name %}
+        <script>
+            alert(
+                'پروفایل خود را کامل کنید'
+            )
+        </script>
+    {% endif %}
+{% endif %}
+<header class="page-header variant-1 fullboxed sticky smart">
+    <div class="navbar">
+        <div class="container">
+            <!-- Menu Toggle -->
+            <div class="menu-toggle"><a href="#" class="mobilemenu-toggle"><i class="icon icon-menu"></i></a>
+            </div>
+            <!-- /Menu Toggle -->
+            <!-- Header Cart -->
+            {% if request.user.is_authenticated %}
+                <div class="header-link dropdown-link header-cart variant-1">
+                    <a href="{% url 'cart:cart_detail' %}"> <i class="icon icon-cart"></i> <span class="badge"></span>
+                    </a>
+                    <!-- minicart wrapper -->
+                    <div class="dropdown-container right">
+                        <!-- minicart content -->
+                        <div class="block block-minicart">
+                            <div class="minicart-content-wrapper">
+                                <div class="block-title">
+                                    <span class="text-center" style="font-size: 30px;">سبد خرید شما</span>
+                                </div>
+                                <a class="btn-minicart-close" title="Close">&#10060;</a>
+                                <div class="block-content">
+                                    <div class="minicart-items-wrapper overflowed">
+                                    </div>
+                                    <div class="subtotal">
+                <span class="label">
+                  <span>Subtotal</span>
+                </span>
+
+                                    </div>
+                                    <div class="actions">
+                                        <div class="secondary">
+                                            <a href="{% url 'cart:cart_detail' %}" class="btn btn-alt">
+                                                <i class="icon icon-cart"></i><span>مشاهده و ویرایش سبد خرید</span>
+                                            </a>
+                                        </div>
+                                        <div class="primary">
+                                            <a class="btn" href="{% url 'cart:cart_detail' %}">
+                                                <i class="icon icon-external-link"></i><span>به بررسی بروید</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /minicart content -->
+                    </div>
+                    <!-- /minicart wrapper -->
+                </div>
+            {% endif %}
+            <!-- /Header Cart -->
+            <!-- Header Links -->
+            <div class="header-links">
+                <!-- Header Account -->
+                <div class="header-link dropdown-link header-account">
+                    <a href="
+
+
+
+
+
+                            {% if not request.user.is_authenticated %}{% url 'login' %}{% else %}{% url 'account:profile' %}{% endif %}"><i
+                            class="icon icon-user"></i></a>
+                    <div class="dropdown-container right">
+                        {% if request.user.is_authenticated %}
+                            <div class="title">
+                                {% if request.user.get_full_name %}{{ request.user.get_full_name }}{% else %}
+                                    {{ request.user.username }}{% endif %}</div>
+                            <div class="title"><a href="{% url 'account:profile' %}">پروفایل</a></div>
+                            <a class="btn btn-primary" href="{% url 'logout' %}">خروج از حساب کاربری</a>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn text-center">وارد شوید</a>
+                            <br>
+                            <hr>
+                            <div class="title"><a href="{% url 'account:signup' %}" class="btn btn-success">ایجاد حساب
+                                جدید</a></div>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <!-- /Header Account -->
+            </div>
+            <!-- /Header Links -->
+            <!-- Header Search -->
+            <div class="header-link header-search header-search">
+                <div class="exp-search">
+                    <form action="{% url 'seiko:search' %}">
+                        <input class="exp-search-input" placeholder="جستجو کنید..." type="text"
+                               value="{% if search is not None %}{{ search }}{% endif %}" name="q">
+                        <input class="exp-search-submit" type="submit" value="">
+                        <span class="exp-icon-search"><i class="icon icon-magnify"></i></span>
+                        <span class="exp-search-close"><i class="icon icon-close"></i></span>
+                    </form>
+                </div>
+            </div>
+            <!-- /Header Search -->
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="{% url 'seiko:home' %}" title="Logo"><img src="{% static 'main/images/logo.png' %}"
+                                                                   alt="Logo"/></a>
+            </div>
+            <!-- /Logo -->
+            <!-- Mobile Menu -->
+
+            <!-- Mobile Menu -->
+            <!-- Mega Menu -->
+            <div class="megamenu fadein blackout">
+                <ul class="nav">
+                    {% if request.path != home %}
+                        <li class="simple-dropdown">
+                            <a href="{% url 'seiko:home' %}">صفحه اصلی</a>
+                        </li>
+                    {% endif %}
+
+                    {% category_navbar %}
+
+                </ul>
+            </div>
+            <!-- /Mega Menu -->
+        </div>
+    </div>
+</header>
+<!-- /Header -->
+<!-- Sidebar -->
+<div class="sidebar-wrapper">
+    <div class="sidebar-top"><a href="#" class="slidepanel-toggle"><i class="icon icon-left-arrow-circular"></i></a>
+    </div>
+    <ul class="sidebar-nav">
+        <li><a href="{% url 'seiko:home' %}"> خانه </a></li>
+        <li><a href="gallery.html"> گالری </a></li>
+        <li><a href="blog.html"> BLOG </a></li>
+        <li><a href="category-fixed-sidebar.html "> فروشگاه </a></li>
+        <li><a href="faq.html"> سوالات متداول </a></li>
+        <li><a href="contact.html "> تماس بگیرید </a></li>
+    </ul>
+    <div class="sidebar-bot">
+        <div class="share-button toTop">
+            <span class="toggle"></span>
+            <ul class="social-list">
+                <li>
+                    <a href="#" class="icon icon-google google"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon icon-fancy fancy"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon icon-pinterest pinterest"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon icon-twitter-logo twitter"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon icon-facebook-logo facebook"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /Sidebar -->

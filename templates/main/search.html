@@ -1,0 +1,362 @@
+{% extends 'main/Shared/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+    جست و جو محصولات | فیلتر محصولات
+{% endblock %}
+
+{% block content %}
+
+    <!-- Page Content -->
+    <main class="page-main">
+        <div class="block">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li>/<span>جستجو</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="h2-style">{% if search is not None %}
+                    <p>جست و جو مورد نظر : {{ search }}</p>
+                {% endif %}</div>
+                <form class="search-form white" action="{% url 'seiko:search' %}">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div style="direction: rtl; " class="input-group input-group-lg">
+                                <input type="text" placeholder="جستجو کنید..." style="font-size: 25px" name="q"
+                                       value="{% if search is not None %}{{ search }}{% endif %}"
+                                       class="form-control"/>
+                                <div class="input-group-btn">
+                                    <button type="submit" value="" class="btn">جستجو</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9 aside">
+            <div class="block bottom-space">
+                <div class="container">
+                    <div class="products-grid-wrapper isotope-wrapper">
+                        <div class="products-grid isotope four-in-row product-variant-5">
+                            {% if search != None %}
+                                <!-- Product Item -->
+                                {% for product in object_list %}
+                                    <div class="product-item large colorvariants category2">
+                                        <div class="product-item-inside">
+                                            <div class="product-item-info">
+                                                <!-- Product Photo -->
+                                                <div class="product-item-photo">
+                                                    <!-- product main photo -->
+                                                    {% if product.is_new_product %}
+                                                        <div class="product-item-label label-new"><span>جدید</span>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="product-item-gallery-main">
+                                                        <a href="{% url 'seiko:detail' product.slug product.id %}"><img
+                                                                class="product-image-photo"
+                                                                src="{{ product.image_1.url }}"
+                                                                alt="{{ product.title }}"></a>
+                                                        <a href="{% url 'seiko:detail' product.slug product.id %}"
+                                                           title="Quick View"
+                                                           class="quick-view-link quick-view-btn"> <i
+                                                                class="icon icon-eye"></i><span>مشاهده سریع</span></a>
+                                                    </div>
+                                                    <!-- /product main photo  -->
+
+                                                    <!-- Product Actions -->
+                                                    {% if request.user.is_authenticated %}
+                                                        <a href="{% url 'favorite:add' product.id %}"
+                                                           title="افزودن به علاقه مندی ها"
+                                                           class="no_wishlist"> <i
+                                                                class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
+                                                        </a>
+                                                    {% endif %}
+                                                    <div class="product-item-actions">
+                                                        <div class="share-button toBottom">
+                                                            <span class="toggle"></span>
+                                                            <ul class="social-list">
+                                                                <li>
+                                                                    <a href="#" class="icon icon-google google"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="icon icon-fancy fancy"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="icon icon-pinterest pinterest"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="icon icon-twitter-logo twitter"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="icon icon-facebook-logo facebook"></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /Product Actions -->
+                                                </div>
+                                                <!-- /Product Photo -->
+                                                <!-- Product Details -->
+                                                <div class="product-item-details">
+                                                    <div class="product-item-name"><a title="Long sleeve overall"
+                                                                                      href="{% url 'seiko:detail' product.slug product.id %}"
+                                                                                      class="product-item-link">{{ product.title }}</a>
+                                                        <br>
+                                                        <h3>{{ product.publish | naturaltime }}</h3>
+                                                    </div>
+                                                    <div class="product-item-description">{{ product.description | truncatewords:30 }}</div>
+                                                    <div class="price-box"> <span class="price-container"> <span
+                                                            class="price-wrapper"><span
+                                                            class="special-price">{{ product.price }} تومان</span> </span>
+													</span>
+                                                    </div>
+                                                    <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i>
+                                                    </div>
+                                                    <a href="{% url 'seiko:detail' product.slug product.id %}"
+                                                       class="btn "
+                                                       data-product="789123"><i
+                                                            class="icon "></i><span>مشاهده محصول</span></a>
+                                                </div>
+                                                <!-- /Product Details -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <div class="container text-center">
+                                        <div class="col-md-6 text-center">
+                                            <div style="font-size: 25px; color: #ff000d; border: 5px #ffff00 solid">
+                                                متاسفانه محصول مورد نظر پیدا نشد
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+                                <!-- /Product Item -->
+                            {% else %}
+                                <!-- Product Item -->
+                                {% for product_filter in filter.qs %}
+                                    <div class="product-item large colorvariants category2">
+                                        <div class="product-item-inside">
+                                            <div class="product-item-info">
+                                                <!-- Product Photo -->
+                                                <div class="product-item-photo">
+                                                    <!-- product main photo -->
+                                                    {% if product_filter.is_new_product %}
+                                                        <div class="product-item-label label-new"><span>جدید</span>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="product-item-gallery-main">
+                                                        <a href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"><img
+                                                                class="product-image-photo"
+                                                                src="{{ product_filter.image_1.url }}"
+                                                                alt="{{ product_filter.title }}"></a>
+                                                        <a href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"
+                                                           title="Quick View"
+                                                           class="quick-view-link quick-view-btn"> <i
+                                                                class="icon icon-eye"></i><span>مشاهده سریع</span></a>
+                                                    </div>
+                                                    <!-- /product main photo  -->
+
+                                                    <!-- Product Actions -->
+                                                    {% if request.user.is_authenticated %}
+                                                        <a href="{% url 'favorite:add' product_filter.id %}"
+                                                           title="افزودن به علاقه مندی ها"
+                                                           class="no_wishlist"> <i
+                                                                class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
+                                                        </a>
+                                                    {% endif %}
+                                                    <div class="product-item-actions">
+                                                        <div class="share-button toBottom">
+                                                            <span class="toggle"></span>
+                                                            <ul class="social-list">
+                                                                <li>
+                                                                    <a href="#" class="icon icon-google google"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="icon icon-fancy fancy"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="icon icon-pinterest pinterest"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="icon icon-twitter-logo twitter"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="icon icon-facebook-logo facebook"></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /Product Actions -->
+                                                </div>
+                                                <!-- /Product Photo -->
+                                                <!-- Product Details -->
+                                                <div class="product-item-details">
+                                                    <div class="product-item-name"><a title="Long sleeve overall"
+                                                                                      href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"
+                                                                                      class="product-item-link">{{ product_filter.title }}</a>
+                                                        <br>
+                                                        <h3>{{ product_filter.publish | naturaltime }}</h3>
+                                                    </div>
+                                                    <div class="product-item-description">{{ product_filter.description | truncatewords:30 }}</div>
+                                                    <div class="price-box"> <span class="price-container"> <span
+                                                            class="price-wrapper"><span
+                                                            class="special-price">{{ product_filter.price }} تومان</span> </span>
+													</span>
+                                                    </div>
+                                                    <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i><i
+                                                            class="icon icon-star-fill"></i>
+                                                    </div>
+                                                    <a href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"
+                                                       class="btn "
+                                                       data-product="789123"><i
+                                                            class="icon "></i><span>مشاهده محصول</span></a>
+                                                </div>
+                                                <!-- /Product Details -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <div class="container text-center">
+                                        <div class="col-md-6 text-center">
+                                            <div style="font-size: 25px; color: #ff000d; border: 5px #ffff00 solid">
+                                                متاسفانه محصول مورد نظر پیدا نشد
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <!-- /Product Item -->
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="direction: rtl;margin-top: -82px;" class="col-md-3 filter-col aside">
+            <div class="fixed-wrapper">
+                <form method="get">
+                    <div class="fixed-scroll">
+                        <div class="filter-col-header">
+                            <div class="title">فیلترها</div>
+                            <a href="#" class="filter-col-toggle"></a>
+                        </div>
+                        <div class="filter-col-content">
+                            <h2>فیلتر محصول :</h2>
+                            <div class="sidebar-block collapsed">
+                                <div class="block-title">
+                                    <span>انتخاب رنگ</span>
+                                    <div class="toggle-arrow"></div>
+                                </div>
+                                <div class="block-content">
+                                    <ul class="color-list">
+                                        {% for color_filter in filter.form.color %}
+                                            <li class="active">{{ color_filter }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="bg-striped"></div>
+                                </div>
+                            </div>
+                            <div class="sidebar-block collapsed">
+                                <div class="block-title">
+                                    <span>قیمت</span>
+                                    <div class="toggle-arrow"></div>
+                                </div>
+                                <div class="block-content">
+                                    <ul class="category-list">
+                                        <li>
+                                            <h3>قیمت</h3>
+                                            {{ filter.form.price }}
+                                        </li>
+                                        <li>
+                                            <h3>قیمت بیشتر از (به تومان)</h3>
+
+                                            {{ filter.form.price__gt }}
+                                        </li>
+                                        <li>
+                                            <h3>قیمت کمتر از (به تومان)</h3>
+                                            {{ filter.form.price__lt }}
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sidebar-block collapsed">
+                                <div class="block-title">
+                                    <span>سایز</span>
+                                    <div class="toggle-arrow"></div>
+                                </div>
+                                <div class="block-content">
+                                    <ul class="size-list">
+                                        {% for size_filter in filter.form.size %}
+                                            <li class="active">{{ size_filter }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="bg-striped"></div>
+                                </div>
+                            </div>
+                            <div class="sidebar-block collapsed">
+                                <div class="block-title">
+                                    <span>دسته بندی</span>
+                                    <div class="toggle-arrow"></div>
+                                </div>
+                                <div class="block-content">
+                                    <ul class="size-list">
+                                        {% for category_filter in filter.form.category %}
+                                            <li class="active">{{ category_filter }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="bg-striped"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit"
+                                class="btn "
+                                data-product="789123"><i
+                                class="icon "></i><span>ثبت</span></button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- /Page Content -->
+
+    {% if is_paginated %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">قبلی</a>
+                    </li>
+                {% endif %}
+                {% for page in paginator.page_range %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">بعدی</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+{% endblock %}

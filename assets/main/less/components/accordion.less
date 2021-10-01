@@ -1,0 +1,123 @@
+.panel-group {
+	margin-bottom: @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+}
+
+.panel-group.faq {
+	.panel {
+		margin-bottom: 25px;
+		background: transparent;
+		.box-shadow(none);
+	}
+	.panel-heading {
+		position: relative;
+		min-height: 90px;
+		margin-bottom: 10px;
+		padding: 25px 30px;
+		background: #ffffff;
+	}
+	.panel-heading .panel-title {
+		padding-left: 90px;
+		font-size: 25px;
+		line-height: 40px;
+		color: @custom-color-alt;
+		font-weight: 500;
+		text-transform: none;
+	}
+	.panel-heading a,
+	.panel-heading a:hover {
+		text-decoration: none;
+		.transition (all 0.25 ease);
+	}
+	.panel-heading a > span {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 90px;
+		height: 100%;
+		min-height: 90px;
+		background: @custom-color-alt;
+		color: #fff;
+		font-size: 60px;
+		text-align: center;
+		font-weight: 100;
+	}
+	.panel-heading a > span > i {
+		display: block;
+		position: relative;
+		font-style: normal;
+		.vertical-align;
+		top: 50%;
+	}
+	.panel-heading a:not(.collapsed) > span.opened {
+		display: none;
+	}
+	.panel-heading a > span.closed {
+		padding-top: 3px;
+	}
+	.panel-heading a.collapsed > span.closed {
+		display: none;
+	}
+	.panel-collapse {
+		margin-top: 0;
+		background: #ffffff;
+	}
+	.panel-body {
+		color: @custom-color-alt;
+		border: 0;
+		padding: 30px;
+	}
+	.panel-heading+.panel-collapse>.panel-body {
+		border: 0;
+	}
+}
+
+@media screen and (max-width: @screen-md-max) {
+	.panel-group.faq {
+		.panel {
+			margin-bottom: 20px;
+		}
+		.panel-heading {
+			min-height: 70px;
+			padding: 20px 25px;
+		}
+		.panel-heading .panel-title {
+			padding-left: 70px;
+			font-size: 20px;
+			line-height: 30px;
+		}
+		.panel-heading a > span {
+			width: 70px;
+			min-height: 70px;
+			font-size: 50px;
+		}
+	}
+}
+
+@media screen and (max-width: @screen-sm-max) {
+	.panel-group.faq {
+		.panel {
+			margin-bottom: 15px;
+		}
+		.panel-heading {
+			min-height: 50px;
+			padding: 14px 15px;
+		}
+		.panel-heading .panel-title {
+			padding-left: 50px;
+			font-size: 18px;
+			line-height: 22px;
+		}
+		.panel-heading a > span {
+			width: 50px;
+			min-height: 50px;
+			font-size: 35px;
+		}
+		.panel-heading a > span.closed {
+			padding-top: 1px;
+		}
+	}
+}

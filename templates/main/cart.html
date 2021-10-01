@@ -1,0 +1,124 @@
+{% extends 'main/Shared/base.html' %}
+{% load static %}
+{% block title %}
+    سبد خرید شما
+{% endblock %}
+{% block content %}
+
+    <!-- Page Content -->
+    <div class="row" style="margin-top: 6%">
+        <h2>سبد خرید شما
+            <span class="badge pull-right">
+                {% with totail_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        سبد خرید من:
+                        <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
+                            {{ totail_items }} ایتم {{ totail_items|pluralize }}, قیمت کل. {{ cart.get_total_price }}
+                        </a>
+                    {% else %}
+                        سبد شما خالی است.
+                    {% endif %}
+                {% endwith %}
+            </span>
+        </h2>
+    </div>
+    <main class="page-main">
+        <div class="block">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li>/<span>سبد خرید</span></li>
+                </ul>
+            </div>
+        </div>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <div class="block">
+                    <div class="container">
+                        <div class="cart-table">
+                            <div class="table-header">
+                                <div class="عکس">
+                                    تصویر محصول
+                                </div>
+                                <div class="name">
+                                    نام محصول
+                                </div>
+                                <div class="price">
+                                    قیمت واحد
+                                </div>
+                                <div class="تعداد">
+                                    تعداد
+                                </div>
+                                <div class="subtotal">
+                                    جمع کل
+                                </div>
+                                <div class="remove">
+                                    <span class="hidden-sm hidden-xs">حذف</span>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="photo">
+                                    <a href="{% url 'seiko:detail' product.slug product.id %}"><img
+                                            src="{{ product.image_1.url }}"
+                                            alt="{{ product.title }}"></a>
+                                </div>
+                                <div class="name">
+                                    <a href="{% url 'seiko:detail' product.slug product.id %}">{{ product.title }}</a>
+                                </div>
+                                <div class="price">
+                                    {{ product.price }} تومان
+                                </div>
+                                <div class="qty qty-changer">
+                                    {{ item.quantity }}
+                                </div>
+                                <div class="subtotal">
+                                    تومان {{ item.total_price }}
+                                </div>
+                                <div class="remove">
+                                    <a href="{% url "cart:cart_remove" product.id %}" class="icon icon-close-2"></a>
+                                </div>
+                            </div>
+                            <div class="table-footer">
+                                <a class="btn btn-alt" href="{% url 'orders:create' %}">خرید را ادامه دهید</a>
+                                <form action="{% url "cart:cart_add" product.id %}" class="pull-right" method="post">
+                                    {% csrf_token %}
+                                    {{ item.update_quantity_form.update }}
+                                    <button type="submit" class="btn btn-alt pull-right"><i class="icon icon-sync"> </i>
+                                        <span> بروزرسانی </span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 total-wrapper">
+                                <table class="total-price">
+                                    <tr class="total">
+                                        <td> مبلغ نهایی</td>
+                                        <td> تومان {{ item.total_price }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endwith %}
+        {% empty %}
+            <main class="page-main">
+                <div class="block fullheight empty-cart">
+                    <div class="container">
+                        <div class="image-empty-cart">
+                            <img src="{% static 'main/images/empty-basket.png' %}" alt="">
+                            <div class="text-empty-cart-1">سبد خرید</div>
+                            <div class="text-empty-cart-2">خالی</div>
+                        </div>
+                        <div><a href="{% url 'seiko:home' %}" class="btn">برگشت به صفحه قبل</a></div>
+                    </div>
+                </div>
+            </main>
+
+        {% endfor %}
+    </main>
+    <!-- /Page Content -->
+
+
+{% endblock %}

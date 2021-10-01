@@ -1,0 +1,36 @@
+{% extends 'main/Shared/base.html' %}
+{% load static %}
+{% block title %}
+    اعمال کد تخفیف
+{% endblock %}
+{% block content %}
+
+
+    <!-- Page Content -->
+    <div class="row" style="margin-top: 6%">
+        <h2 class="text-center">اعمال کد تخفیف</h2>
+    </div>
+
+    <div class="text-center">
+        <form action="{% url 'orders:coupon_apply' order.id %}" method="post">
+            {% csrf_token %}
+            {% if form.code.errors %}
+                <span class="errors">
+                    {% for error in form.code.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                </span>
+            {% endif %}
+
+            {{ form }}
+            <button type="submit" class="btn ">اعمال</button>
+        </form>
+
+        <br/>
+        <a href="{% url 'orders:payment' order.id order.get_total_price %}" class="btn btn-primary">خرید</a>
+
+    </div>
+    <!-- /Page Content -->
+
+
+{% endblock %}

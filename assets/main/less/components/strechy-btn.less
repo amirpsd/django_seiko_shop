@@ -1,0 +1,205 @@
+@_sharesize: 30px;
+@_sharemargin: 0;
+.share-button {
+  	position: relative;
+	display: inline-block;
+	.toggle {
+	  position: relative;
+	  height: @_sharesize;
+	  margin-bottom: 0;
+	  z-index: 10;
+	  display: block;
+	  padding-left: @_sharesize;
+	  cursor: pointer;
+	  font-weight: normal;
+	  line-height: @_sharesize;
+	  color: @custom-color-alt;
+	  .noselect;
+		&:hover {
+			color: @custom-color;
+		}
+	}
+	.toggle:after {
+	  position: absolute;
+	  display: block;
+	  top: 0;
+	  margin: 0;
+	  width: @_sharesize;
+	  height: @_sharesize;
+	  font-family: 'icomoon-reg';
+	  content: "\e905";
+	  line-height: @_sharesize;
+	  font-size: 17px;
+	  text-align: center;
+	  left: -2px;
+	}
+	.social-list {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+	}
+	.social-list li {
+	  position: absolute;
+	  display: block;
+	  width: @_sharesize;
+	  height: @_sharesize;
+	  padding: 0;
+	  list-style-type: none;
+	  opacity: 0;
+	  .transition (all 0.25s cubic-bezier(0.43, 1.17, 0.69, 1.24));
+	}
+	.social-list a {
+	  position: relative;
+	  display: block;
+	  width: @_sharesize;
+	  height: @_sharesize;
+	  overflow: hidden;
+	  line-height: @_sharesize;
+	  text-indent: 120%;
+	  text-decoration: none;
+	  background-color: @custom-color;
+	  border: 1px solid @custom-color;
+	  color: #fff;
+	  .transition (all 0.25s ease);
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+	.social-list a:before {
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  position: absolute;
+	  width: @_sharesize;
+	  height: @_sharesize;
+	  font-size: 16px;
+	  text-align: center;
+	  line-height: @_sharesize;
+	  text-indent: 0;
+	}
+	&:hover .social-list li {
+	  opacity: 1;
+	}
+}
+
+body:not(.rtl) .share-button.toRight, body.rtl .share-button.toLeft {
+	.social-list {
+		right: 100%;
+		margin-right: 5px;
+		top: 0;
+	}
+	.social-list li {
+	  top: 0;
+	  right: 0;
+	  margin: 0;
+	}
+	&:hover .social-list li:nth-child(1) {
+	  right: 0;
+	}
+	&:hover .social-list li:nth-child(2) {
+	  right: (@_sharesize + @_sharemargin)*1;
+	}
+	&:hover .social-list li:nth-child(3) {
+	  right: (@_sharesize + @_sharemargin)*2;
+	}
+	&:hover .social-list li:nth-child(4) {
+	  right: (@_sharesize + @_sharemargin)*3;
+	}
+	&:hover .social-list li:nth-child(5) {
+	  right: (@_sharesize + @_sharemargin)*4;
+	}	
+	&:hover .social-list li:nth-child(6) {
+	  right: (@_sharesize + @_sharemargin)*5;
+	}
+}
+body:not(.rtl) .share-button.toLeft, body.rtl .share-button.toRight {
+	.toggle {
+		padding-right: 5px;
+	}
+	.social-list {
+		left: 100%;
+		margin-left: 0;
+		top: 0;
+	}
+	.social-list li {
+	  top: 0;
+	  left: 0;
+	  margin: 0;
+	}
+	&:hover .social-list li:nth-child(1) {
+	  left: 0;
+	}
+	&:hover .social-list li:nth-child(2) {
+	  left: (@_sharesize + @_sharemargin)*1;
+	}
+	&:hover .social-list li:nth-child(3) {
+	  left: (@_sharesize + @_sharemargin)*2;
+	}
+	&:hover .social-list li:nth-child(4) {
+	  left: (@_sharesize + @_sharemargin)*3;
+	}
+	&:hover .social-list li:nth-child(5) {
+	  left: (@_sharesize + @_sharemargin)*4;
+	}	
+	&:hover .social-list li:nth-child(6) {
+	  left: (@_sharesize + @_sharemargin)*5;
+	}
+}
+.share-button.toTop {
+	.social-list {
+		left: 0;
+		bottom: 100%;
+		padding-bottom: 5px;
+	}
+	.social-list li {
+	  left: 0;
+	  bottom: 0;
+	}
+	&:hover .social-list li:nth-child(1) {
+	  bottom: 0;
+	}
+	&:hover .social-list li:nth-child(2) {
+	  bottom: (@_sharesize + @_sharemargin)*1;
+	}
+	&:hover .social-list li:nth-child(3) {
+	  bottom: (@_sharesize + @_sharemargin)*2;
+	}
+	&:hover .social-list li:nth-child(4) {
+	  bottom: (@_sharesize + @_sharemargin)*3;
+	}
+	&:hover .social-list li:nth-child(5) {
+	  bottom: (@_sharesize + @_sharemargin)*4;
+	}	
+	&:hover .social-list li:nth-child(6) {
+	  bottom: (@_sharesize + @_sharemargin)*5;
+	}
+}
+.share-button.toBottom {
+	.social-list {
+		left: 0;
+		top: 100%;
+	}
+	.social-list li {
+	  left: 0;
+	  top: 0;
+	}
+	&:hover .social-list li:nth-child(1) {
+	  top: 0;
+	}
+	&:hover .social-list li:nth-child(2) {
+	  top: (@_sharesize + @_sharemargin)*1;
+	}
+	&:hover .social-list li:nth-child(3) {
+	  top: (@_sharesize + @_sharemargin)*2;
+	}
+	&:hover .social-list li:nth-child(4) {
+	  top: (@_sharesize + @_sharemargin)*3;
+	}
+	&:hover .social-list li:nth-child(5) {
+	  top: (@_sharesize + @_sharemargin)*4;
+	}	
+	&:hover .social-list li:nth-child(6) {
+	  top: (@_sharesize + @_sharemargin)*5;
+	}
+}

@@ -1,0 +1,23 @@
+.pagination {
+  margin: 0 0 @margin-bottom;
+  padding: 0;
+  @media screen and (max-width: @screen-sm-max) {
+	margin-bottom: @margin-bottom-mobile;
+	float: none !important;
+  }
+  border-radius: 0;
+	> li {
+		display: inline-block;
+		margin-right: -1px;
+		a {
+			min-width: 35px;
+			text-align: center;
+		}
+	}
+}
+.pagination.pull-right {
+	> li {
+		margin-left: -1px;
+		margin-right: 0;
+	}
+}

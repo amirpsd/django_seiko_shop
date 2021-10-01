@@ -1,0 +1,40 @@
+.tabaccordion .panel-default {
+  .panel-variant( #f7f7f7; @custom-color-alt; #ffffff;  #f7f7f7);
+}
+
+.tabaccordion .panel-heading {
+	padding: 0;
+}
+.tabaccordion .panel-title {
+	padding: 0;
+	a {
+		padding: 20px 15px;
+		display: block;
+		border-top: 1px solid #e8e8e8;
+		text-decoration: none;
+		text-transform: uppercase;
+		.transition (all 0.5 ease);
+		&:not(.collapsed) {
+			color: #ffffff;
+			background: @custom-color;
+			border-color: @custom-color;
+		}
+	}
+}
+.tabaccordion .panel-group .panel:first-child .panel-title a {
+	border: 0;
+}
+.tabaccordion .panel-group .panel+.panel {
+    margin-top: 0;
+    border: 0;
+}
+.tabaccordion .panel-body {
+  color: @text-dark-color;
+  padding: 20px 50px;
+  @media (max-width: @screen-sm-max) {
+	padding: 20px 25px;
+  }
+  @media (max-width: @screen-xs-max) {
+	padding: 15px 20px;
+  }
+}

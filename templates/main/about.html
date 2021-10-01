@@ -1,0 +1,78 @@
+{% extends 'main/Shared/base.html' %}
+{% load static %}
+{% block title %}
+    درباره ی ما
+{% endblock %}
+
+{% block content %}
+    <main class="page-main">
+        <div class="block">
+            <div class="container">
+                <ul class="breadcrumbs">
+                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li>/<span>درباره ما</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="title center">
+                    <h1>درباره ما</h1>
+                </div>
+            </div>
+        </div>
+        <div class="block fullboxed parallax" data-parallax="scroll" data-image-src="images/block-bg-1.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="{% static 'main/images/logo-big.png' %}" alt class="img-responsive"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-wrapper text-lg">
+                            <p>
+                            <p>
+                                صفحه ی درباره ی ما
+                            </p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block bg white">
+            <div class="container">
+                <div class="title center">
+                    <h2>شرکا</h2>
+                </div>
+                <div class="brand-grid">
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-01.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-02.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-03.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-04.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-05.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-06.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-07.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-08.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-09.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-10.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-11.png' %}"
+                                                       alt="Brand Logo"></a>
+                    <a href="" class="brand-item"><img src="{% static 'main/images/brands/brand-square-12.png' %}"
+                                                       alt="Brand Logo"></a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}

@@ -1,0 +1,21 @@
+.contact-list {
+	margin: 0 0 @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+	padding: 0;
+	list-style: none;
+	font-size: 14px;
+	li {
+		margin-bottom: 20px;
+	}
+}
+@media screen and (max-width: @screen-sm-max) and (min-width: 480px)  {
+	.contact-list li {
+		display: inline-block;
+		vertical-align: top;
+		width: 50%;
+		margin-right: -4px;
+		padding-right: 15px;
+	}
+}

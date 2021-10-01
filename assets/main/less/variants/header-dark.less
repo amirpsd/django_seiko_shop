@@ -1,0 +1,91 @@
+@_header-links-color: #ffffff;
+
+@media screen and (max-width: (@mobile-menu-breikpoint - 1)) {
+	.page-header.stickydark.is-sticky .navbar {
+		background: @custom-color-alt;
+		.header-link.header-cart {
+			& > a {	
+				i.icon {
+					color: #ffffff;
+				}
+			}
+		}
+		.menu-toggle {
+			i.icon {
+				color: #ffffff;
+			}
+		}
+	}
+}
+@media screen and (min-width: @mobile-menu-breikpoint) {
+	.page-header.dark:not(.is-sticky) .navbar, .page-header.stickydark.is-sticky .navbar {
+		background-color: @custom-color-alt;
+        .header-link {
+            & > a {
+                color: @_header-links-color;
+                &:hover {
+                    i.icon {
+                        color: @_header-links-color;
+                    }
+                }
+            }
+            & > a i.icon {
+                color: @_header-links-color;
+            }
+        }
+		.nav {
+			li a:focus {
+				background: transparent;
+			}
+			& > li {
+				& > a, & > a:focus {
+					color: @_header-links-color;
+				}
+				&:hover > a, &.active > a {
+                    margin: 0;
+                    padding-top: 0;
+					padding-bottom: 0;
+					background: transparent;
+					color: @_header-links-color;
+					.box-shadow(none);
+                    &:after {
+                        content: '';
+                        position: absolute;;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background:  @custom-color;
+                    }
+				}
+			}
+		}
+        // first level label
+        .nav > li {
+            & > a > .menu-label, & > a > .menu-label-alt,
+            &:hover > a > .menu-label, & > a > .menu-label-alt {
+                top: 4px;
+            }
+        }
+        .exp-search.exp-search-open .exp-search-input {
+            background: @custom-color-alt;
+            color: @_header-links-color;
+        }
+        .exp-search.exp-search-open, .exp-search.exp-search-open .exp-search-submit {
+            background: @custom-color-alt;
+        }
+        .exp-icon-search {
+            color: @_header-links-color;
+        }
+        .exp-search.exp-search-open .exp-search-input {
+            border-color: @input-border;
+        }
+        .exp-search.exp-search-open .exp-icon-search,
+        .exp-search-input::-webkit-input-placeholder,
+        .exp-search-input:-moz-placeholder,
+        .exp-search-input::-moz-placeholder,
+        .exp-search-input:-ms-input-placeholder {
+            color: #ffffff;
+        }
+	}
+}

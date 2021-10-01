@@ -1,0 +1,1266 @@
+/* banners */
+
+.banner-edit {
+	margin-bottom: 45px;
+}
+
+.banner {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	margin-bottom: @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	img {
+		width: 100%;
+	}
+}
+
+.megamenu .banner {
+	margin-bottom: 0;
+}
+
+.full-nopad .banner {
+	margin-bottom: 0;
+}
+
+a.banner-wrap, a.banner-wrap:hover, a.banner-wrap:focus, a.banner-wrap:active {
+	text-decoration: none;
+}
+
+.banner {
+	font-size: 100px;
+}
+
+.banner .btn {
+	float: none;
+}
+
+
+/* banners typography */
+
+.banner.style-1 {
+	.text-1 {
+		font-family: @custom-font;
+		font-size: 0.76em;
+		font-weight: 700;
+		line-height: 0.9em;
+		margin: 0 0 0.1em;
+		color: #fff;
+	}
+	.text-2 {
+		font-family: @custom-font;
+		font-size: 0.37em;
+		line-height: 1.1em;
+		font-weight: 700;
+		margin: 0 0 0.2em;
+		color: #fff;
+	}
+	.text-3 {
+		font-family: @custom-font;
+		font-size: 0.27em;
+		line-height: 1em;
+		font-weight: 300;
+		letter-spacing: 0.2em;
+		margin: 0 0 0.9em;
+		color: #fff;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 1em;
+		font-family: @custom-font-1;
+		font-size: 0.29em;
+		line-height: 1.9em;
+		font-weight: 300;
+		height: auto;
+		background-color: @custom-color;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 3 */
+
+.banner.style-3 {
+	.banner-caption {
+		bottom: 14%;
+	}
+	.text-1 {
+		font-family: @custom-font-1;
+		font-size: 0.91em;
+		line-height: 1em;
+		font-weight: 700;
+		color: #fff;
+		span {
+			font-family: @custom-font;
+		}
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.42em;
+		line-height: 1em;
+		font-weight: 700;
+		color: #fff;
+		text-transform: uppercase;
+		margin-bottom: 0.2em;
+	}
+	.text-3 {
+		font-family: @custom-font;
+		font-size: 0.16em;
+		line-height: 1.56em;
+		font-weight: 700;
+		letter-spacing: 1.4em;
+		padding-right: 2em;
+		color: #fff;
+		text-transform: uppercase;
+		margin-bottom: 2em;
+	}
+	.horl {
+		.text-3 {
+			padding-right: 0;
+			padding-left: 2em;
+		}
+	}
+	.horc {
+		.text-3 {
+			padding-right: 0;
+		}
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 2.4em;
+		font-family: @custom-font;
+		font-size: 0.26em;
+		line-height: 3em;
+		font-weight: 500;
+		height: auto;
+		background-color: @custom-color;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 4 */
+
+.banner.style-4 {
+	.text-1,
+	.text-2,
+	.text-3 {
+		display: inline-block;
+		clear: both;
+		float: left;
+		text-transform: uppercase;
+		& > span {
+			padding: 0 0.5em;
+			font-family: @custom-font-1;
+			font-size: 0.36em;
+			line-height: 1.86em;
+			font-weight: 700;
+			color: #fff;
+			background-color: #67e0fa;
+		}
+	}
+	.horr {
+		.text-1,
+		.text-2,
+		.text-3 {
+			float: right;
+		}
+		.text-2 {
+			margin-left: 0;
+			margin-right: 0.8em;
+		}
+		.text-3 {
+			margin-left: 0;
+			margin-right: 0.2em;
+		}
+	}
+	.text-2 {
+		margin-left: 0.8em;
+	}
+	.text-3 {
+		margin-left: 0.2em;
+	}
+	.text-hoverslide span.hoverbg {
+		background-color: #fff;
+	}
+	&:hover .text-hoverslide > span {
+		color: #67e0fa;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		display: inline-block;
+		padding: 0.35em 0.5em;
+		margin: 0;
+		font-size: 0.26em;
+		line-height: 1.87em;
+		font-weight: 500;
+		font-family: @custom-font-1;
+		color: #fff;
+		background-color: #41df7c;
+		height: auto;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #67E0FA;
+	}
+	.banner-btn:hover > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 5 */
+
+.banner.style-5 {
+	.text-1,
+	.text-2,
+	.text-3 {
+		display: inline-block;
+		clear: both;
+		float: left;
+		margin-bottom: 2px;
+		& > span {
+			padding: 0 0.5em;
+			font-family: @custom-font-2;
+			font-size: 0.47em;
+			line-height: 1.383em;
+			font-weight: 400;
+			color: #333745;
+			background-color: #fff;
+			text-transform: uppercase;
+		}
+	}
+	.text-1 {
+		margin-left: 0.8em;
+	}
+	.text-3 {
+		margin-left: 1em;
+		& > span {
+			background: #41df7c;
+			color: #fff;
+		}
+	}
+	.horr {
+		.text-1,
+		.text-2,
+		.text-3 {
+			float: right;
+		}
+		.text-1 {
+			margin-left: 0;
+			margin-right: 0.8em;
+		}
+		.text-3,
+		.banner-btn-wrap {
+			margin-left: 0;
+			margin-right: 1em;
+		}
+	}
+	.text-hoverslide span.hoverbg {
+		background-color: #333745;
+	}
+	&:hover .text-hoverslide > span {
+		color: #fff;
+	}
+	.text-3.text-hover span.hoverbg {
+		background-color: #fff;
+	}
+	&:hover .text-3.text-hover > span {
+		color: #fff;
+	}
+	.banner-btn-wrap {
+		clear: both;
+		margin-left: 1em;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		display: inline-block;
+		clear: both;
+		float: left;
+		margin-left: 2em;
+		padding: 0;
+		font-size: 0.22em;
+		line-height: 2em;
+		font-family: @custom-font-1;
+		font-weight: 500;
+		color: @custom-color;
+		font-style: italic;
+		text-decoration: none;
+		background-color: transparent;
+	}
+	.banner-btn span.hoverbg {
+		background-color: transparent;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color-alt;
+	}
+}
+
+
+/* banner style 6 */
+
+.banner.style-6 {
+	.banner-caption {
+		top: 0;
+		right: 4%;
+		bottom: 0;
+		left: 55%;
+	}
+	.text-1 {
+		margin-top: -0.2em;
+		font-family: @custom-font-1;
+		font-size: 0.77em;
+		line-height: 1em;
+		font-weight: 700;
+		margin-bottom: 0.45em;
+		color: #41df7c;
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.2em;
+		line-height: 1.5em;
+		color: #fff;
+		margin-bottom: 1em;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 1.8em;
+		font-family: @custom-font;
+		font-size: 0.26em;
+		line-height: 2.2em;
+		font-weight: 500;
+		height: auto;
+		background-color: #41df7c;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: #41df7c;
+	}
+}
+
+
+/* banner style 7 */
+
+.banner.style-7 {
+	.banner-caption {
+		top: 0;
+		right: 38%;
+		bottom: 0;
+		left: 5%;
+	}
+	.text-1 {
+		font-family: @custom-font-1;
+		font-size: 0.64em;
+		line-height: 1em;
+		font-weight: 700;
+		letter-spacing: -2px;
+		color: #fff;
+		text-transform: uppercase;
+		margin-top: -0.3em;
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.24em;
+		line-height: 1em;
+		font-weight: 500;
+		letter-spacing: 6px;
+		color: #fff;
+		text-transform: uppercase;
+		margin-bottom: 0.5em;
+	}
+	.text-3 {
+		display: block;
+		z-index: -1;
+		width: 3.2em;
+		height: 3.2em;
+		text-align: center;
+		font-family: @custom-font-2;
+		font-size: 0.38em;
+		line-height: 1em;
+		font-weight: 700;
+		color: #fff;
+		text-transform: uppercase;
+		border-radius: 50%;
+		background-color: #41df7c;
+		.table-view;
+	}
+	.text-3 span {
+		.table-cell;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 0.8em;
+		font-family: @custom-font;
+		font-size: 0.22em;
+		line-height: 2.1em;
+		font-weight: 500;
+		height: auto;
+		background-color: @custom-color;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 8 */
+
+.banner.style-8 {
+	.banner-caption {
+		top: 6%;
+		right: 25%;
+		bottom: 0;
+		left: 5%;
+	}
+	.text-1 {
+		font-family: @custom-font-1;
+		font-size: 0.54em;
+		line-height: 1em;
+		font-weight: 900;
+		color: #fff;
+		text-transform: none;
+		margin-bottom: 0.3em;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 2.2em;
+		font-family: @custom-font;
+		font-size: 0.22em;
+		line-height: 2.8em;
+		font-weight: 500;
+		height: auto;
+		background-color: #67e0fa;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: #67e0fa;
+	}
+}
+
+
+/* banner style 9 */
+
+.banner.style-9 {
+	.text-1 {
+		color: #fff;
+	}
+	.text-1 > span {
+		padding: 0.8em 1.5em;
+		margin-bottom: 0.8em;
+		font-family: @custom-font-1;
+		font-size: 0.22em;
+		line-height: 1.5em;
+		font-weight: 500;
+		text-transform: uppercase;
+		background: @custom-color-alt;
+		border-left: 4px solid @custom-color;
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.20em;
+		line-height: 1em;
+		font-weight: 500;
+		color: #fff;
+	}
+	.text-1.text-hoverslide span.hoverbg {
+		background-color: @custom-color;
+	}
+	&:hover .text-1.text-hoverslide > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 10 */
+
+.banner.style-10 {
+	.text-1 {
+		margin-bottom: 0.7em;
+		font-family: @custom-font-1;
+		font-size: 0.44em;
+		line-height: 1em;
+		font-weight: 700;
+		color: @custom-color;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 1em;
+		font-family: @custom-font-1;
+		font-size: 0.29em;
+		line-height: 1.9em;
+		font-weight: 300;
+		height: auto;
+		background-color: @custom-color;
+	}
+	.banner-btn.text-hoverslide span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn.text-hoverslide:hover > span {
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 2 */
+
+.banner.style-2 {
+	.text-1 {
+		margin-top: -0.2em;
+		font-family: @custom-font-1;
+		font-size: 0.75em;
+		line-height: 1em;
+		font-weight: 700;
+		margin-bottom: 0;
+		color: #fff;
+		text-transform: uppercase;
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.35em;
+		line-height: 1em;
+		color: #fff;
+		margin-bottom: 0.6em;
+		margin-left: 3em;
+		text-transform: uppercase;
+		font-weight: 100;
+	}
+	.text-3,
+	.text-4 {
+		font-family: @custom-font-2;
+		font-size: 0.37em;
+		line-height: 1em;
+		color: #fff;
+		margin-bottom: 0.2em;
+		margin-left: 1.5em;
+		font-weight: 500;
+	}
+	.text-4 {
+		margin-top: 0.2em;
+		margin-left: 3em;
+	}
+	.horc {
+		.text-2 {
+			margin-left: 0;
+		}
+		.text-3 {
+			margin-left: 0;
+		}
+		.text-4 {
+			margin-left: 0;
+		}
+		.banner-btn {
+			margin: 0 auto;
+		}
+	}
+	.horr {
+		.text-2 {
+			margin-left: 0;
+			margin-right: 3em;
+		}
+		.text-3 {
+			margin-left: 0;
+			margin-right: 1.5em;
+		}
+		.text-4 {
+			margin-left: 0;
+			margin-right: 3em;
+		}
+		.banner-btn {
+			margin-left: 0;
+			margin-right: 0.8em;
+		}
+	}
+	.banner-btn {
+		color: #000000;
+		text-decoration: none;
+		margin-left: 0.8em;
+		.box-shadow (-4px -5px 5px rgba(0, 0, 0, 0.2));
+	}
+	.banner-btn > span {
+		padding: 0 0.3em;
+		font-family: @custom-font-2;
+		font-size: 0.35em;
+		line-height: 1.6em;
+		font-weight: 700;
+		height: auto;
+		background-color: #fff;
+		text-transform: none;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #000000;
+	}
+	.banner-btn:hover > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 11 */
+
+.banner.style-11 {
+	.banner-caption {
+		left: 16%;
+		right: 16%;
+		bottom: 14%;
+	}
+	.text-1 {
+		margin-bottom: 0.3em;
+		font-family: @custom-font-1;
+		font-size: 0.62em;
+		font-weight: 700;
+		line-height: 1em;
+		color: #fff;
+	}
+	.text-2 {
+		margin-bottom: 0.9em;
+		font-family: @custom-font-1;
+		font-size: 0.25em;
+		line-height: 1.1em;
+		font-weight: 700;
+		color: @custom-color;
+	}
+	.banner-btn-wrap,
+	.banner-btn {
+		width: 100%;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		width: 100%;
+		padding: 0 1em;
+		font-size: 0.24em;
+		line-height: 2.3em;
+		font-weight: 400;
+		height: auto;
+		background-color: @custom-color;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 12 */
+
+.banner.style-12 {
+	.banner-caption {
+		left: 16%;
+		right: 16%;
+		bottom: 13%;
+	}
+	.text-1 {
+		margin-bottom: 0.8em;
+		margin-top: 0.2em;
+		font-family: @custom-font-1;
+		font-size: 0.25em;
+		font-weight: 400;
+		line-height: 1em;
+		color: #fff;
+		padding: 0.8em;
+		border: 0.09em solid #fff;
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.28em;
+		line-height: 1.1em;
+		font-weight: 700;
+		color: #fff;
+	}
+	.banner-btn {
+		text-decoration: none;
+		color: @custom-color;
+	}
+	.banner-btn > span {
+		padding: 0;
+		font-size: 0.28em;
+		line-height: 2em;
+		font-weight: 700;
+		text-decoration: none;
+		background-color: transparent;
+	}
+	.banner-btn span.hoverbg {
+		background-color: transparent;
+	}
+	.banner-btn:hover > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 13 */
+
+.banner.style-13 {
+	.banner-caption {
+		top: 30%;
+		left: 10%;
+		right: 10%;
+	}
+	.text-1 {
+		font-family: @custom-font-1;
+		font-size: 0.36em;
+		font-weight: 700;
+		line-height: 1em;
+		color: #fff;
+	}
+	.text-2 {
+		margin-bottom: 0.5em;
+		font-family: @custom-font-1;
+		font-size: 0.22em;
+		line-height: 1em;
+		font-weight: 900;
+		color: @custom-color;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 1.8em;
+		font-size: 0.19em;
+		line-height: 2.6em;
+		font-weight: 400;
+		height: auto;
+		background-color: @custom-color-alt;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color-alt;
+	}
+}
+
+
+/* banner style 14 */
+
+.banner.style-14 {
+	.text-1 {
+		margin-bottom: 0.7em;
+		font-family: @custom-font;
+		font-size: 0.38em;
+		font-weight: 700;
+		line-height: 1em;
+		color: @custom-color-alt;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 1.8em;
+		font-size: 0.19em;
+		line-height: 2.6em;
+		font-weight: 400;
+		height: auto;
+		background-color: @custom-color;
+	}
+	.banner-btn span.hoverbg {
+		background-color: #fff;
+	}
+	.banner-btn:hover > span {
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 15 */
+
+.banner.style-15 {
+	.banner-caption {
+		left: 50%;
+		right: 0;
+		top: 12%;
+	}
+	.text-1 {
+		margin-bottom: 0.2em;
+		font-size: 0.22em;
+		font-weight: 100;
+		line-height: 1em;
+		color: #fff;
+	}
+	.text-2 {
+		margin-bottom: 0.7em;
+		font-size: 0.19em;
+		line-height: 1.1em;
+		font-weight: 500;
+		color: #fff;
+	}
+	.banner-btn {
+		text-decoration: none;
+		color: @custom-color;
+	}
+	.banner-btn > span {
+		padding: 0;
+		font-family: @custom-font-1;
+		font-size: 0.18em;
+		line-height: 2em;
+		font-weight: 900;
+		text-decoration: none;
+		background-color: transparent;
+	}
+	.banner-btn span.hoverbg {
+		background-color: transparent;
+	}
+	.banner-btn:hover > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 16 */
+
+.banner.style-16 {
+	.banner-caption {
+		top: 0;
+		bottom: 15%;
+	}
+	.text-1 {
+		margin-bottom: 0.2em;
+		font-family: @custom-font-1;
+		font-size: 0.48em;
+		font-weight: 900;
+		line-height: 1em;
+		color: @custom-color;
+	}
+	.text-2 {
+		font-size: 0.34em;
+		line-height: 1em;
+		font-weight: 900;
+		color: #fff;
+	}
+}
+
+
+/* banner style 17 */
+
+.banner.style-17 {
+	.banner-caption {
+		bottom: 9%;
+		left: 4%;
+		right: 4%;
+	}
+	.text-1 {
+		margin-bottom: 0.2em;
+		font-family: @custom-font-1;
+		font-size: 0.33em;
+		font-weight: 800;
+		line-height: 1em;
+		color: #fff;
+	}
+	.text-2 > span {
+		display: table;
+		margin-bottom: 0.5em;
+		padding: 0 1.4em;
+		font-family: @custom-font-1;
+		font-size: 0.2em;
+		line-height: 2.5em;
+		font-weight: 800;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		background-color: @custom-color-alt;
+	}
+	.text-3 {
+		font-family: @custom-font-1;
+		font-size: 0.1em;
+		line-height: 1.2em;
+		font-weight: 400;
+		font-style: italic;
+		color: #fff;
+	}
+	.text-2.text-hoverslide span.hoverbg {
+		background-color: @custom-color;
+	}
+	&:hover .text-2.text-hoverslide > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 18 */
+
+.banner.style-18 {
+	.banner-caption {
+		top: 9%;
+		left: 58%;
+		right: 2%;
+	}
+	.text-1 {
+		margin-bottom: 0.4em;
+		font-family: @custom-font-1;
+		font-size: 0.15em;
+		font-weight: 800;
+		line-height: 1em;
+		color: @custom-color;
+	}
+	.text-2 {
+		margin-bottom: 0.5em;
+		font-family: @custom-font-1;
+		font-size: 0.2em;
+		line-height: 1em;
+		font-weight: 400;
+		color: #fff;
+	}
+	.banner-btn {
+		color: #fff;
+		text-decoration: none;
+	}
+	.banner-btn > span {
+		padding: 0 1.7em;
+		overflow: hidden;
+		font-size: 0.1em;
+		line-height: 3.2em;
+		font-weight: 400;
+		height: auto;
+		background-color: @custom-color;
+		// border-radius: 1.6em;
+	}
+	.banner-btn span.hoverbg {
+		background-color: @custom-color-alt;
+	}
+	.banner-btn:hover > span {
+		color: #fff;
+	}
+}
+
+
+/* banner style 19 */
+
+.banner.style-19 {
+	.banner-caption {
+		top: 0;
+		bottom: 11%;
+		left: 10%;
+	}
+	.text-1 {
+		margin-bottom: 0.25em;
+		font-size: 0.57em;
+		line-height: 0.7em;
+		font-weight: 900;
+		color: #fff;
+	}
+	.text-2 {
+		font-family: @custom-font-1;
+		font-size: 0.17em;
+		font-weight: 900;
+		line-height: 1em;
+		color: @custom-color;
+	}
+}
+
+
+/* banner style 20 */
+
+.banner.style-20 {
+	.banner-caption {
+		top: 0;
+		bottom: 23%;
+		right: 10%;
+		left: 10%;
+	}
+	.text-1 {
+		padding: 0 0.8em;
+		font-family: @custom-font-1;
+		font-size: 0.17em;
+		line-height: 2em;
+		font-weight: 400;
+		color: #fff;
+		background-color: @custom-color;
+		position: relative;
+		display: inline-block;
+		float: left;
+		.text-corner {
+			content: '';
+			display: block;
+			position: absolute;
+			right: -0.99em;
+			left: auto;
+			top: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 2em 1em;
+			border-color: transparent;
+			border-bottom-color: @custom-color;
+			transform: rotateY( 180deg);
+		}
+	}
+	.horr .text-1 {
+		float: right;
+		.text-corner {
+			transform: rotateY(0);
+			left: -0.99em;
+		}
+	}
+	.text-2 {
+		padding: 0.8em 1.2em;
+		font-family: @custom-font-1;
+		font-size: 0.28em;
+		font-weight: 900;
+		line-height: 1em;
+		color: #fff;
+		background-color: #000;
+		clear: both;
+		display: inline-block;
+		float: left;
+	}
+	.horr .text-2 {
+		float: right;
+	}
+}
+
+// hoverslide effect
+.text-hover {
+	overflow: hidden;
+}
+
+.text-hover > span {
+	position: relative;
+	display: table;
+	z-index: 1;
+}
+
+.horc .text-hover > span {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.horl .text-hover > span {
+	float: left;
+}
+
+.horr .text-hover > span {
+	float: right;
+}
+
+.text-hover span > span.hoverbg {
+	display: block;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 0;
+	z-index: -1;
+}
+
+.banner:hover .text-hover:not(.banner-btn) > span > span.hoverbg {
+	width: 100%;
+}
+
+.banner-btn:hover span > span.hoverbg {
+	width: 100%;
+}
+
+.text-hover span > span.hoverbg {
+	transition: all 0s ease 0s;
+}
+
+.text-hover span > span.text {
+	transition: color 0.2s ease 0s;
+}
+
+// hoverslide effect
+.text-hoverslide {
+	overflow: hidden;
+}
+
+.text-hoverslide > span {
+	position: relative;
+	display: table;
+	z-index: 1;
+}
+
+.horc .text-hoverslide > span {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.horl .text-hoverslide > span {
+	float: left;
+}
+
+.horr .text-hoverslide > span {
+	float: right;
+}
+
+.text-hoverslide span > span.hoverbg {
+	display: block;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 0;
+	z-index: 0;
+}
+
+.banner:hover .text-hoverslide:not(.banner-btn) > span > span.hoverbg {
+	width: 100%;
+}
+
+.text-hoverslide span > span.hoverbg {
+	transition: all 0.4s cubic-bezier(0.35, 0.975, 0.25, 0.9) 0s;
+}
+
+.text-hoverslide span > span.text {
+	transition: color 0.2s ease 0s;
+	position: relative;
+	z-index: 1;
+}
+
+// vertical align container
+.table-view {
+	display: table;
+}
+
+.table-cell {
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
+}
+
+// default banner prebuilt
+.banner {
+	.banner-caption {
+		top: 5%;
+		left: 5%;
+		right: 5%;
+		bottom: 5%;
+		position: absolute;
+		z-index: 10;
+		transition: opacity 0.2s ease;
+		& > span {
+			display: table-cell;
+			vertical-align: middle;
+			padding: 10%;
+		}
+	}
+	.banner-caption.vertm {
+		.vert {
+			vertical-align: middle;
+		}
+	}
+	.banner-caption.vertt {
+		.vert {
+			vertical-align: top;
+		}
+	}
+	.banner-caption.vertb {
+		.vert {
+			vertical-align: bottom;
+		}
+	}
+	.banner-caption.horl {
+		text-align: left;
+	}
+	.banner-caption.horc {
+		text-align: center;
+	}
+	.banner-caption.horr {
+		text-align: right;
+	}
+}
+
+#output {
+	min-height: 300px;
+}
+
+.banner-btn {
+	display: table;
+	float: left;
+}
+
+.horc .banner-btn {
+	margin: 0 auto;
+	float: none;
+}
+
+.horr .banner-btn {
+	float: right;
+}
+
+.banner-btn-wrap, .banner-btn-wrap:hover, .banner-btn-wrap:focus, .banner-btn-wrap:active {
+	display: table;
+	float: left;
+	text-decoration: none;
+	.banner-btn {
+		float: none;
+	}
+}
+
+.horc .banner-btn-wrap,
+.horc .banner-btn {
+	margin: 0 auto;
+	float: none;
+}
+
+.horr .banner-btn-wrap,
+.horr .banner-btn {
+	float: right;
+}
+
+.banners-with-pad {
+	margin-bottom: @margin-bottom;
+	@media screen and (max-width: @screen-sm-max) {
+		margin-bottom: @margin-bottom-mobile;
+	}
+	.banner {
+		margin-bottom: 30px;
+		@media screen and (max-width: @screen-sm-max) {
+			margin-bottom: 30px;
+		}
+		&.image-hover-scale img {
+			vertical-align: top;
+		}
+	}
+}

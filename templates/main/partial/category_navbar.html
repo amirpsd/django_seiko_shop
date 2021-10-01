@@ -1,0 +1,25 @@
+{% load static %} {% for cat in category %}
+    <li class="mega-dropdown">
+        {% if cat.parent == None %}
+            <a href="{% url 'seiko:category' cat.slug %}">{{ cat.title }}</a> {% endif %}
+        <div class="sub-menu">
+            <div class="container">
+                <div class="megamenu-categories column-4">
+                    <!-- megamenu column -->
+                    <div class="col-12">
+                        <ul class="category-links" style="direction: rtl">
+                            {% if cat.children.active %}
+                                {% include 'main/partial/category_nav.html' %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+{% endfor %}
+
+<li class="mega-dropdown">
+    <a href="/blog">وبلاگ</a>
+</li>

@@ -1,0 +1,118 @@
+/* ------------------------*/
+/*      Sidebar Styles     */
+/* ------------------------*/
+
+.sidebar-wrapper {
+	z-index: 1005;
+	position: fixed;
+  top: 0;
+	left: 125px;
+	width: 0;
+	height: 100%;
+	margin-left: -@sidebar-width;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background: @sidebar-bg;
+	.sidebar-nav {
+		position: absolute;
+		padding: 20px 0;
+		list-style: none;
+		width: @sidebar-width;
+		.vertical-align;
+		li {
+			.hoverslide;
+			a:before {
+				background-color: #494e62;				
+				left: -4px;
+				border-right: 4px solid @custom-color;
+			}
+			&:hover a:before {
+				width: 100%;
+				background-color: #494e62;
+				left: 0;
+			}
+		}
+		a {	
+			display: block;
+			width: 100%;
+			padding: 15px 20px;
+			font-size: 15px;
+			line-height: 22px;
+			font-weight: 700;
+			font-family: @custom-font-1;
+			color:  @sidebar-link-color;
+			text-transform: uppercase;
+			text-decoration: none;
+			.transition (all 0.2s ease);
+			&:hover, &.active {
+				color: @sidebar-link-color-active;
+			}
+		}
+	}
+	.sidebar-bot {	
+		position: absolute;
+		z-index: 1;
+		bottom: 0;
+		width: 100%;
+		padding: 16px;
+		text-align: center;
+	}
+	.sidebar-top {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		padding: 16px;
+		text-align: center;
+	}
+	.share-button {
+		width: 30px;
+		margin: auto;
+		.toggle {
+			color: #fff;
+		}
+	}
+}
+body.touch {
+	.sidebar-wrapper .sidebar-nav li {
+			a:before {
+				transition: none;
+			}
+			&:hover a:before {
+				transition: none;
+			}		
+	}
+}
+
+//@media only screen 
+//and (min-device-width : 768px) 
+//and (max-device-width : 1024px) 
+//and (orientation : landscape) { 
+//	.sidebar-wrapper {
+//		-webkit-overflow-scrolling: touch;
+//	}
+//}
+
+body:not(.open-panel) .sidebar-wrapper {
+	overflow-y: hidden;
+}
+
+@_btnsize: 40px;
+
+.sidebar-wrapper .sidebar-top a.slidepanel-toggle {
+  display: inline-block;
+  width: @_btnsize;
+  height: @_btnsize;
+  margin: 0 auto;
+  color: #ffffff;
+  font-size: 28px;
+  line-height: 40px;
+  opacity: 0;
+  text-decoration: none;
+  .transition (all 0.5s ease);
+  &:hover {
+	  color: @custom-color;
+  }
+}
+.sidebar-wrapper:hover > .sidebar-top > a.slidepanel-toggle {
+	opacity: 1;
+}
