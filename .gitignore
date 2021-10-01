@@ -342,3 +342,6 @@ static_cdn
 
 ### vs code ###
 .vscode
+
+### pycharm ###
+.idea
