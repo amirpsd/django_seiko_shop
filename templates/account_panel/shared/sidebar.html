@@ -1,4 +1,7 @@
 {% load static %}
+{% url 'account:profile' as AccountProfile %}
+{% url 'favorite:list' as ProductList %}
+{% url 'favorite-blog:list' as BlogList %}
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -39,20 +42,20 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{% url 'account:profile' %}" class="nav-link active">
-                                    <i class="fa fa-circle-o nav-icon"></i>
+                                <a href="{% url 'account:profile' %}" class="nav-link {% if request.path == AccountProfile %}active{% endif %}">
+                                    <i class="fa fa-lock nav-icon"></i>
                                     <p>اطلاعات شخصی</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url 'favorite:list' %}" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
+                                <a href="{% url 'favorite:list' %}" class="nav-link {% if request.path == ProductList %}active{% endif %}">
+                                    <i class="fa fa-bookmark nav-icon"></i>
                                     <p>محصولات مورد علاقه</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url 'favorite-blog:list' %}" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
+                                <a href="{% url 'favorite-blog:list' %}" class="nav-link {% if request.path == BlogList %}active{% endif %}">
+                                    <i class="fa fa-bookmark-o nav-icon"></i>
                                     <p>مقالات مورد علاقه</p>
                                 </a>
                             </li>
