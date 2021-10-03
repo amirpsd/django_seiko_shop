@@ -36,7 +36,7 @@ urlpatterns = [
     path('contact/',include('seiko_contact.urls')),
     path('account/', include('seiko_account.urls')),
     path('account/favorite/', include('seiko_favorite_product.urls')),
-    path('account/favorite/blog', include('seiko_favorite_blog.urls')),
+    path('account/favorite/blog/', include('seiko_favorite_blog.urls')),
     path('comment/', include('comment.urls')),
     path('ckeditor', include('ckeditor_uploader.urls')),
 ]
