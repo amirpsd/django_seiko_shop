@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}
-اطلاعات شخصی
+    اطلاعات شخصی
 {% endblock %}
 {% block content %}
     <div class="card card-primary col-md-6 mx-auto">
@@ -11,7 +11,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="post" role="form">
+        <form method="post" enctype="multipart/form-data" role="form">
             {% csrf_token %}
             <div class="card-body">
                 <div class="form-group">
@@ -28,6 +28,9 @@
                 </div>
                 <div class="form-group">
                     {{ form.phone_number|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.image|as_crispy_field }}
                 </div>
                 <div class="form-group">
                     <span style="color: red;">تغیر رمز عبور.</span>
