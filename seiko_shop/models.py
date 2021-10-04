@@ -86,7 +86,8 @@ class Product(models.Model):
         verbose_name_plural = 'محصولات'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(code_generator())
+        if not self.slug:
+            self.slug = slugify(code_generator())
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -139,6 +140,7 @@ class Color(models.Model):
     color = models.CharField(max_length=50, verbose_name='رنگ', unique=True)
 
     class Meta:
+        ordering = ['-id']
         verbose_name = 'رنگ'
         verbose_name_plural = 'رنگ ها'
 
@@ -150,7 +152,7 @@ class Size(models.Model):
     size = models.CharField(max_length=3, verbose_name='سایز', unique=True)
 
     class Meta:
-        ordering = ['size']
+        ordering = ['-id']
         verbose_name = 'سایز'
         verbose_name_plural = 'سایز ها'
 

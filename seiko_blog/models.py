@@ -13,6 +13,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 
 from .managers import BlogManager, CategoryManager
 
+
 #################
 
 
@@ -68,7 +69,8 @@ class Blog(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(code_generator())
+        if not self.slug:
+            self.slug = slugify(code_generator())
         super(Blog, self).save(*args, **kwargs)
 
     def jpublish(self):
