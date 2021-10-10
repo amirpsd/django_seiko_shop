@@ -3,6 +3,9 @@
 ## how to run in my computer
 
 ### first
+
+1 - Install `python3,9`, `pip`, `virtualenv` in your computer.
+
 ```shell
 git clone https://github.com/amirpsd/django_seiko_shop.git
 ```
