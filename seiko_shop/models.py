@@ -1,11 +1,11 @@
 from django.contrib.contenttypes.fields import GenericRelation
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.html import format_html
 from django.utils.text import slugify
 from django.utils import timezone
 from django.urls import reverse
 from django.db import models
 
+from ckeditor_uploader.fields import RichTextUploadingField
 from extensions.upload_file_path import upload_file_path
 from extensions.code_generator import code_generator
 from extensions.utils import jalali_convertor
