@@ -57,14 +57,9 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <div class="product-availability">موجودی: <span>در انبار </span></div>
+                            <!-- <div class="product-availability">موجودی: <span>در انبار </span></div> -->
                             <div class="product-description">
                                 <p style="font-size: 15px;">{{ product.description | safe }}</p>
-                            </div>
-                            <div class="countdown-circle hidden-xs">
-                                <div class="countdown-wrapper">
-                                    <h3 class="text-center">{{ product.publish | naturaltime }}</h3>
-                                </div>
                             </div>
                             <div class="product-options">
                                 <div class="product-size swatches">
@@ -82,20 +77,14 @@
                                     </ul>
                                 </div>
                                 <div class="product-color swatches">
-                                    <span class="option-label">رنگ ها:</span>
+                                    <span class="option-label">تاریخ انتشار :</span>
                                     <div class="select-wrapper-sm">
                                         <select class="form-control input-sm">
                                             <option value="{{ product.color }}">{{ product.color }}</option>
                                         </select>
                                     </div>
-                                    <ul class="color-list">
-                                        {% for product_color in product.color.all %}
-                                            <li>
-                                                <h2>
-                                                    {{ product_color }}
-                                                </h2>
-                                            </li>
-                                        {% endfor %}
+                                    <ul class="color-list" style="font-size: 20px;">
+                                        {{ product.publish | naturaltime }}
 
                                     </ul>
                                 </div>
@@ -149,7 +138,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="price">
-                                            <span class="special-price"><span>تومان{{ product.price }}</span></span>
+                                            <span class="special-price"><span>قیمت : تومان{{ product.price }}</span></span>
                                         </div>
                                         <div class="actions">
                                             <a href="#" class="btn btn-lg product-details"><i
