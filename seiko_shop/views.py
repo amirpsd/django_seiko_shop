@@ -18,10 +18,6 @@ from seiko_blog.models import Blog
 
 # Create your views here.
 
-def handler404(request, exception):
-    data = {}
-    return render(request, 'main/404.html', data)
-
 
 class ProductList(ListView):
     template_name = 'main/index-rtl.html'

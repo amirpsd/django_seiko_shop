@@ -18,13 +18,19 @@ from django.contrib import admin
 from django.urls import path, include
 
 # static
-from config import settings
 from django.conf.urls.static import static
-from permissions import admin_view
+from django.conf import settings
 
+
+from permissions import admin_view
 admin.site.admin_view = admin_view
 
-handler404 = 'seiko_shop.views.handler404'
+# handler
+from django.conf.urls import handler403, handler404, handler500
+handler403 = 'config.utils.all_error_views.handler403'
+handler404 = 'config.utils.all_error_views.handler404'
+handler500 = 'config.utils.all_error_views.handler500'
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,6 +46,7 @@ urlpatterns = [
     path('comment/', include('comment.urls')),
     path('ckeditor', include('ckeditor_uploader.urls')),
 ]
+
 
 if settings.DEBUG:
     # add root static files
