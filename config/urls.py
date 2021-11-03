@@ -26,10 +26,9 @@ from permissions import admin_view
 admin.site.admin_view = admin_view
 
 # handler
-from django.conf.urls import handler403, handler404, handler500
+from django.conf.urls import handler403, handler404
 handler403 = 'config.utils.all_error_views.handler403'
 handler404 = 'config.utils.all_error_views.handler404'
-handler500 = 'config.utils.all_error_views.handler500'
 
 
 urlpatterns = [

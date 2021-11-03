@@ -1,0 +1,23 @@
+{% extends 'main/Shared/base.html' %}
+{% load static %}
+{% block title %}
+404
+{% endblock %}
+{% block content %}
+    <!-- Page -->
+    <div class="page-wrapper">
+        <!-- Page Content -->
+        <main class="page-main">
+            <div class="block fullwidth fullheight page_404">
+                <div class="container">
+                    <div class="image-404">
+                        <img src="{% static 'main/images/404.png' %}" alt="صفحه مورد نظر پیدا نشد">
+                        <div class="text-404">صفحه مورد نظر پیدا نشد</div>
+                    </div>
+                    <div><a href="{% url 'seiko:home' %}" class="btn">برگشت به خانه</a></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Page Content -->
+{% endblock %}
