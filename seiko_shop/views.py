@@ -46,11 +46,7 @@ class SearchProduct(ListView):
         search = self.request.GET.get('q')
         if search is not None:
             return product.filter(Q(title__icontains=search) |
-                                  Q(price__icontains=search) |
                                   Q(description__icontains=search) |
-                                  Q(color__color__iexact=search) |
-                                  Q(size__size__iexact=search) |
-                                  Q(special_offer=True) |
                                   Q(category__title__icontains=search)).distinct().order_by('-publish')
         else:
             return product.order_by('-publish')
@@ -71,6 +67,9 @@ class CategoryList(ListView):
         slug = self.kwargs.get('slug')
         category = get_object_or_404(Category.objects.active(), slug=slug)
         return category.category.publish()
+        #####  or 
+        # product = Product.objects.publish().filter(category=category)
+        # return product
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
