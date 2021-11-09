@@ -1,7 +1,9 @@
-from functools import update_wrapper
-from django.http import Http404
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+from django.http import Http404
+
+from functools import update_wrapper
+
 
 
 def admin_view(view, cacheable=False):
