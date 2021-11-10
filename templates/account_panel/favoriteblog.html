@@ -4,15 +4,6 @@
         <div class="card-header">
             <h3 class="card-title">مقالات</h3>
 
-            <div class="card-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="جستجو">
-
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
@@ -41,7 +32,7 @@
                         <td><a href="{% url 'favorite-blog:remove' favorite_blogs.id %}">حذف</a></td>
                     </tr>
                     {% endfor %} {% empty %}
-                    <h2 class="text-center">شما مقاله ی مورد علاقه ندارید</h2>
+                    <h2 class="text-center">لیست مقاله علاقه مندی شما خالی است</h2>
                     {% endfor %}
                 </tbody>
             </table>
