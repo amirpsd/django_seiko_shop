@@ -33,15 +33,15 @@ handler404 = 'config.utils.all_error_views.handler404'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('seiko_shop.urls')),
+    path('', include('product.urls')),
     path('', include('django.contrib.auth.urls')),
-    path('cart/', include('seiko_cart.urls', namespace='cart')),
-    path('orders/', include('seiko_orders.urls', namespace='orders')),
-    path('blog/', include('seiko_blog.urls')),
-    path('contact/',include('seiko_contact.urls')),
-    path('account/', include('seiko_account.urls')),
-    path('account/favorite/', include('seiko_favorite_product.urls')),
-    path('account/favorite/blog/', include('seiko_favorite_blog.urls')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('blog/', include('blog.urls')),
+    path('contact/',include('contact.urls')),
+    path('account/', include('account.urls')),
+    path('account/favorite/', include('favorite_product.urls')),
+    path('account/favorite/blog/', include('favorite_blog.urls')),
     path('comment/', include('comment.urls')),
     path('ckeditor', include('ckeditor_uploader.urls')),
 ]

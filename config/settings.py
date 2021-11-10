@@ -37,14 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # my app
-    'seiko_shop.apps.SeikoShopConfig',
-    'seiko_account.apps.SeikoAccountConfig',
-    'seiko_blog.apps.SeikoBlogConfig',
-    'seiko_cart.apps.SeikoCartConfig',
-    'seiko_orders.apps.SeikoOrdersConfig',
-    'seiko_favorite_product.apps.SeikoFavoriteProductConfig',
-    'seiko_favorite_blog.apps.SeikoFavoriteBlogConfig',
-    'seiko_contact.apps.SeikoContactConfig',
+    'favorite_product.apps.FavoriteProductConfig',
+    'favorite_blog.apps.FavoriteBlogConfig',
+    'contact.apps.ContactConfig',
+    'product.apps.ProductConfig',
+    'account.apps.AccountConfig',
+    'orders.apps.OrdersConfig',
+    'blog.apps.BlogConfig',
+    'cart.apps.CartConfig',
     # install app
     'django.contrib.humanize',
     'ckeditor_uploader',
@@ -151,7 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static_cdn", "media_root")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'seiko_account.User'
+AUTH_USER_MODEL = 'account.User'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'seiko:home'
 LOGOUT_REDIRECT_URL = 'seiko:home'
