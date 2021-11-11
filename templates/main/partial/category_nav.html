@@ -1,6 +1,6 @@
 {% for cat in cat.children.active %}
     <li>
-        <a href="{% url 'seiko:category' cat.slug %}">{{ cat.title }}
+        <a href="{% url 'product:category' cat.slug %}">{{ cat.title }}
         </a>
     </li>
     {% if cat.children.active %}

@@ -37,7 +37,7 @@
                                     {% for favorite_products in favorite.products.all %}
                                         <tr>
                                             <td>
-                                                <a href="{% url 'seiko:detail' favorite_products.slug favorite_products.id %}">{{ favorite_products.title }}</a>
+                                                <a href="{% url 'product:detail' favorite_products.slug favorite_products.id %}">{{ favorite_products.title }}</a>
                                             </td>
                                             <td><img src="{{ favorite_products.image_1.url }}" height="60px"
                                                      width="100px" alt="{{ favorite_products.title }}"
@@ -51,7 +51,7 @@
                                             <td><span>{{ favorite_products.price }} تومان</span></td>
                                             <td>{{ favorite_products.size_to_str }}</td>
                                             <td>{{ favorite_products.color_to_str }}</td>
-                                            <td><a href="{% url 'favorite:remove' favorite_products.id %}"
+                                            <td><a href="{% url 'favorite-product:remove' favorite_products.id %}"
                                                    class="remove">حذف</a></td>
                                         </tr>
                                     {% endfor %}

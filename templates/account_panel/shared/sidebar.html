@@ -1,6 +1,6 @@
 {% load static %}
 {% url 'account:profile' as AccountProfile %}
-{% url 'favorite:list' as ProductList %}
+{% url 'favorite-product:list' as ProductList %}
 {% url 'favorite-blog:list' as BlogList %}
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -48,7 +48,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url 'favorite:list' %}" class="nav-link {% if request.path == ProductList %}active{% endif %}">
+                                <a href="{% url 'favorite-product:list' %}" class="nav-link {% if request.path == ProductList %}active{% endif %}">
                                     <i class="fa fa-bookmark nav-icon"></i>
                                     <p>محصولات مورد علاقه</p>
                                 </a>

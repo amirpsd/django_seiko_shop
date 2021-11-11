@@ -1,7 +1,7 @@
 {% load static %} {% for cat in category %}
     <li class="mega-dropdown">
         {% if cat.parent == None %}
-            <a href="{% url 'seiko:category' cat.slug %}">{{ cat.title }}</a> {% endif %}
+            <a href="{% url 'product:category' cat.slug %}">{{ cat.title }}</a> {% endif %}
         <div class="sub-menu">
             <div class="container">
                 <div class="megamenu-categories column-4">

@@ -9,7 +9,7 @@ from .views import (
 )
 
 
-app_name = 'seiko'
+app_name = 'product'
 
 urlpatterns = [
     path('', ProductList.as_view(), name='home'),

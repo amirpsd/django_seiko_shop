@@ -4,7 +4,7 @@
     <div class="block">
         <div class="container">
             <ul class="breadcrumbs">
-                <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                <li><a href="{% url 'product:home' %}"><i class="icon icon-home"></i></a></li>
                 <li>/<span>{{ category.title }}</span></li>
             </ul>
         </div>
@@ -102,14 +102,14 @@
                                 <div class="product-item-photo">
                                     <!-- product main photo -->
                                     <div class="product-item-gallery-main">
-                                        <a href="{% url 'seiko:detail' cat.slug cat.id %}"><img class="product-image-photo" src="{{ cat.image_1.url }}" alt=""></a>
-                                        <a href="{% url 'seiko:detail' cat.slug cat.id %}" title="Quick View" class="quick-view-link quick-view-btn"> <i class="icon icon-eye"></i><span>مشاهده سریع</span></a>
+                                        <a href="{% url 'product:detail' cat.slug cat.id %}"><img class="product-image-photo" src="{{ cat.image_1.url }}" alt=""></a>
+                                        <a href="{% url 'product:detail' cat.slug cat.id %}" title="Quick View" class="quick-view-link quick-view-btn"> <i class="icon icon-eye"></i><span>مشاهده سریع</span></a>
                                     </div>
                                     <!-- /product main photo  -->
 
                                     <!-- Product Actions -->
                                     {% if request.user.is_authenticated %}
-                                    <a href="{% url 'favorite:add' cat.id %}" title="افزودن به علاقه مندی ها" class="no_wishlist"> <i class="icon icon-heart"></i><span>افزودن به علاقه مندی
+                                    <a href="{% url 'favorite-product:add' cat.id %}" title="افزودن به علاقه مندی ها" class="no_wishlist"> <i class="icon icon-heart"></i><span>افزودن به علاقه مندی
                                             ها </span>
                                     </a>
                                     {% endif %}
@@ -140,7 +140,7 @@
                                 <!-- /Product Photo -->
                                 <!-- Product Details -->
                                 <div class="product-item-details">
-                                    <div class="product-item-name"><a title="Long sleeve overall" href="{% url 'seiko:detail' cat.slug cat.id %}" class="product-item-link">{{ cat.title }}</a>
+                                    <div class="product-item-name"><a title="Long sleeve overall" href="{% url 'product:detail' cat.slug cat.id %}" class="product-item-link">{{ cat.title }}</a>
                                     </div>
                                     <div class="product-item-description"></div>
                                     <div class="price-box"> <span class="price-container"> <span
@@ -149,7 +149,7 @@
                                         </span>
                                     </div>
 
-                                    <a href="{% url 'seiko:detail' cat.slug cat.id %}" class="btn " data-product="789123"><i class="icon "></i><span>مشاهده محصول</span></a>
+                                    <a href="{% url 'product:detail' cat.slug cat.id %}" class="btn " data-product="789123"><i class="icon "></i><span>مشاهده محصول</span></a>
                                 </div>
                                 <!-- /Product Details -->
                             </div>

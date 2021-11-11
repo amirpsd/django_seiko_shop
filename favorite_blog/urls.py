@@ -4,7 +4,7 @@ from .views import (
     favorite_blog_list,
     favorite_blog_add,
     favorite_blog_remove,
-      )
+)
 
 app_name = 'favorite-blog'
 

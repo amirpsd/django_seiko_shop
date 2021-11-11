@@ -53,7 +53,7 @@ class Category(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('seiko:category', args=[self.slug])
+        return reverse('product:category', args=[self.slug])
 
     objects = CategoryManager()
 
@@ -131,7 +131,7 @@ class Product(models.Model):
     size_to_str.short_description = 'رنگ ها'
 
     def get_absolute_url(self):
-        return reverse('seiko:detail', args=[self.slug, self.id])
+        return reverse('product:detail', args=[self.slug, self.id])
 
     objects = ProductManager()
 

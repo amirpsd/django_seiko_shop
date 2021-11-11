@@ -1,6 +1,13 @@
 from django.contrib import admin
 
-from .models import Product, Category, Color, Size, CategoryImage, Slider
+from .models import (
+    Product, 
+    Category, 
+    Color, 
+    Size, 
+    CategoryImage, 
+    Slider,
+)
 
 
 # Register your models here.

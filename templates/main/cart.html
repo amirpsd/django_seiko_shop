@@ -26,7 +26,7 @@
         <div class="block">
             <div class="container">
                 <ul class="breadcrumbs">
-                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li><a href="{% url 'product:home' %}"><i class="icon icon-home"></i></a></li>
                     <li>/<span>سبد خرید</span></li>
                 </ul>
             </div>
@@ -58,12 +58,12 @@
                             </div>
                             <div class="table-row">
                                 <div class="photo">
-                                    <a href="{% url 'seiko:detail' product.slug product.id %}"><img
+                                    <a href="{% url 'product:detail' product.slug product.id %}"><img
                                             src="{{ product.image_1.url }}"
                                             alt="{{ product.title }}"></a>
                                 </div>
                                 <div class="name">
-                                    <a href="{% url 'seiko:detail' product.slug product.id %}">{{ product.title }}</a>
+                                    <a href="{% url 'product:detail' product.slug product.id %}">{{ product.title }}</a>
                                 </div>
                                 <div class="price">
                                     {{ product.price }} تومان
@@ -111,7 +111,7 @@
                             <div class="text-empty-cart-1">سبد خرید</div>
                             <div class="text-empty-cart-2">خالی</div>
                         </div>
-                        <div><a href="{% url 'seiko:home' %}" class="btn">برگشت به صفحه قبل</a></div>
+                        <div><a href="{% url 'product:home' %}" class="btn">برگشت به صفحه قبل</a></div>
                     </div>
                 </div>
             </main>

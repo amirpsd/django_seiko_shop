@@ -12,7 +12,7 @@
         <div class="block">
             <div class="container">
                 <ul class="breadcrumbs">
-                    <li><a href="{% url 'seiko:home' %}"><i class="icon icon-home"></i></a></li>
+                    <li><a href="{% url 'product:home' %}"><i class="icon icon-home"></i></a></li>
                     <li>/<span>جستجو</span></li>
                 </ul>
             </div>
@@ -22,7 +22,7 @@
                 <div class="h2-style">{% if search is not None %}
                     <p>جست و جو مورد نظر : {{ search }}</p>
                 {% endif %}</div>
-                <form class="search-form white" action="{% url 'seiko:search' %}">
+                <form class="search-form white" action="{% url 'product:search' %}">
                     <div class="row">
                         <div class="col-md-9">
                             <div style="direction: rtl; " class="input-group input-group-lg">
@@ -57,11 +57,11 @@
                                                         </div>
                                                     {% endif %}
                                                     <div class="product-item-gallery-main">
-                                                        <a href="{% url 'seiko:detail' product.slug product.id %}"><img
+                                                        <a href="{% url 'product:detail' product.slug product.id %}"><img
                                                                 class="product-image-photo"
                                                                 src="{{ product.image_1.url }}"
                                                                 alt="{{ product.title }}"></a>
-                                                        <a href="{% url 'seiko:detail' product.slug product.id %}"
+                                                        <a href="{% url 'product:detail' product.slug product.id %}"
                                                            title="Quick View"
                                                            class="quick-view-link quick-view-btn"> <i
                                                                 class="icon icon-eye"></i><span>مشاهده سریع</span></a>
@@ -70,7 +70,7 @@
 
                                                     <!-- Product Actions -->
                                                     {% if request.user.is_authenticated %}
-                                                        <a href="{% url 'favorite:add' product.id %}"
+                                                        <a href="{% url 'favorite-product:add' product.id %}"
                                                            title="افزودن به علاقه مندی ها"
                                                            class="no_wishlist"> <i
                                                                 class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
@@ -107,7 +107,7 @@
                                                 <!-- Product Details -->
                                                 <div class="product-item-details">
                                                     <div class="product-item-name"><a title="Long sleeve overall"
-                                                                                      href="{% url 'seiko:detail' product.slug product.id %}"
+                                                                                      href="{% url 'product:detail' product.slug product.id %}"
                                                                                       class="product-item-link">{{ product.title }}</a>
                                                         <br>
                                                         <h3>{{ product.publish | naturaltime }}</h3>
@@ -124,7 +124,7 @@
                                                             class="icon icon-star-fill"></i><i
                                                             class="icon icon-star-fill"></i>
                                                     </div>
-                                                    <a href="{% url 'seiko:detail' product.slug product.id %}"
+                                                    <a href="{% url 'product:detail' product.slug product.id %}"
                                                        class="btn "
                                                        data-product="789123"><i
                                                             class="icon "></i><span>مشاهده محصول</span></a>
@@ -158,11 +158,11 @@
                                                         </div>
                                                     {% endif %}
                                                     <div class="product-item-gallery-main">
-                                                        <a href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"><img
+                                                        <a href="{% url 'product:detail' product_filter.slug product_filter.id %}"><img
                                                                 class="product-image-photo"
                                                                 src="{{ product_filter.image_1.url }}"
                                                                 alt="{{ product_filter.title }}"></a>
-                                                        <a href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"
+                                                        <a href="{% url 'product:detail' product_filter.slug product_filter.id %}"
                                                            title="Quick View"
                                                            class="quick-view-link quick-view-btn"> <i
                                                                 class="icon icon-eye"></i><span>مشاهده سریع</span></a>
@@ -171,7 +171,7 @@
 
                                                     <!-- Product Actions -->
                                                     {% if request.user.is_authenticated %}
-                                                        <a href="{% url 'favorite:add' product_filter.id %}"
+                                                        <a href="{% url 'favorite-product:add' product_filter.id %}"
                                                            title="افزودن به علاقه مندی ها"
                                                            class="no_wishlist"> <i
                                                                 class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
@@ -208,7 +208,7 @@
                                                 <!-- Product Details -->
                                                 <div class="product-item-details">
                                                     <div class="product-item-name"><a title="Long sleeve overall"
-                                                                                      href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"
+                                                                                      href="{% url 'product:detail' product_filter.slug product_filter.id %}"
                                                                                       class="product-item-link">{{ product_filter.title }}</a>
                                                         <br>
                                                         <h3>{{ product_filter.publish | naturaltime }}</h3>
@@ -225,7 +225,7 @@
                                                             class="icon icon-star-fill"></i><i
                                                             class="icon icon-star-fill"></i>
                                                     </div>
-                                                    <a href="{% url 'seiko:detail' product_filter.slug product_filter.id %}"
+                                                    <a href="{% url 'product:detail' product_filter.slug product_filter.id %}"
                                                        class="btn "
                                                        data-product="789123"><i
                                                             class="icon "></i><span>مشاهده محصول</span></a>

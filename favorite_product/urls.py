@@ -1,14 +1,15 @@
 from django.urls import path
 
 from .views import (
-    favorite_add_product,
-    favoritelistview,
-    favorite_remove_product,
+    favorite_product_list,
+    favorite_product_add,
+    favorite_product_remove,
 )
 
-app_name = 'favorite'
+app_name = 'favorite-product'
+
 urlpatterns = [
-    path('', favoritelistview, name='list'),
-    path('<int:product_id>/', favorite_add_product, name='add'),
-    path('remove/<int:product_id>/', favorite_remove_product, name='remove'),
+    path('', favorite_product_list, name='list'),
+    path('<int:product_id>/', favorite_product_add, name='add'),
+    path('remove/<int:product_id>/', favorite_product_remove, name='remove'),
 ]

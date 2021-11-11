@@ -1,6 +1,6 @@
 {% load tags %}
 {% load static %}
-{% url 'seiko:home' as home %}
+{% url 'product:home' as home %}
 <!-- Header -->
 {% if request.user.is_authenticated %}
     {% if not request.user.first_name  or not request.user.last_name %}
@@ -98,7 +98,7 @@
             <div class="header-links">
                 <!-- Header Currency -->
                 <div class="header-link header-select dropdown-link header-currencyr">
-                    <a href="{% url 'seiko:search' %}">              
+                    <a href="{% url 'product:search' %}">              
                         <i class="fa fa-filter" aria-hidden="true">فیلتر محصولات</i>
                     </a>
                 </div>
@@ -108,7 +108,7 @@
             <!-- Header Search -->
             <div class="header-link header-search header-search">
                 <div class="exp-search">
-                    <form action="{% url 'seiko:search' %}">
+                    <form action="{% url 'product:search' %}">
                         <input class="exp-search-input" placeholder="جستجو کنید..." type="text"
                                value="{% if search is not None %}{{ search }}{% endif %}" name="q">
                         <input class="exp-search-submit" type="submit" value="">
@@ -120,7 +120,7 @@
             <!-- /Header Search -->
             <!-- Logo -->
             <div class="header-logo">
-                <a href="{% url 'seiko:home' %}" title="Logo"><img src="{% static 'main/images/logo.png' %}"
+                <a href="{% url 'product:home' %}" title="Logo"><img src="{% static 'main/images/logo.png' %}"
                                                                    alt="Logo"/></a>
             </div>
             <!-- /Logo -->
@@ -132,7 +132,7 @@
                 <ul class="nav">
                     {% if request.path != home %}
                         <li class="simple-dropdown">
-                            <a href="{% url 'seiko:home' %}">صفحه اصلی</a>
+                            <a href="{% url 'product:home' %}">صفحه اصلی</a>
                         </li>
                     {% endif %}
 
@@ -150,7 +150,7 @@
     <div class="sidebar-top"><a href="#" class="slidepanel-toggle"><i class="icon icon-left-arrow-circular"></i></a>
     </div>
     <ul class="sidebar-nav">
-        <li><a href="{% url 'seiko:home' %}"> خانه </a></li>
+        <li><a href="{% url 'product:home' %}"> خانه </a></li>
         <li><a href="gallery.html"> گالری </a></li>
         <li><a href="blog.html"> BLOG </a></li>
         <li><a href="category-fixed-sidebar.html "> فروشگاه </a></li>

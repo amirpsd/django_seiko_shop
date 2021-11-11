@@ -9,7 +9,7 @@ from product.models import Product
 
 
 @login_required
-def favorite_add_product(request, product_id):
+def favorite_product_add(request, product_id):
     product = get_object_or_404(Product, status='pub', id=product_id)
     favorite, created = FavoriteProduct.objects.get_or_create(user=request.user)
     try:
@@ -20,7 +20,7 @@ def favorite_add_product(request, product_id):
 
 
 @login_required
-def favoritelistview(request):
+def favorite_product_list(request):
     favorite_product = FavoriteProduct.objects.filter(user=request.user)
     favorite_product.all()
     context = {
@@ -30,7 +30,7 @@ def favoritelistview(request):
 
 
 @login_required
-def favorite_remove_product(request, product_id):
+def favorite_product_remove(request, product_id):
     product = get_object_or_404(Product, status='pub', id=product_id)
     favorite_remove = FavoriteProduct.objects.get(user=request.user)
     favorite_remove.products.remove(product)
