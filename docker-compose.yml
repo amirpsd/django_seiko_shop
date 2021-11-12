@@ -1,42 +1,60 @@
-version: "3.8"
+version: "3.7"
 
 services:
   web:
-  build: ./src
-  container_name: 'web'
-  restart: always
-  expose:
-    -8000
-  env_file:
-    - ./.env
-  volumes:
-    - static_volume:/src/static
-    - media_volume:/src/media
-  depends_on:
-    - db
+    build: ./src
+    container_name: 'web'
+    restart: 'always'
+
+    expose:
+      - '8000'
+
+    env_file:
+      - './.env'
+
+    volumes:
+      - type: 'bind'
+        source : './src'
+        target: '/src'
+        
+    depends_on:
+      - db
+
 
   db:
-    image: postgres:alpine
-    containcer_name: 'db'
+    image: postgres:latest
+    container_name: 'db'
     restart: always
-
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    
+    expose:
+      - '5432'
+    
     env_file:
       - ./.env.db
-    
+
+    volumes:
+      - type: 'bind'
+        source: './src/dbdata'
+        target: '/var/lib/postgresql/data/'
+
+
   nginx:
     build: ./nginx
-    volumes:
-      - static_volume:/src/static
-      - media_volume:/src/media
+    container_name: 'nginx'
+    restart: 'always'
 
     ports:
-      - 80:80
+      - 80:80      
+
+    volumes:
+      - type: 'bind'
+        source: './src/static'
+        target: '/src/static'
+
+      - type: 'bind'
+        source: './src/media'
+        target: '/src/media'
+
     depends_on:
       - web
 
-volumes:
-  postgres_data:
-  static_volume:
-  media_volume:

@@ -1,23 +1,18 @@
-FROM python:alpine
+FROM python:3.9
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install psycopg2 dependencies
-RUN apk update \
-    && apk add postgresql-dev gcc python3-dev musl-dev
-
 RUN mkdir /src
 WORKDIR /src
-ADD . /src
 
 # install dependencies
 RUN pip install --upgrade pip
 ADD ./requirements.txt .
 RUN pip install -r requirements.txt
 
-RUN apk del gcc python3-dev
+ADD . /src
 
 CMD while ! python3 manage.py sqlflush > /dev/null 2>&1 ; do sleep 2 ; done && \
     python3 manage.py makemigrations --noinput && \
