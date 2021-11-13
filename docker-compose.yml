@@ -1,22 +1,23 @@
-version: "3.7"
+version: "3"
 
 services:
   web:
-    build: ./src
+    build: 
+      context: './src'
+      dockerfile: Dockerfile
     container_name: 'web'
     restart: 'always'
-
-    expose:
-      - '8000'
-
+    ports:
+      - '8000:8000'
     env_file:
       - './.env'
-
+    networks:
+      - web_network
+      - nginx_network
     volumes:
-      - type: 'bind'
-        source : './src'
-        target: '/src'
-        
+      - ./src:/blogpy
+      - src_static_volume:/src/static
+      - src_media_volume:/src/media
     depends_on:
       - db
 
@@ -25,36 +26,26 @@ services:
     image: postgres:latest
     container_name: 'db'
     restart: always
-    
-    expose:
-      - '5432'
-    
+    ports:
+      - "5432:5432"
     env_file:
       - ./.env.db
-
     volumes:
-      - type: 'bind'
-        source: './src/dbdata'
-        target: '/var/lib/postgresql/data/'
+      - seiko_postgresql:/var/lib/postgresql/data
+    networks:
+      - web_network
 
 
-  nginx:
-    build: ./nginx
-    container_name: 'nginx'
-    restart: 'always'
 
-    ports:
-      - 80:80      
-
-    volumes:
-      - type: 'bind'
-        source: './src/static'
-        target: '/src/static'
-
-      - type: 'bind'
-        source: './src/media'
-        target: '/src/media'
-
-    depends_on:
-      - web
-
+volumes:
+  seiko_postgresql:
+    external: true
+  src_static_volume:
+    external: true
+  src_media_volume:
+    external: true
+networks:
+  web_network:
+    external: true
+  nginx_network:
+    external: true
