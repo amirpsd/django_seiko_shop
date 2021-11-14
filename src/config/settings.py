@@ -70,6 +70,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+
+class InvalidTemplateVariable(str):
+    def __mod__(self, other):
+        from django.template.base import TemplateSyntaxError
+        raise TemplateSyntaxError(f"invalid variable: '%s' <<{other}>>")
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,6 +84,8 @@ TEMPLATES = [
         ,
         'APP_DIRS': True,
         'OPTIONS': {
+            'debug': False,
+            'string_if_invalid': InvalidTemplateVariable("%s"),
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -92,17 +101,24 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': config('ENGINE'),
-        'NAME': config('NAME'), 
-        'USER': config('USER'), 
-        'PASSWORD': config('PASSWORD', default='1234'),
-        'HOST': 'db', 
-        'PORT': config('PORT'),
+if config('DEBUG', cast=bool):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': config('ENGINE'),
+            'NAME': config('NAME'), 
+            'USER': config('USER'), 
+            'PASSWORD': config('PASSWORD', default='1234'),
+            'HOST': 'db', 
+            'PORT': config('PORT'),
+        }
+    }
 
 
 
@@ -142,11 +158,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static")
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 
