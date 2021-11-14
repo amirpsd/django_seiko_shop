@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import FavoriteBlog
 from django.contrib.auth.decorators import login_required
+
+from .models import FavoriteBlog
 from blog.models import Blog
 
 
@@ -19,12 +20,15 @@ def favorite_blog_list(request):
 def favorite_blog_add(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     favorite, created = FavoriteBlog.objects.get_or_create(user=request.user)
-    try:
-        favorite.blog.get(id=blog)
-    except TypeError:
-        favorite.blog.add(blog) 
+ 
+    if blog in favorite.blog.all():
+        favorite.blog.remove(blog)
+    else:
+        favorite.blog.add(blog)
+    if not favorite.blog.all().exists():
+        favorite.delete()
 
-    return redirect('/blog')
+    return redirect('favorite-blog:list')
 
 
 @login_required
@@ -35,4 +39,4 @@ def favorite_blog_remove(request, blog_id):
     if not favorite.blog.all().exists():
         favorite.delete()
 
-    return redirect('/account/favorite/blog')
+    return redirect('favorite-blog:list')
