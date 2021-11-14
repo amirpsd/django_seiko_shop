@@ -12,11 +12,16 @@ from product.models import Product
 def favorite_product_add(request, product_id):
     product = get_object_or_404(Product, status='pub', id=product_id)
     favorite, created = FavoriteProduct.objects.get_or_create(user=request.user)
-    try:
-        favorite.products.get(id=product)
-    except TypeError:
+
+    if product in favorite.products.all():
+        favorite.products.remove(product)
+    else:
         favorite.products.add(product)
-    return redirect('/')
+    if not favorite.products.all().exists():
+        favorite.delete()
+
+
+    return redirect('favorite-product:list')
 
 
 @login_required
@@ -37,4 +42,4 @@ def favorite_product_remove(request, product_id):
     if not favorite_remove.products.all().exists():
         favorite_remove.delete()
 
-    return redirect('/account/favorite/')
+    return redirect('favorite-product:list')
