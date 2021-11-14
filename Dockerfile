@@ -7,11 +7,11 @@ ENV DJANGO_SUPERUSER_PASSWORD admin
 
 RUN mkdir /src
 WORKDIR /src
-COPY . /src
+COPY ./src /src
 
 # install dependencies
 RUN pip install --upgrade pip
-ADD ./requirements.txt .
+ADD /requirements/requirements.txt /src
 RUN pip install -r requirements.txt
 
 
