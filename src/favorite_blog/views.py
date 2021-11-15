@@ -21,11 +21,11 @@ def favorite_blog_add(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     favorite, created = FavoriteBlog.objects.get_or_create(user=request.user)
  
-    if blog in favorite.blog.all():
-        favorite.blog.remove(blog)
+    if blog in favorite.blogs.all():
+        favorite.blogs.remove(blog)
     else:
-        favorite.blog.add(blog)
-    if not favorite.blog.all().exists():
+        favorite.blogs.add(blog)
+    if not favorite.blogs.all().exists():
         favorite.delete()
 
     return redirect('favorite-blog:list')
@@ -35,8 +35,8 @@ def favorite_blog_add(request, blog_id):
 def favorite_blog_remove(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     favorite = FavoriteBlog.objects.get(user=request.user)
-    favorite.blog.remove(blog)
-    if not favorite.blog.all().exists():
+    favorite.blogs.remove(blog)
+    if not favorite.blogs.all().exists():
         favorite.delete()
 
     return redirect('favorite-blog:list')

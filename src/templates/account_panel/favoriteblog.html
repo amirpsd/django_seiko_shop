@@ -19,7 +19,7 @@
                         <th>حذف</th>
                         {% endif %}
                     </tr>
-                    {% for favorite in favorite_list %} {% for favorite_blogs in favorite.blog.get_published_post %}
+                    {% for favorite in favorite_list %} {% for favorite_blogs in favorite.blogs.get_published_post %}
                     <tr>
                         <td><a href="{% url 'blog:detail' favorite_blogs.slug %}">{{ favorite_blogs.title }}</a>
                         </td>
