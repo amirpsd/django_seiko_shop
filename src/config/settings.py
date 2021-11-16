@@ -32,41 +32,35 @@ ALLOWED_HOSTS = config(
 # Application definition
 
 
-LOCAL_APP = [
-    # my app
-    "favorite_product.apps.FavoriteProductConfig",
-    "favorite_blog.apps.FavoriteBlogConfig",
-    "contact.apps.ContactConfig",
-    "product.apps.ProductConfig",
-    "account.apps.AccountConfig",
-    "orders.apps.OrdersConfig",
-    "blog.apps.BlogConfig",
-    "cart.apps.CartConfig",
-]
-
-DJANGO_APP = [
+INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-]
-
-
-THIRD_PARTY_PACKAGE_APP = [
+    # my app
+    'favorite_product.apps.FavoriteProductConfig',
+    'favorite_blog.apps.FavoriteBlogConfig',
+    'contact.apps.ContactConfig',
+    'product.apps.ProductConfig',
+    'account.apps.AccountConfig',
+    'orders.apps.OrdersConfig',
+    'blog.apps.BlogConfig',
+    'cart.apps.CartConfig',
     # install app
-    "django.contrib.humanize",
-    "ckeditor_uploader",
-    "django_filters",
-    "crispy_forms",
-    "extensions",
-    "ckeditor",
-    "comment",
-    "captcha",
+    'django.contrib.humanize',
+    'ckeditor_uploader',
+    'django_filters',
+    'crispy_forms',
+    'extensions',
+    'ckeditor',
+    'comment',
+    'captcha',
 ]
 
-INSTALLED_APPS = DJANGO_APP + LOCAL_APP + THIRD_PARTY_PACKAGE_APP
+
+
 
 CKEDITOR_UPLOAD_PATH = "upload/"
 
@@ -169,9 +163,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = "/media/"
 
