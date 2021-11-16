@@ -17,38 +17,43 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# static
-from django.conf.urls.static import static
-from django.conf import settings
-
-
+from decouple import config
 from permissions import admin_view
+
 admin.site.admin_view = admin_view
 
 # handler
 from django.conf.urls import handler403, handler404
-handler403 = 'config.utils.all_error_views.handler403'
-handler404 = 'config.utils.all_error_views.handler404'
+
+handler403 = "config.utils.all_error_views.handler403"
+handler404 = "config.utils.all_error_views.handler404"
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('product.urls')),
-    path('', include('django.contrib.auth.urls')),
-    path('cart/', include('cart.urls', namespace='cart')),
-    path('orders/', include('orders.urls', namespace='orders')),
-    path('blog/', include('blog.urls')),
-    path('contact/',include('contact.urls')),
-    path('account/', include('account.urls')),
-    path('account/favorite/product/', include('favorite_product.urls')),
-    path('account/favorite/blog/', include('favorite_blog.urls')),
-    path('comment/', include('comment.urls')),
-    path('ckeditor', include('ckeditor_uploader.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("product.urls")),
+    path("", include("django.contrib.auth.urls")),
+    path("cart/", include("cart.urls", namespace="cart")),
+    path("orders/", include("orders.urls", namespace="orders")),
+    path("blog/", include("blog.urls")),
+    path("contact/", include("contact.urls")),
+    path("account/", include("account.urls")),
+    path("account/favorite/product/", include("favorite_product.urls")),
+    path("account/favorite/blog/", include("favorite_blog.urls")),
+    path("comment/", include("comment.urls")),
+    path("ckeditor", include("ckeditor_uploader.urls")),
 ]
 
 
-if settings.DEBUG:
+if config("DEBUG", default=False, cast=bool):
+    from django.conf.urls.static import static
+    from django.conf import settings
+
     # add root static files
-    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = urlpatterns + static(
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT
+    )
     # add media static files
-    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns = urlpatterns + static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )

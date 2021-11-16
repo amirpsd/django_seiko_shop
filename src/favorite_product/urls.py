@@ -6,10 +6,10 @@ from .views import (
     favorite_product_remove,
 )
 
-app_name = 'favorite-product'
+app_name = "favorite-product"
 
 urlpatterns = [
-    path('', favorite_product_list, name='list'),
-    path('<int:product_id>/', favorite_product_add, name='add'),
-    path('remove/<int:product_id>/', favorite_product_remove, name='remove'),
+    path("", favorite_product_list, name="list"),
+    path("<int:product_id>/", favorite_product_add, name="add"),
+    path("remove/<int:product_id>/", favorite_product_remove, name="remove"),
 ]

@@ -7,10 +7,10 @@ from .views import (
 )
 
 
-app_name = 'blog'
+app_name = "blog"
 
 urlpatterns = [
-    path('', BlogList.as_view(), name='list'),
-    path('<slug:slug>/', DetailBlog.as_view(), name='detail'),
-    path('category/<slug:slug>', CategoryBlog.as_view(), name='category'),
+    path("", BlogList.as_view(), name="list"),
+    path("<slug:slug>/", DetailBlog.as_view(), name="detail"),
+    path("category/<slug:slug>", CategoryBlog.as_view(), name="category"),
 ]

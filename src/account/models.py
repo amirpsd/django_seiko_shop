@@ -20,10 +20,17 @@ def upload_file_path(instance, filename):
 
 
 class User(AbstractUser):
-    phone_number = models.CharField(max_length=11, unique=True, null=True,
-                                    verbose_name='تلفن همراه شما', default=None)
-    image = models.ImageField(upload_to=upload_file_path, blank=True,
-                              null=True,
-                              verbose_name='تصویر',
-                              help_text='برای پروفایل خود تصویر قرار دهید'
-                              )
+    phone_number = models.CharField(
+        max_length=11,
+        unique=True,
+        null=True,
+        verbose_name="تلفن همراه شما",
+        default=None,
+    )
+    image = models.ImageField(
+        upload_to=upload_file_path,
+        blank=True,
+        null=True,
+        verbose_name="تصویر",
+        help_text="برای پروفایل خود تصویر قرار دهید",
+    )

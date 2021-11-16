@@ -12,10 +12,10 @@ class ContactForm(ModelForm):
 
     class Meta:
         model = Contact
-        fields = ['name', 'email']
+        fields = ["name", "email"]
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
+        email = self.cleaned_data.get("email")
         is_valid = validate_email(
             email_address=email,
             check_format=True,
@@ -24,12 +24,14 @@ class ContactForm(ModelForm):
             dns_timeout=10,
             check_smtp=True,
             smtp_timeout=10,
-            smtp_helo_host='localhost',
+            smtp_helo_host="localhost",
             smtp_skip_tls=False,
             smtp_tls_context=None,
-            smtp_debug=False
+            smtp_debug=False,
         )
 
         if not is_valid:
-            raise ValidationError(message='ایمیل معتبر نیست لطفا ایمیل دیگری را امتحان کنید')
+            raise ValidationError(
+                message="ایمیل معتبر نیست لطفا ایمیل دیگری را امتحان کنید"
+            )
         return email

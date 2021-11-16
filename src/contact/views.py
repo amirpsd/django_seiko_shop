@@ -12,4 +12,4 @@ class ContactHome(CreateView):
     model = Contact
     form_class = ContactForm
     success_url = reverse_lazy("seiko:home")
-    template_name = 'main/contact.html'
+    template_name = "main/contact.html"

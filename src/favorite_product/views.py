@@ -10,7 +10,7 @@ from product.models import Product
 
 @login_required
 def favorite_product_add(request, product_id):
-    product = get_object_or_404(Product, status='pub', id=product_id)
+    product = get_object_or_404(Product, status="pub", id=product_id)
     favorite, created = FavoriteProduct.objects.get_or_create(user=request.user)
 
     if product in favorite.products.all():
@@ -20,26 +20,23 @@ def favorite_product_add(request, product_id):
     if not favorite.products.all().exists():
         favorite.delete()
 
-
-    return redirect('favorite-product:list')
+    return redirect("favorite-product:list")
 
 
 @login_required
 def favorite_product_list(request):
     favorite_product = FavoriteProduct.objects.filter(user=request.user)
     favorite_product.all()
-    context = {
-        'favorite': favorite_product
-    }
-    return render(request, 'account_panel/favoriteproduct.html', context)
+    context = {"favorite": favorite_product}
+    return render(request, "account_panel/favoriteproduct.html", context)
 
 
 @login_required
 def favorite_product_remove(request, product_id):
-    product = get_object_or_404(Product, status='pub', id=product_id)
+    product = get_object_or_404(Product, status="pub", id=product_id)
     favorite_remove = FavoriteProduct.objects.get(user=request.user)
     favorite_remove.products.remove(product)
     if not favorite_remove.products.all().exists():
         favorite_remove.delete()
 
-    return redirect('favorite-product:list')
+    return redirect("favorite-product:list")

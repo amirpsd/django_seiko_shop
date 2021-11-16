@@ -6,24 +6,30 @@ from .models import User
 
 
 class ProfileForm(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')
+        user = kwargs.pop("user")
         super(ProfileForm, self).__init__(*args, **kwargs)
         if not user.is_superuser:
-            self.fields['username'].disabled = True
-            self.fields['username'].help_text = None
-            self.fields['email'].disabled = True
+            self.fields["username"].disabled = True
+            self.fields["username"].help_text = None
+            self.fields["email"].disabled = True
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'phone_number', 'image']
+        fields = [
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "image",
+        ]
 
 
 class SignupForm(UserCreationForm):
     captcha = ReCaptchaField()
-    email = forms.EmailField(max_length=200, help_text='Required')
+    email = forms.EmailField(max_length=200, help_text="Required")
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ("username", "email", "password1", "password2")
