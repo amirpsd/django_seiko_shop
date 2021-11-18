@@ -98,6 +98,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 # my context processor
+                "product.context_processors.product_special_offer",
+                "product.context_processors.suggested_blog",
                 "cart.context_processors.cart",
             ],
         },

@@ -30,10 +30,6 @@ class ProductList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["blog"] = Blog.objects.get_published_post().order_by("-publish")[:4]
-        context["product_special_offer"] = product.filter(special_offer=True).order_by(
-            "-publish"
-        )[:4]
         context["slider"] = Slider.objects.all()
         return context
 
@@ -96,10 +92,6 @@ class ProductDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["blog"] = Blog.objects.get_published_post().order_by("-publish")[:4]
-        context["product_special_offer"] = product.filter(special_offer=True).order_by(
-            "-publish"
-        )[:4]
         context["cart_product_form"] = CartAddProductForm()
         return context
 

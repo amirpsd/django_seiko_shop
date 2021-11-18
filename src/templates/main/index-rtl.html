@@ -299,7 +299,7 @@
             </div>
             <!-- Blog Carousel Item -->
             <div class="blog-carousel">
-                {% for blog in blog %}
+                {% for blog in suggested_blog %}
                     <div class="blog-item">
                         <a href="{% url 'blog:detail' blog.slug %}" class="blog-item-photo"> <img
                                 class="product-image-photo" src="{{ blog.image.url }}" alt="{{ blog.title }}"> </a>
