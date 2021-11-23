@@ -11,7 +11,6 @@ from .models import (
 )
 
 from cart.forms import CartAddProductForm
-from blog.models import Blog
 
 
 ###############
