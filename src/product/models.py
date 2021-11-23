@@ -1,4 +1,5 @@
 from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.admin import display
 from django.utils.text import slugify
 from django.utils import timezone
 from django.urls import reverse
@@ -110,11 +111,14 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    @display(description="زمان انتشار")
     def jpublish(self):
         return jalali_convertor(self.publish)
 
-    jpublish.short_description = "زمان انتشار"
-
+    @display(
+        boolean=True,
+        description="وضعیت جدید بودن",
+    )
     def is_new_product(self):
         last_day = datetime.today() - timedelta(days=15)
         last_days = last_day.replace(tzinfo=pytz.timezone("UTC"))
@@ -123,29 +127,22 @@ class Product(models.Model):
         else:
             return False
 
-    is_new_product.short_description = "وضعیت جدید بودن"
-    is_new_product.boolean = True
-
+    @display(description="تصویر")
     @format_image
     def image_html(self):
         return (self.title, self.image_1.url)
 
-    image_html.short_description = "تصویر"
-
+    @display(description="دسته بندی ها")
     def category_to_str(self):
         return " -- ".join([category.title for category in self.category.active()])
 
-    category_to_str.short_description = "دسته بندی ها"
-
+    @display(description="سایز ها")
     def size_to_str(self):
         return " -- ".join([size.size for size in self.size.all()])
 
-    size_to_str.short_description = "سایز ها"
-
+    @display(description="رنگ ها")
     def color_to_str(self):
         return " -- ".join([color.color for color in self.color.all()])
-
-    size_to_str.short_description = "رنگ ها"
 
     def get_absolute_url(self):
         return reverse("product:detail", args=[self.slug, self.id])
@@ -189,8 +186,9 @@ class Slider(models.Model):
         verbose_name = "اسلایدر"
         verbose_name_plural = "اسلایدر ها"
 
+
+    @display(description="تصویر")
     @format_image
     def image_html(self):
         return (self.title, self.image.url)
 
-    image_html.short_description = "تصویر"

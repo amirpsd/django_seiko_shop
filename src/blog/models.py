@@ -1,5 +1,5 @@
 from django.contrib.contenttypes.fields import GenericRelation
-from django.utils.html import format_html
+from django.contrib.admin.decorators import display
 from django.utils.text import slugify
 from django.utils import timezone
 from django.db import models
@@ -85,20 +85,17 @@ class Blog(models.Model):
             self.slug = slugify(code_generator())
         super(Blog, self).save(*args, **kwargs)
 
+    @display(description="تاریخ انتشار")
     def jpublish(self):
         return jalali_convertor(self.publish)
 
-    jpublish.short_description = "تاریخ انتشار"
-
+    @display(description="تصویر")
     @format_image
-    def image_tag(self):
+    def image_html(self):
         return (self.title, self.image.url)
 
-    image_tag.short_description = "عکس"
-
+    @display(description="دسته بندی")
     def category_to_str(self):
         return " -- ".join([category.title for category in self.category.active()])
-
-    category_to_str.short_description = "دسته بندی"
 
     objects = BlogManager()

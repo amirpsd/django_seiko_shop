@@ -1,3 +1,4 @@
+from django.contrib.admin.decorators import display
 from django.db import models
 
 from account.models import User
@@ -20,7 +21,7 @@ class FavoriteBlog(models.Model):
     def __str__(self):
         return self.user.get_full_name()
 
+    @display(description="مقالات")
     def favorite_blog_to_str(self):
         return " -- ".join([blog.title for blog in self.blogs.all()])
 
-    favorite_blog_to_str.short_description = "مقالات"

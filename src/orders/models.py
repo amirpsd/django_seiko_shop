@@ -1,4 +1,6 @@
+from django.contrib.admin.decorators import display
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.admin import display
 from django.db import models
 
 from account.models import User
@@ -23,19 +25,18 @@ class Order(models.Model):
         verbose_name = "سفارش"
         verbose_name_plural = "سفارشات"
 
+    @display(description="تاریخ ایجاد")
     def jalali_created(self):
         return jalali_convertor(self.created)
 
-    jalali_created.short_description = "تاریخ ایجاد"
-
+    @display(description="آخرین بروزرسانی")
     def jalali_updated(self):
         return jalali_convertor(self.created)
-
-    jalali_updated.short_description = "اخرین بروزرسانی"
 
     def __str__(self):
         return f"{self.user} - {str(self.id)}"
 
+    @display(description="مجموع خرید")
     def get_total_price(self):
         total = sum(item.get_cost() for item in self.items.all())
         if self.discount:
@@ -43,7 +44,6 @@ class Order(models.Model):
             return int(total - discount_price)
         return total
 
-    get_total_price.short_description = "مجموع خرید"
 
 
 class OrderItem(models.Model):
@@ -62,10 +62,9 @@ class OrderItem(models.Model):
     def __str__(self):
         return str(self.id)
 
+    @display(description="دریافت هزینه")
     def get_cost(self):
         return self.price * self.quantity
-
-    get_cost.short_description = "دریافت_هزینه"
 
     class Meta:
         verbose_name = "سبد خرید"

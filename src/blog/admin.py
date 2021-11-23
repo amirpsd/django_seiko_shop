@@ -18,7 +18,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class BlogAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "image_tag",
+        "image_html",
         "slug",
         "jpublish",
         "status",

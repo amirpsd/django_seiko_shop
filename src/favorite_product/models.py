@@ -1,3 +1,4 @@
+from django.contrib.admin import display
 from django.db import models
 
 from product.models import Product
@@ -24,8 +25,7 @@ class FavoriteProduct(models.Model):
 
     def __str__(self):
         return self.user.username
-
+    
+    @display(description="محصولات")
     def product_to_str(self):
         return " -- ".join([product.title for product in self.products.all()])
-
-    product_to_str.short_description = "محصولات"
