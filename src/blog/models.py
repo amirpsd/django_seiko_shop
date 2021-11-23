@@ -6,6 +6,7 @@ from django.db import models
 
 from extensions.upload_file_path import upload_file_path
 from extensions.code_generator import code_generator
+from extensions.decorators import format_image
 from extensions.utils import jalali_convertor
 
 from comment.models import Comment
@@ -89,10 +90,9 @@ class Blog(models.Model):
 
     jpublish.short_description = "تاریخ انتشار"
 
+    @format_image
     def image_tag(self):
-        return format_html(
-            f'<img style="border-radius: 5px;" width=100 height=60 src="{self.image.url}">'
-        )
+        return (self.title, self.image.url)
 
     image_tag.short_description = "عکس"
 

@@ -1,22 +1,21 @@
 from django.contrib.contenttypes.fields import GenericRelation
-from django.utils.html import format_html
 from django.utils.text import slugify
 from django.utils import timezone
 from django.urls import reverse
 from django.db import models
 
-from ckeditor_uploader.fields import RichTextUploadingField
-from extensions.upload_file_path import upload_file_path
-from extensions.code_generator import code_generator
-from extensions.utils import jalali_convertor
-from datetime import timedelta, datetime
-
 from comment.models import Comment
 
+from extensions.upload_file_path import upload_file_path
+from extensions.code_generator import code_generator
+from extensions.decorators import format_image
+from extensions.utils import jalali_convertor
+
+from ckeditor_uploader.fields import RichTextUploadingField
+from datetime import timedelta, datetime
 import pytz
 
 from .managers import ProductManager, CategoryManager
-
 #################
 
 # Create your models here.
@@ -127,10 +126,9 @@ class Product(models.Model):
     is_new_product.short_description = "وضعیت جدید بودن"
     is_new_product.boolean = True
 
+    @format_image
     def image_html(self):
-        return format_html(
-            f'<img src="{self.image_1.url}" alt="{self.title}" width="100px" height="60px" style="border-radius: 5px">'
-        )
+        return (self.title, self.image_1.url)
 
     image_html.short_description = "تصویر"
 
@@ -191,9 +189,8 @@ class Slider(models.Model):
         verbose_name = "اسلایدر"
         verbose_name_plural = "اسلایدر ها"
 
+    @format_image
     def image_html(self):
-        return format_html(
-            f'<img src="{self.image.url}" alt="{self.title}" width="100px" height="60px" style="border-radius: 5px">'
-        )
+        return (self.title, self.image.url)
 
     image_html.short_description = "تصویر"
