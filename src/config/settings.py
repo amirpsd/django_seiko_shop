@@ -81,7 +81,7 @@ class InvalidTemplateVariable(str):
     def __mod__(self, other):
         from django.template.base import TemplateSyntaxError
 
-        raise TemplateSyntaxError(f"invalid variable: '%s' <<{other}>>")
+        raise TemplateSyntaxError("invalid variable: %s"% other)
 
 
 TEMPLATES = [
