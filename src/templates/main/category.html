@@ -28,7 +28,7 @@
                     {% if category.has_image %}
                         <div class="categories">
                             <div class="row">
-                                {% for category_image in categoryimage %}
+                                {% for category_image in category.categoryimage_set.all %}
                                     <div class="col-xs-6 col-sm-3">
                                         <a href="#" class="category-block">
                                             <div class="category-image">

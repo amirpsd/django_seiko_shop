@@ -79,7 +79,6 @@ def category_list(request, slug):
     context = {
         "category": category,
         "object_list": category_list,
-        "categoryimage": CategoryImage.objects.filter(category=category),
         "form": Paginate_by_form,
         "paginator": paginator,
     }
