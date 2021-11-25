@@ -1,11 +1,9 @@
-from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.auth import get_user_model
 from django.contrib.admin import display
 from django.utils.text import slugify
 from django.utils import timezone
 from django.urls import reverse
 from django.db import models
-
-from comment.models import Comment
 
 from extensions.upload_file_path import upload_file_path
 from extensions.code_generator import code_generator
@@ -97,7 +95,6 @@ class Product(models.Model):
     category = models.ManyToManyField(
         Category, related_name="category", blank=True, verbose_name="دسته بندی محصولات"
     )
-    comments = GenericRelation(Comment)
 
     class Meta:
         verbose_name = "محصول"
@@ -148,6 +145,39 @@ class Product(models.Model):
         return reverse("product:detail", args=[self.slug, self.id])
 
     objects = ProductManager()
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="comments",
+        blank=False,
+        null=False,
+        verbose_name="کاربر",
+        unique_for_date="created",
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        default=None,
+        blank=False,
+        null=False,
+        verbose_name="محصول",
+    )
+    name = models.CharField(max_length=150, verbose_name="نام")
+    body = models.TextField(max_length=800, verbose_name="نظر")
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        ordering = ["-created", "-id"]
+        verbose_name = "کامنت"
+        verbose_name_plural = "کامنت ها"
+
+    def __str__(self):
+        return {self.body}
 
 
 class Color(models.Model):

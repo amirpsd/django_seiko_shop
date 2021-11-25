@@ -7,6 +7,7 @@ from .models import (
     Size,
     CategoryImage,
     Slider,
+    Comment,
 )
 
 
@@ -42,6 +43,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ("user", "body", "created", "name")
+    search_fields = ("user", "name")
+
+
 class SliderAdmin(admin.ModelAdmin):
     list_display = ("title", "image_html")
 
@@ -51,5 +57,6 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Color)
 admin.site.register(Size)
 admin.site.register(Slider, SliderAdmin)
+admin.site.register(Comment, CommentAdmin)
 # admin action
 # https://docs.djangoproject.com/en/3.2/ref/contrib/admin/actions/

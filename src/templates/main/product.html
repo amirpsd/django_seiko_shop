@@ -1,7 +1,6 @@
 {% extends 'main/Shared/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% load comment_tags %}
 {% load humanize %}
 {% block title %}
     محصول   {{ product.title | truncatechars:10 }}
@@ -245,8 +244,7 @@
                         <div role="tabpanel" class="tab-pane" id="Tab5">
                             {# comment #}
                             <div class="container" style="font-size: 25px;">
-                                {% render_comments object request %}
-                                {% include_bootstrap %}
+
                             </div>
                         </div>
                     </div>
