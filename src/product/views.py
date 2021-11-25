@@ -7,7 +7,6 @@ from .filters import ProductFilter
 from .models import (
     Product,
     Category,
-    CategoryImage,
     Slider,
 )
 
