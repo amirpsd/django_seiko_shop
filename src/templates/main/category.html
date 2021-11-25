@@ -66,21 +66,15 @@
                                 <a href="#"><i class="icon icon-arrow-up"></i></a>
                             </div>
                         </div>
-                        <div class="col-sm-2 col-lg-2 hidden-xs">
-                            <div class="view-mode">
-                                <a href="#" class="grid-view"><i class="icon icon-th"></i></a>
-                                <a href="#" class="list-view"><i class="icon icon-th-list"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 col-sm-3 col-lg-5 col-right">
+
+                        <div class="col-xs-4 col-sm-3 col-lg-5">
                             <div class="select-wrapper-sm">
-                                <select class="form-control input-sm">
-                                        <option value="featured">12</option>
-                                        <option value="rating">36</option>
-                                        <option value="price">100</option>
-                                    </select>
+                                <form method="post">
+                                {% csrf_token %}
+                                    {{form}}                             
                             </div>
-                            <div class="form-label"> : مشاهده</div>
+                                <button type="submit" class="btn " data-product="789123"><i class="icon "></i><span>انجام</span></button>
+                            </form>
 
                         </div>
                     </div>
@@ -161,6 +155,20 @@
                 </div>
 
 
+                <ul class="pagination pull-right">
+                    {% if object_list.has_previous %}
+                        <li><a href="?page={{ object_list.previous_page_number }}"><i
+                                class="icon icon-angle-right"></i></a></li>
+                    {% endif %} {% for page in paginator.page_range %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endfor %} {% if object_list.has_next %}
+                    <li><a href="?page={{ object_list.next_page_number }}"><i
+                            class="icon icon-angle-left"></i></a>
+                    </li>
+                {% endif %}
+
+                </ul>
                 <!-- /Products Grid -->
 
             </div>

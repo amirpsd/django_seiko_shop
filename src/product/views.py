@@ -1,5 +1,6 @@
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 from django.db.models import Q
 
 from .filters import ProductFilter
@@ -10,8 +11,8 @@ from .models import (
     Slider,
 )
 
+from product.forms import Paginate_by_form
 from cart.forms import CartAddProductForm
-
 
 ###############
 
@@ -59,24 +60,31 @@ class SearchProduct(ListView):
         return context
 
 
-class CategoryList(ListView):
-    template_name = "main/category.html"
-    paginate_by = 8
+def category_list(request, slug):
+    category = get_object_or_404(Category.objects.active(), slug=slug)
+    category_list = category.category.publish()
+    # or
+    # product = Product.objects.publish().filter(category=category)
 
-    def get_queryset(self):
-        global category  # noqa
-        slug = self.kwargs.get("slug")
-        category = get_object_or_404(Category.objects.active(), slug=slug)
-        return category.category.publish()
-        #####  or
-        # product = Product.objects.publish().filter(category=category)
-        # return product
+    paginator = Paginator(category_list, 8)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category"] = category
-        context["categoryimage"] = CategoryImage.objects.filter(category=category)
-        return context
+    form = Paginate_by_form(request.POST or None)
+    if form.is_valid():
+        page = form.cleaned_data.get("pagination")
+        paginator = Paginator(category_list, page)
+
+    page_number = request.GET.get("page")
+    category_list = paginator.get_page(page_number)
+
+    context = {
+        "category": category,
+        "object_list": category_list,
+        "categoryimage": CategoryImage.objects.filter(category=category),
+        "form": Paginate_by_form,
+        "paginator": paginator,
+    }
+
+    return render(request, "main/category.html", context=context)
 
 
 class ProductDetail(DetailView):
