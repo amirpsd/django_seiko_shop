@@ -1,4 +1,3 @@
-from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.admin.decorators import display
 from django.utils.text import slugify
 from django.utils import timezone
@@ -9,7 +8,6 @@ from extensions.code_generator import code_generator
 from extensions.decorators import format_image
 from extensions.utils import jalali_convertor
 
-from comment.models import Comment
 from ckeditor_uploader.fields import RichTextUploadingField
 
 from .managers import BlogManager, CategoryManager
@@ -71,7 +69,6 @@ class Blog(models.Model):
     status = models.CharField(
         max_length=1, choices=STATUS_CHOICES, verbose_name="وضعیت"
     )
-    comments = GenericRelation(Comment)
 
     class Meta:
         verbose_name = "مقاله"
