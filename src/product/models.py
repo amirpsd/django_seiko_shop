@@ -168,7 +168,7 @@ class Comment(models.Model):
     )
     name = models.CharField(max_length=150, verbose_name="نام")
     body = models.TextField(max_length=800, verbose_name="نظر")
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=timezone.now)
 
 
     class Meta:
@@ -177,7 +177,7 @@ class Comment(models.Model):
         verbose_name_plural = "کامنت ها"
 
     def __str__(self):
-        return {self.body}
+        return self.body
 
 
 class Color(models.Model):
