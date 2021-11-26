@@ -242,9 +242,45 @@
 {#                            </form>#}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="Tab5">
-                            {# comment #}
+                            <h3 class="text-center" >افزودن نظر</h3>
                             <div class="container" style="font-size: 25px;">
-
+                                <form class="contact-form white" method='post'>
+                                {% csrf_token %}
+                                {% if comment_form.name.errors %}
+                                    <div class="errors">
+                                        {% for error in form.name.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                    <div class="form-group">
+                                        {{ comment_form.name|as_crispy_field }}
+                                    </div>
+                                {% if comment_form.body.errors %}
+                                    <div class="errors">
+                                        {% for error in form.body.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                    <div class="form-group">
+                                        {{ comment_form.body|as_crispy_field }}
+                                    </div>
+                                    <div>
+                                        <button type="submit" class = "btn btn-lg"> ارسال نظر </button>
+                                    </div>
+                                </form>
+                            <hr>
+                            <h3 class="text-center" >خواندن نظر ها</h3>
+                            {% for comment in object.comments.all %}
+                                <div class=" col-md-12 comment">
+                                    <div class="date">{{ comment.created | naturaltime }}</div>
+                                    <strong>نویسنده: {{ comment.name }}</strong>
+                                    <p>دیدگاه: <br> {{ comment.body|safe }}</p>
+                                </div>
+                            {% empty %}
+                                <p>نظری وجود ندارد ...</p>
+                            {% endfor %}
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,9 @@
-from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormMixin
 from django.core.paginator import Paginator
+from django.utils import timezone
+from django.urls import reverse
 from django.db.models import Q
 
 from .filters import ProductFilter
@@ -10,7 +13,7 @@ from .models import (
     Slider,
 )
 
-from product.forms import Paginate_by_form
+from product.forms import Paginate_by_form, CommentForm
 from cart.forms import CartAddProductForm
 
 ###############
@@ -85,9 +88,13 @@ def category_list(request, slug):
     return render(request, "main/category.html", context=context)
 
 
-class ProductDetail(DetailView):
+class ProductDetail(FormMixin, DetailView):
     template_name = "main/product.html"
     context_object_name = "product"
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse('product:detail', kwargs={'slug': self.object.slug, 'id':self.object.id})
 
     def get_object(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
@@ -98,7 +105,27 @@ class ProductDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["cart_product_form"] = CartAddProductForm()
+        context["comment_form"] = CommentForm(initial={'product': self.object})
         return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
+            myform = form.save(commit=False)
+            myform.user = self.request.user
+            myform.product = self.object
+            myform.body = form.cleaned_data.get('body')
+            myform.name = form.cleaned_data.get('name')
+            myform.created = timezone.now()
+            form.save()
+        return super(ProductDetail, self).form_valid(form)
 
 
 def about_us(request):
