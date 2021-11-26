@@ -40,6 +40,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("status", "publish")
     search_fields = ("title", "description", "slug")
     ordering = ["title"]
+    exclude = ("slug",)
     list_per_page = 20
 
 

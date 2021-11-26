@@ -27,6 +27,7 @@ class BlogAdmin(admin.ModelAdmin):
     list_filter = ("publish", "status")
     search_fields = ("title", "description", "slug")
     ordering = ("-status", "title", "description")
+    exclude = ("slug",)
     list_per_page = 20
 
 
