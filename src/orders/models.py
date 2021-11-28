@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.admin.decorators import display
 from django.contrib.admin import display
 from django.db import models
@@ -49,7 +48,6 @@ class Order(models.Model):
         return total
 
 
-
 class OrderItem(models.Model):
     order = models.ForeignKey(
         Order, on_delete=models.CASCADE, related_name="items", verbose_name="سفارش"
@@ -73,20 +71,3 @@ class OrderItem(models.Model):
     class Meta:
         verbose_name = "سبد خرید"
         verbose_name_plural = "سبد های خرید"
-
-
-class Coupon(models.Model):
-    code = models.CharField(max_length=30, unique=True, verbose_name="کد تخفیف")
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField(verbose_name="اعتبار تا")
-    discount = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name="تخفیف"
-    )
-    active = models.BooleanField(default=False, verbose_name="فغال")
-
-    def __str__(self):
-        return self.code
-
-    class Meta:
-        verbose_name = "کد تخفیف"
-        verbose_name_plural = "کد های تخفیف"

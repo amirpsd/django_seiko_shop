@@ -1,7 +1,10 @@
 from django import forms
+from .models import Order
+
+### create forms
 
 
-class CouponForm(forms.Form):
-    code = forms.CharField(
-        label="کد تخفیف",
-    )
+class OrderCreateForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ["full_name", "address", "postal_code", "city"]
