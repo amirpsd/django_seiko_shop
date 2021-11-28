@@ -106,14 +106,26 @@
 
                                             <!-- /Product Label -->
                                             <!-- product main photo -->
-                                            <div class="product-item-gallery-main">
-                                                <a href="{% url 'product:detail' product.slug product.id %}"><img
-                                                        class="product-image-photo" src="{{ product.image_1.url }}"
-                                                        alt=""></a>
-                                                <a href="{% url 'product:detail' product.slug product.id %}"
-                                                   title="Quick View" class="quick-view-link quick-view-btn"> <i
-                                                        class="icon icon-eye"></i><span>مشاهده بیشتر</span></a>
+                                            <!-- product inside carousel -->
+                                            <div class="carousel-inside slide" data-ride="carousel">
+                                                <div class="carousel-inner" role="listbox">
+                                                    <div class="item active">
+                                                        <a href="{% url 'product:detail' product.slug product.id %}"><img class="product-image-photo"
+                                                                         src="{{product.image_1.url}}"
+                                                                         alt="{{product.title}}"></a>
+                                                    </div>
+                                                    <div class="item">
+                                                        <a href="{% url 'product:detail' product.slug product.id %}"><img class="product-image-photo"
+                                                                         src="{{product.image_2.url}}" alt="{{product.title}}"></a>
+                                                    </div>
+                                                </div>
+                                                <a class="carousel-control next"></a>
+                                                <a class="carousel-control prev"></a>
                                             </div>
+                                            <!-- /product inside carousel -->
+                                            <a href="{% url 'product:detail' product.slug product.id %}" title="Quick View"
+                                               class="quick-view-link quick-view-btn"> <i
+                                                    class="icon icon-eye"></i><span>مشاهده سریع</span></a>
                                             <!-- /product main photo  -->
 
                                             <!-- Product Actions -->
@@ -146,24 +158,6 @@
                                                 </div>
                                             </div>
                                             <!-- /Product Actions -->
-                                            <!-- product carousel -->
-                                            <div class="product-item-gallery-previews-wrapper">
-                                                <div class="product-item-gallery-previews">
-                                                    <div class="item">
-                                                        <a href="#"><img
-                                                                src="{% static 'main/images/products/product-9.jpg' %}"
-                                                                data-image="images/products/product-25.jpg" alt=""></a>
-                                                    </div>
-                                                    <div class="item">
-                                                        <a href="#"><img
-                                                                src="{% static 'main/images/products/product-9.jpg' %}"
-                                                                data-image="images/products/product-25-1.jpg"
-                                                                alt=""></a>
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-arrows"></div>
-                                            </div>
-                                            <!-- /product carousel -->
                                         </div>
                                         <!-- /Product Photo -->
                                         <!-- Product Details -->
@@ -392,6 +386,5 @@
 
     </main>
     <!-- /Page Content -->
-
 
 {% endblock %}
