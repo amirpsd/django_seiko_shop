@@ -82,7 +82,7 @@
                                 <a class="btn btn-alt" href="{% url 'orders:create' %}">خرید را ادامه دهید</a>
                                 <form action="{% url "cart:cart_add" product.id %}" class="pull-right" method="post">
                                     {% csrf_token %}
-                                    {{ item.update_quantity_form.update }}
+                                    {{ item.update_quantity_form.override }}
                                     <button type="submit" class="btn btn-alt pull-right"><i class="icon icon-sync"> </i>
                                         <span> بروزرسانی </span>
                                     </button>
