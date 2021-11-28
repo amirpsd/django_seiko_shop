@@ -1,5 +1,5 @@
-from django.contrib.admin.decorators import display
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.admin.decorators import display
 from django.contrib.admin import display
 from django.db import models
 
@@ -13,6 +13,10 @@ class Order(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="orders", verbose_name="کاربر"
     )
+    full_name = models.CharField(max_length=150, verbose_name="نام و نام خانوادگی")
+    city = models.CharField(max_length=100, verbose_name="شهر")
+    address = models.CharField(max_length=250, verbose_name="آدرس")
+    postal_code = models.CharField(max_length=20, verbose_name="کد پستی")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False, verbose_name="پرداخت شده ؟")
