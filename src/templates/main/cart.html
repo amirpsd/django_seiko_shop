@@ -1,124 +1,147 @@
-{% extends 'main/Shared/base.html' %}
+{% extends "main/Shared/base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}
-    سبد خرید شما
+سبد خرید شما
 {% endblock %}
 {% block content %}
-
-    <!-- Page Content -->
-    <div class="row" style="margin-top: 6%">
-        <h2>سبد خرید شما
-            <span class="badge pull-right">
-                {% with totail_items=cart|length %}
-                    {% if cart|length > 0 %}
-                        سبد خرید من:
-                        <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
-                            {{ totail_items }} ایتم {{ totail_items|pluralize }}, قیمت کل. {{ cart.get_total_price }}
-                        </a>
-                    {% else %}
-                        سبد شما خالی است.
-                    {% endif %}
-                {% endwith %}
-            </span>
-        </h2>
+<!-- Page Content -->
+<main class="page-main">
+    <div class="block">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li><a href="{% url 'product:home' %}"><i class="icon icon-home"></i></a></li>
+                <li>/<span>سبد خرید</span></li>
+            </ul>
+        </div>
     </div>
+    {% if cart %}
+    <div class="block">
+        <div class="container">
+            <div class="cart-table">
+                <div class="table-header">
+                    <div class="عکس">
+                        تصویر محصول
+                    </div>
+                    <div class="name">
+                        نام محصول
+                    </div>
+                    <div class="price">
+                        قیمت واحد
+                    </div>
+                    <div class="تعداد">
+                        تعداد
+                    </div>
+                    <div class="subtotal">
+                        جمع کل
+                    </div>
+                    <div class="remove">
+                        <span class="hidden-sm hidden-xs">حذف</span>
+                    </div>
+                </div>
+                {% for item in cart %}
+                {% with product=item.product %}
+                <div class="table-row">
+                    <div class="photo">
+                        <a href="{% url 'product:detail' product.slug product.id %}"><img src="{{product.image_1.url}}"
+                                                                                          alt="{{product.title}}"></a>
+                    </div>
+                    <div class="name">
+                        <a href="{% url 'product:detail' product.slug product.id %}">{{product.title}}</a>
+                    </div>
+                    <div class="price">
+                        {{product.price}} تومان
+                    </div>
+                    <div class="qty qty-changer">
+                        <div class="input-group-prepend">
+                            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                {% csrf_token %}
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.override }}
+                                <input class="btn btn-outline-primary js-btn-plus" type="submit"
+                                       value="Update">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="subtotal">
+                        {{item.total_price}}
+                    </div>
+                    <div class="remove">
+                        <a href="{% url 'cart:cart_remove' product.id %}" class="icon icon-close-2"></a>
+                    </div>
+
+                </div>
+                {% endwith %}
+                {% endfor %}
+                <div class="table-footer">
+                    <a href="{% url 'product:home' %}" class="btn btn-alt">خرید را ادامه دهید</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 total-wrapper">
+                    <table class="total-price">
+                        <tr>
+                            <td> جمع کل</td>
+                            <td> {{cart.get_total_price}}</td>
+                        </tr>
+                        <tr>
+                            {% if cart.coupon %}
+                            {% blocktrans with code=cart.coupon.code discount=cart.coupon.discount %}
+                            <td> تخفیف</td>
+                            <td> {{discount}} درصد</td>
+                            {% endblocktrans %}
+                            {% endif %}
+                        <tr class="total">
+                            <td> مبلغ نهایی</td>
+                            <td> {{cart.get_total_price_after_discount}} تومان</td>
+                        </tr>
+                    </table>
+                    <div class="cart-action">
+                        <div class="table-footer">
+                            <a href="{% url 'orders:create' %}" class="btn btn-alt" style="color: white;">پرداخت
+                                نهایی</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="direction: rtl" class="col-sm-6 col-md-4">
+                    <h2>کدهای تخفیف</h2>
+                    <form action="{% url 'coupons:apply' %}" method="post">
+                        <label> اگر کد کوپن خود را دارید وارد کنید. </label>
+                        <input type="text" class="form-control dashed" {{ coupon_apply_form.code }}
+                        {% comment %} {% if coupon_apply_form.code.errors %}
+                            <div class="errors">
+                                {% for error in coupon_apply_form.code.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %} {% endcomment %}
+                        <h1>{{coupon_apply_form.code.errors}}</h1>
+                        {% csrf_token %}
+                        <div>
+                            <button type='submit' class="btn btn-alt"> اعمال کوپن</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    {% else %}
     <main class="page-main">
-        <div class="block">
+        <div class="block fullheight empty-cart">
             <div class="container">
-                <ul class="breadcrumbs">
-                    <li><a href="{% url 'product:home' %}"><i class="icon icon-home"></i></a></li>
-                    <li>/<span>سبد خرید</span></li>
-                </ul>
+                <div class="image-empty-cart">
+                    <img src="{% static 'main/images/empty-basket.png' %}" alt="">
+                    <div class="text-empty-cart-1">سبد خرید</div>
+                    <div class="text-empty-cart-2">خالی</div>
+                </div>
+                <div><a href="{% url 'product:home' %}" class="btn">برگشت به خانه</a></div>
             </div>
         </div>
-        {% for item in cart %}
-            {% with product=item.product %}
-                <div class="block">
-                    <div class="container">
-                        <div class="cart-table">
-                            <div class="table-header">
-                                <div class="عکس">
-                                    تصویر محصول
-                                </div>
-                                <div class="name">
-                                    نام محصول
-                                </div>
-                                <div class="price">
-                                    قیمت واحد
-                                </div>
-                                <div class="تعداد">
-                                    تعداد
-                                </div>
-                                <div class="subtotal">
-                                    جمع کل
-                                </div>
-                                <div class="remove">
-                                    <span class="hidden-sm hidden-xs">حذف</span>
-                                </div>
-                            </div>
-                            <div class="table-row">
-                                <div class="photo">
-                                    <a href="{% url 'product:detail' product.slug product.id %}"><img
-                                            src="{{ product.image_1.url }}"
-                                            alt="{{ product.title }}"></a>
-                                </div>
-                                <div class="name">
-                                    <a href="{% url 'product:detail' product.slug product.id %}">{{ product.title }}</a>
-                                </div>
-                                <div class="price">
-                                    {{ product.price }} تومان
-                                </div>
-                                <div class="qty qty-changer">
-                                    {{ item.quantity }}
-                                </div>
-                                <div class="subtotal">
-                                    تومان {{ item.total_price }}
-                                </div>
-                                <div class="remove">
-                                    <a href="{% url "cart:cart_remove" product.id %}" class="icon icon-close-2"></a>
-                                </div>
-                            </div>
-                            <div class="table-footer">
-                                <a class="btn btn-alt" href="{% url 'orders:create' %}">خرید را ادامه دهید</a>
-                                <form action="{% url "cart:cart_add" product.id %}" class="pull-right" method="post">
-                                    {% csrf_token %}
-                                    {{ item.update_quantity_form.override }}
-                                    <button type="submit" class="btn btn-alt pull-right"><i class="icon icon-sync"> </i>
-                                        <span> بروزرسانی </span>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 total-wrapper">
-                                <table class="total-price">
-                                    <tr class="total">
-                                        <td> مبلغ نهایی</td>
-                                        <td> تومان {{ item.total_price }}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endwith %}
-        {% empty %}
-            <main class="page-main">
-                <div class="block fullheight empty-cart">
-                    <div class="container">
-                        <div class="image-empty-cart">
-                            <img src="{% static 'main/images/empty-basket.png' %}" alt="">
-                            <div class="text-empty-cart-1">سبد خرید</div>
-                            <div class="text-empty-cart-2">خالی</div>
-                        </div>
-                        <div><a href="{% url 'product:home' %}" class="btn">برگشت به صفحه قبل</a></div>
-                    </div>
-                </div>
-            </main>
-
-        {% endfor %}
     </main>
-    <!-- /Page Content -->
-
-
+    {% endif %}
+</main>
+<!-- /Page Content -->
 {% endblock %}
