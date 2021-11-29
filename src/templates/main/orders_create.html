@@ -1,0 +1,17 @@
+{% extends 'main/Shared/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    فرم خرید
+{% endblock %}
+{% block content %}
+    <h1>Checkout</h1>
+    <h2>سفارش شما</h2>
+    <h3>مجموع قیمت: {{ cart.get_total_price_after_discount }}</h3>
+
+    <form method="post" class="order-form">
+            {{ form | crispy }}
+            <br>
+            <p><input type="submit" class='btn btn-alt' value="Place order"></p>
+            {% csrf_token %}
+    </form>
+{% endblock %}
