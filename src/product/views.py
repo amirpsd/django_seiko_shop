@@ -27,7 +27,6 @@ class ProductList(ListView):
     paginate_by = 24
 
     def get_queryset(self):
-        global product  # noqa
         product = Product.objects.publish()
         return product.order_by("-price", "-publish")
 
@@ -42,6 +41,8 @@ class SearchProduct(ListView):
     paginate_by = 16
 
     def get_queryset(self):
+        global product  # noqa
+        product = Product.objects.publish()
         search = self.request.GET.get("q")
         if search is not None:
             return (
@@ -71,10 +72,11 @@ def category_list(request, slug):
 
     paginator = Paginator(category_list, 8)
 
-    form = Paginate_by_form(request.POST or None)
-    if form.is_valid():
-        page = form.cleaned_data.get("pagination")
-        paginator = Paginator(category_list, page)
+    if request.method == "POST":
+        form = Paginate_by_form(request.POST)
+        if form.is_valid():
+            page = form.cleaned_data.get("pagination")
+            paginator = Paginator(category_list, page)
 
     page_number = request.GET.get("page")
     category_list = paginator.get_page(page_number)
@@ -102,7 +104,7 @@ class ProductDetail(FormMixin, DetailView):
     def get_object(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
         id = self.kwargs.get("id")  # noqa
-        product_detail = get_object_or_404(product, slug=slug, id=id, status="pub")
+        product_detail = get_object_or_404(Product, slug=slug, id=id, status="pub")
         return product_detail
 
     def get_context_data(self, **kwargs):
