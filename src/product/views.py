@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from django.core.paginator import Paginator
+from django.contrib import messages
 from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
@@ -94,7 +95,9 @@ class ProductDetail(FormMixin, DetailView):
     form_class = CommentForm
 
     def get_success_url(self):
-        return reverse('product:detail', kwargs={'slug': self.object.slug, 'id':self.object.id})
+        return reverse(
+            "product:detail", kwargs={"slug": self.object.slug, "id": self.object.id}
+        )
 
     def get_object(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
@@ -105,7 +108,7 @@ class ProductDetail(FormMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["cart_product_form"] = CartAddProductForm()
-        context["comment_form"] = CommentForm(initial={'product': self.object})
+        context["comment_form"] = CommentForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -118,13 +121,21 @@ class ProductDetail(FormMixin, DetailView):
 
     def form_valid(self, form):
         if self.request.user.is_authenticated:
-            myform = form.save(commit=False)
-            myform.user = self.request.user
-            myform.product = self.object
-            myform.body = form.cleaned_data.get('body')
-            myform.name = form.cleaned_data.get('name')
-            myform.created = timezone.now()
-            form.save()
+            try:
+                myform = form.save(commit=False)
+                myform.user = self.request.user
+                myform.product = self.object
+                myform.body = form.cleaned_data.get("body")
+                myform.name = form.cleaned_data.get("name")
+                myform.created = timezone.now()
+                form.save()
+            except:
+                messages.add_message(
+                    self.request,
+                    messages.ERROR,
+                    "شما نمیتوانید در یک روز بیش از یک نظر بگذارید",
+                )
+
         return super(ProductDetail, self).form_valid(form)
 
 

@@ -155,7 +155,6 @@ class Comment(models.Model):
         blank=False,
         null=False,
         verbose_name="کاربر",
-        unique_for_date="created",
     )
     product = models.ForeignKey(
         Product,
@@ -168,11 +167,12 @@ class Comment(models.Model):
     )
     name = models.CharField(max_length=150, verbose_name="نام")
     body = models.TextField(max_length=800, verbose_name="نظر")
-    created = models.DateTimeField(default=timezone.now)
+    created = models.DateField(default=timezone.now)
 
 
     class Meta:
         ordering = ["-created", "-id"]
+        unique_together = ("user", "created")
         verbose_name = "کامنت"
         verbose_name_plural = "کامنت ها"
 

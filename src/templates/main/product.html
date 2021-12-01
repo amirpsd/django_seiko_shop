@@ -242,13 +242,30 @@
 {#                            </form>#}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="Tab5">
-                            <h3 class="text-center" >افزودن نظر</h3>
                             <div class="container" style="font-size: 25px;">
-                                <form class="contact-form white" method='post'>
+                            <h3 class="text-center" >خواندن نظر ها</h3>
+                            {% for comment in product.comments.all %}
+                                <div class=" col-md-12 comment">
+                                    <strong>نویسنده: {{ comment.name }}</strong>
+                                    <p>دیدگاه: <br> {{ comment.body|safe }}</p>
+                                </div>
+                            {% empty %}
+                                <p>نظری وجود ندارد ...</p>
+                            {% endfor %}
+                            <hr>
+                            <h3 class="text-center" >افزودن نظر</h3>
+                            <form class="contact-form white" method='post'>
                                 {% csrf_token %}
+                                {% if messages %}
+                                    <div class="errors">
+                                        {% for message in messages %}
+                                            <h2 style="color: red;" class="text-center" >{{ message }}</h2>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}                           
                                 {% if comment_form.name.errors %}
                                     <div class="errors">
-                                        {% for error in form.name.errors %}
+                                        {% for error in comment_form.name.errors %}
                                             <span>{{ error }}</span>
                                         {% endfor %}
                                     </div>
@@ -258,7 +275,7 @@
                                     </div>
                                 {% if comment_form.body.errors %}
                                     <div class="errors">
-                                        {% for error in form.body.errors %}
+                                        {% for error in comment_form.body.errors %}
                                             <span>{{ error }}</span>
                                         {% endfor %}
                                     </div>
@@ -270,17 +287,6 @@
                                         <button type="submit" class = "btn btn-lg"> ارسال نظر </button>
                                     </div>
                                 </form>
-                            <hr>
-                            <h3 class="text-center" >خواندن نظر ها</h3>
-                            {% for comment in object.comments.all %}
-                                <div class=" col-md-12 comment">
-                                    <div class="date">{{ comment.created | naturaltime }}</div>
-                                    <strong>نویسنده: {{ comment.name }}</strong>
-                                    <p>دیدگاه: <br> {{ comment.body|safe }}</p>
-                                </div>
-                            {% empty %}
-                                <p>نظری وجود ندارد ...</p>
-                            {% endfor %}
                             </div>
                         </div>
                     </div>
