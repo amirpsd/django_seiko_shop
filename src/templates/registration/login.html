@@ -35,7 +35,7 @@
                             <form class="account-create" method="post">
                                 {% csrf_token %}
                                 <label> نام کاربری <span class="required"> * </span> </label>
-                                <input type="text" class="form-control input-lg" {{ form.username }}>
+                                <input type="text" class="form-control input-lg" {{ form.username }}
 
                                 {% if form.username.errors %}
                                     <span class="errors">
@@ -47,7 +47,7 @@
 
 
                                 <label> گذرواژه <span class="required"> * </span> </label>
-                                <input type="password" class="form-control input-lg" {{ form.password }}>
+                                <input type="password" class="form-control input-lg" {{ form.password }}
 
                                 {% if form.password.errors %}
                                     <div class="errors">
