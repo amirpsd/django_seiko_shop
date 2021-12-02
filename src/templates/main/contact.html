@@ -52,9 +52,9 @@
                                   method="post">
                                 {% csrf_token %}
                                 <label>نام<span class="required">*</span></label>
-                                <input type="text" class="form-control input-lg" {{ form.name }}>
+                                <input type="text" class="form-control input-lg" {{ form.name }}
                                 <label>ایمیل<span class="required"></span></label>
-                                <input type="email" class="form-control input-lg" {{ form.email }}>
+                                <input type="email" class="form-control input-lg" {{ form.email }}
                                 {% if form.email.errors %}
                                     {% for error in form.email.errors %}
                                         <span style="color: red ;" class="errors">

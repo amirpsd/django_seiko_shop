@@ -11,5 +11,5 @@ from .models import Contact
 class ContactHome(CreateView):
     model = Contact
     form_class = ContactForm
-    success_url = reverse_lazy("seiko:home")
+    success_url = reverse_lazy("product:home")
     template_name = "main/contact.html"
