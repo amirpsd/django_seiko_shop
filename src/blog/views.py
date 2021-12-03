@@ -39,7 +39,7 @@ class CategoryBlog(ListView):
         global category  # noqa
         slug = self.kwargs.get("slug")
         category = get_object_or_404(Category, status=True, slug=slug)
-        return category.blog_category.get_published_post()
+        return category.blogs.get_published_post()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -10,9 +10,9 @@ from blog.models import Blog
 
 class FavoriteBlog(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="user_favoriteblogs", blank=False
+        User, on_delete=models.CASCADE, related_name="favorite_blogs", blank=False
     )
-    blogs = models.ManyToManyField(Blog, related_name="blog_favoritblog", blank=False)
+    blogs = models.ManyToManyField(Blog, related_name="favorite_blogs", blank=False)
 
     class Meta:
         verbose_name = "مقاله مورد علاقه"

@@ -22,7 +22,7 @@ from .managers import ProductManager, CategoryManager
 
 class CategoryImage(models.Model):
     category = models.ForeignKey(
-        "Category", default=None, on_delete=models.CASCADE, verbose_name="دسته بندی"
+        "Category", default=None, on_delete=models.CASCADE, verbose_name="دسته بندی",
     )
     title = models.CharField(max_length=150, verbose_name="عنوان")
     images = models.FileField(upload_to=upload_file_path, verbose_name="تصویر")
@@ -77,9 +77,9 @@ class Product(models.Model):
     description = RichTextUploadingField(
         default=None, verbose_name="توضیحات", blank=True
     )
-    color = models.ManyToManyField("Color", related_name="product_color", blank=True)
+    color = models.ManyToManyField("Color", related_name="products", blank=True)
     size = models.ManyToManyField(
-        "Size", verbose_name="سایز ها", related_name="product_size"
+        "Size", verbose_name="سایز ها", related_name="products"
     )
     weight = models.CharField(max_length=200, verbose_name="ون محصول", default=None)
     image_1 = models.ImageField(upload_to=upload_file_path, verbose_name="تصویر 1")
@@ -93,7 +93,7 @@ class Product(models.Model):
         choices=STATUS_CHOICES, max_length=3, verbose_name="وضعیت"
     )
     category = models.ManyToManyField(
-        Category, related_name="category", blank=True, verbose_name="دسته بندی محصولات"
+        Category, related_name="products", blank=True, verbose_name="دسته بندی محصولات"
     )
 
     class Meta:

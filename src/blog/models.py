@@ -59,7 +59,7 @@ class Blog(models.Model):
         default=None,
         blank=False,
         verbose_name="دسته بندی",
-        related_name="blog_category",
+        related_name="blogs",
     )
     description = RichTextUploadingField(verbose_name="توضیحات")
     image = models.ImageField(upload_to=upload_file_path, verbose_name="تصویر")

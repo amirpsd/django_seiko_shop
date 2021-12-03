@@ -66,7 +66,7 @@ class SearchProduct(ListView):
 
 def category_list(request, slug):
     category = get_object_or_404(Category.objects.active(), slug=slug)
-    category_list = category.category.publish()
+    category_list = category.products.publish()
     # or
     # product = Product.objects.publish().filter(category=category)
 

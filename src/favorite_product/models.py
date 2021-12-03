@@ -13,10 +13,10 @@ class FavoriteProduct(models.Model):
         User,
         on_delete=models.CASCADE,
         unique=True,
-        related_name="user_favorite_product",
+        related_name="favorite_products",
     )
     products = models.ManyToManyField(
-        Product, blank=False, default=None, related_name="products_favorite_product"
+        Product, blank=False, default=None, related_name="favorite_products"
     )
 
     class Meta:
