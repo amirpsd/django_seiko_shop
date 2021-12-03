@@ -108,14 +108,13 @@
                     <form action="{% url 'coupons:apply' %}" method="post">
                         <label> اگر کد کوپن خود را دارید وارد کنید. </label>
                         <input type="text" class="form-control dashed" {{ coupon_apply_form.code }}
-                        {% comment %} {% if coupon_apply_form.code.errors %}
+                        {% if messages %}
                             <div class="errors">
-                                {% for error in coupon_apply_form.code.errors %}
-                                    <span>{{ error }}</span>
+                                {% for message in messages %}
+                                    <h2 style="color: red;" class="text-center" >{{ message }}</h2>
                                 {% endfor %}
                             </div>
-                        {% endif %} {% endcomment %}
-                        <h1>{{coupon_apply_form.code.errors}}</h1>
+                        {% endif %}
                         {% csrf_token %}
                         <div>
                             <button type='submit' class="btn btn-alt"> اعمال کوپن</button>

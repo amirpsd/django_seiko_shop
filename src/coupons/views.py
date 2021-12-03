@@ -1,5 +1,6 @@
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
+from django.contrib import messages
 from django.utils import timezone
 
 from .models import Coupon
@@ -20,5 +21,6 @@ def coupon_apply(request):
             )
             request.session["coupon_id"] = coupon.id
         except Coupon.DoesNotExist:
+            messages.add_message(request, messages.ERROR, "کد تخفیف مورد نظر اشتباه است")
             request.session["coupon_id"] = None
     return redirect("cart:cart_detail")
