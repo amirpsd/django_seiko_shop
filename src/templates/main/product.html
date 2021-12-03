@@ -253,40 +253,45 @@
                                 <p>نظری وجود ندارد ...</p>
                             {% endfor %}
                             <hr>
-                            <h3 class="text-center" >افزودن نظر</h3>
-                            <form class="contact-form white" method='post'>
-                                {% csrf_token %}
-                                {% if messages %}
-                                    <div class="errors">
-                                        {% for message in messages %}
-                                            <h2 style="color: red;" class="text-center" >{{ message }}</h2>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}                           
-                                {% if comment_form.name.errors %}
-                                    <div class="errors">
-                                        {% for error in comment_form.name.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                    <div class="form-group">
-                                        {{ comment_form.name|as_crispy_field }}
-                                    </div>
-                                {% if comment_form.body.errors %}
-                                    <div class="errors">
-                                        {% for error in comment_form.body.errors %}
-                                            <span>{{ error }}</span>
-                                        {% endfor %}
-                                    </div>
-                                {% endif %}
-                                    <div class="form-group">
-                                        {{ comment_form.body|as_crispy_field }}
-                                    </div>
-                                    <div>
-                                        <button type="submit" class = "btn btn-lg"> ارسال نظر </button>
-                                    </div>
-                                </form>
+                            {% if request.user.is_authenticated %}
+                                <h3 class="text-center" >افزودن نظر</h3>
+                                <form class="contact-form white" method='post'>
+                                    {% csrf_token %}
+                                    {% if messages %}
+                                        <div class="errors">
+                                            {% for message in messages %}
+                                                <h2 style="color: red;" class="text-center" >{{ message }}</h2>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}                           
+                                    {% if comment_form.name.errors %}
+                                        <div class="errors">
+                                            {% for error in comment_form.name.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                        <div class="form-group">
+                                            {{ comment_form.name|as_crispy_field }}
+                                        </div>
+                                    {% if comment_form.body.errors %}
+                                        <div class="errors">
+                                            {% for error in comment_form.body.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                        <div class="form-group">
+                                            {{ comment_form.body|as_crispy_field }}
+                                        </div>
+                                        <div>
+                                            <button type="submit" class = "btn btn-lg"> ارسال نظر </button>
+                                        </div>
+                                    </form>
+                            {% else %}
+                            <h3 class="text-center" >برای افزودن نظر باید <a href="{% url 'login' %}?next=/products/{{product.slug}}/{{product.id}}">وارد</a> شوید</h3>
+
+                            {% endif %}
                             </div>
                         </div>
                     </div>
