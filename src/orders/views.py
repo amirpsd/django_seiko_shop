@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.template.loader import get_template
+from django.http import HttpResponse
 
 from cart.cart import Cart
 from .forms import OrderCreateForm
-from .models import OrderItem
+from .models import OrderItem, Order
 
+from xhtml2pdf import pisa
 
 
 @login_required
@@ -32,3 +35,32 @@ def order_create(request):
     else:
         form = OrderCreateForm()
     return render(request, "main/orders_create.html", {"cart": cart, "form": form})
+
+
+@login_required
+def render_order_pdf(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    template_path = "main/pdf.html"
+    context = {
+        "order": order,
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type="application/pdf")
+
+    # if download
+    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+        html,
+        dest=response,
+    )
+    # if error then show some funy view
+    if pisa_status.err:
+        return HttpResponse("We had some errors <pre>" + html + "</pre>")
+
+    return response

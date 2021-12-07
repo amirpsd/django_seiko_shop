@@ -1,0 +1,56 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فاکتور خرید شما</title>
+</head>
+<body>
+    <h1>Seiko Shop</h1>
+    <p>
+      Invoice no : {{ order.id }}</br>
+      <span>
+        Time of purchase : {{ order.created | date:"M d, Y" }}
+      </span>
+    </p>
+
+    <hr>
+    <h2>Specifications</h2>
+    <p>
+      Name : {{ order.full_name }}<br>
+      Addres : {{ order.address }}<br>
+      Postal Code : {{ order.postal_code }}<br>
+      City : {{ order.city }}
+    </p>
+    <hr>
+
+    <h2>Products purchased</h2>
+    <table>
+        <tr>
+          <td>Product</td>
+          <td>Price</td>
+          <td>Quantity</td>
+          <td>Cost</td>
+        </tr>
+        {% for item in order.items.all %}
+          <tr {% cycle "1" "2" %}>
+            <td>{{ item.product.title }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.get_cost }}</td>
+          </tr>
+        {% endfor %}
+    </table>
+    <h3>Total : {{order.get_total_price}} </h3>
+
+    <hr>
+    <h3>Payment status</h3>
+    <span {% if order.paid %}paid{% else %}pending{% endif %}>
+      {% if order.paid %}Paid{% else %}Pending payment{% endif %}
+    </span>
+
+</body>
+</html>
