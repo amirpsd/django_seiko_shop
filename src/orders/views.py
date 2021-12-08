@@ -52,7 +52,7 @@ def render_order_pdf(request, order_id):
     response = HttpResponse(content_type="application/pdf")
 
     # if download
-    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    # response['Content-Disposition'] = f'attachment; filename="{order.id}{order.user.username}.pdf"'
 
     # find the template and render it.
     template = get_template(template_path)
