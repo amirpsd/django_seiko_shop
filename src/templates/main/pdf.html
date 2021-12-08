@@ -32,6 +32,8 @@
         <tr>
           <td>Product</td>
           <td>Price</td>
+          <td>Color</td>
+          <td>Size</td>
           <td>Quantity</td>
           <td>Cost</td>
         </tr>
@@ -39,6 +41,8 @@
           <tr {% cycle "1" "2" %}>
             <td>{{ item.product.title }}</td>
             <td>{{ item.price }}</td>
+            <td>{{ item.color }}</td>
+            <td>{{ item.size }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.get_cost }}</td>
           </tr>
@@ -48,7 +52,7 @@
 
     <hr>
     <h3>Payment status</h3>
-    <span {% if order.paid %}paid{% else %}pending{% endif %}>
+    <span {% if order.paid %} style="color: green;" {% else %} style="color: red;" {% endif %}>
       {% if order.paid %}Paid{% else %}Pending payment{% endif %}
     </span>
 
