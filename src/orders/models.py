@@ -2,8 +2,8 @@ from django.contrib.admin.decorators import display
 from django.contrib.admin import display
 from django.db import models
 
+from product.models import Product, Color, Size
 from account.models import User
-from product.models import Product, Color
 
 from extensions.utils import jalali_convertor
 
@@ -50,7 +50,10 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="items", verbose_name="سفارش"
+        Order, 
+        on_delete=models.CASCADE, 
+        related_name="items", 
+        verbose_name="سفارش",
     )
     product = models.ForeignKey(
         Product,
@@ -66,6 +69,14 @@ class OrderItem(models.Model):
         null=False,
         default=None,
         verbose_name="رنگ", 
+    )
+    size = models.ForeignKey(
+        Size, 
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        default=None,
+        verbose_name="سایز", 
     )
     quantity = models.PositiveSmallIntegerField(default=1, verbose_name="تعداد")
 

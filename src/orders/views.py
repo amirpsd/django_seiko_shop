@@ -30,6 +30,7 @@ def order_create(request):
                     order=order,
                     product=item["product"],
                     color_id=item["color_id"],
+                    size_id=item["size_id"],
                     price=item["price"],
                     quantity=item["quantity"],
                 )

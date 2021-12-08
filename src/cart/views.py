@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
+from coupons.forms import CouponForm
 from product.models import Product
 
 from .cart import Cart
 from .forms import CartAddProductForm
-from coupons.forms import CouponForm
 
 
 @login_required
@@ -20,6 +20,7 @@ def cart_add(request, product_id):
         cart.add(
             product=product, 
             color=add_product_form['color'], 
+            size=add_product_form['size'], 
             quantity=add_product_form["quantity"], 
             update_quantity=add_product_form["override"],
         )
@@ -39,8 +40,16 @@ def cart_detail(request):
     cart = Cart(request)
     for item in cart:
         item["update_quantity_form"] = CartAddProductForm(
-            initial={"quantity": item["quantity"], "override": True}
+            initial={
+                "quantity": item["quantity"], 
+                "override": True,
+            }
         )
 
     coupon_apply_form = CouponForm()
-    return render(request, "main/cart.html", {"cart": cart, 'coupon_apply_form': coupon_apply_form})
+
+    context = {
+        "cart":cart, 
+        "coupon_apply_form": coupon_apply_form,
+    }
+    return render(request, "main/cart.html", context=context)

@@ -26,11 +26,14 @@
                     <div class="name">
                         نام محصول
                     </div>
-                    <div class="price">
-                        قیمت واحد
+                    <div class="color">
+                        رنگ
+                    </div>
+                    <div class="size">
+                        سایز
                     </div>
                     <div class="price">
-                        رنگ
+                        قیمت واحد
                     </div>
                     <div class="تعداد">
                         تعداد
@@ -52,11 +55,14 @@
                     <div class="name">
                         <a href="{% url 'product:detail' product.slug product.id %}">{{product.title}}</a>
                     </div>
-                    <div class="price">
-                        {{product.price}} تومان
-                    </div>
                     <div class="subtotal">
                         {{ item.color }}      
+                    </div>
+                    <div class="subtotal">
+                        {{ item.size }}      
+                    </div>
+                    <div class="price">
+                        {{product.price}} تومان
                     </div>
                     <div class="qty qty-changer">
                         <div class="input-group-prepend">
