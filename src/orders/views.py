@@ -23,9 +23,13 @@ def order_create(request):
                 order.discount = cart.coupon.discount
             order.save()
             for item in cart:
+                print("*"*30)
+                print(item["color"])
+                print("*"*30)
                 OrderItem.objects.create(
                     order=order,
                     product=item["product"],
+                    color_id=item["color_id"],
                     price=item["price"],
                     quantity=item["quantity"],
                 )

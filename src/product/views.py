@@ -102,6 +102,7 @@ class ProductDetail(FormMixin, DetailView):
         )
 
     def get_object(self, *args, **kwargs):
+        global product_detail
         slug = self.kwargs.get("slug")
         id = self.kwargs.get("id")  # noqa
         product_detail = get_object_or_404(Product, slug=slug, id=id, status="pub")
@@ -109,7 +110,9 @@ class ProductDetail(FormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["cart_product_form"] = CartAddProductForm()
+        context["cart_product_form"] = CartAddProductForm(
+            initial={"color":product_detail.color.all()}
+        )
         context["comment_form"] = CommentForm()
         return context
 

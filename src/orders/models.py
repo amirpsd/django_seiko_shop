@@ -3,7 +3,7 @@ from django.contrib.admin import display
 from django.db import models
 
 from account.models import User
-from product.models import Product
+from product.models import Product, Color
 
 from extensions.utils import jalali_convertor
 
@@ -59,6 +59,14 @@ class OrderItem(models.Model):
         verbose_name="محصول",
     )
     price = models.IntegerField(verbose_name="قیمت")
+    color = models.ForeignKey(
+        Color, 
+        on_delete=models.CASCADE,
+        blank=False,
+        null=False,
+        default=None,
+        verbose_name="رنگ", 
+    )
     quantity = models.PositiveSmallIntegerField(default=1, verbose_name="تعداد")
 
     def __str__(self):
