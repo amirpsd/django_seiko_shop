@@ -12,23 +12,28 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ["__str__", "position", "slug", "parent", "status"]
     list_filter = ["status"]
     search_fields = ("title", "slug")
-    ordering = ["status"]
+    fields = (
+        "parent",
+        ("title", "slug"),
+        ("status", "position"),
+    )
 
 
 class BlogAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "image_html",
-        "slug",
         "jpublish",
         "status",
         "category_to_str",
     )
     list_filter = ("publish", "status")
-    search_fields = ("title", "description", "slug")
-    ordering = ("-status", "title", "description")
+    search_fields = ("title", "slug", "id")
+    radio_fields = {"status": admin.HORIZONTAL}
+    filter_horizontal = ("category",)
+    ordering = ("-status", "-create")
     exclude = ("slug",)
-    list_per_page = 20
+    list_per_page = 40
 
 
 admin.site.register(Blog, BlogAdmin)

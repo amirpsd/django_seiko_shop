@@ -19,8 +19,13 @@ class CategoryImageInline(admin.TabularInline):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "status", "parent")
     list_filter = ("status", "title")
-    search_fields = ("title", "slug")
-    ordering = ("-parent", "title", "status")
+    search_fields = ("title", "slug", "id")
+    fields = (
+        "parent",
+        ("title", "slug"),
+        ("status", "has_image"),
+    )
+    ordering = ("status", "-id",)
     inlines = (CategoryImageInline,)
 
 
@@ -31,17 +36,19 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "image_html",
-        "slug",
         "jpublish",
         "status",
         "is_new_product",
         "category_to_str",
+        "price",
     )
-    list_filter = ("status", "publish")
-    search_fields = ("title", "description", "slug")
-    ordering = ["title"]
+    list_filter = ("status", "special_offer")
+    search_fields = ("title", "slug", "id")
+    radio_fields = {"status": admin.HORIZONTAL}
+    filter_horizontal = ["category", "color", "size"]
+    ordering = ["-create", "-updated"]
     exclude = ("slug",)
-    list_per_page = 20
+    list_per_page = 40
 
 
 class CommentAdmin(admin.ModelAdmin):
