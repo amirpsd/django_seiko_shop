@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from django.core.paginator import Paginator
@@ -11,6 +11,7 @@ from .filters import ProductFilter
 from .models import (
     Product,
     Category,
+    Comment,
     Slider,
 )
 
@@ -145,6 +146,18 @@ class ProductDetail(FormMixin, DetailView):
                 )
 
         return super(ProductDetail, self).form_valid(form)
+
+
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(
+        Comment, 
+        user=request.user, 
+        id=comment_id
+    )
+    slug = comment.product.slug
+    id = comment.product.id
+    comment.delete()
+    return redirect(reverse("product:detail", args=[slug, id]))
 
 
 def about_us(request):

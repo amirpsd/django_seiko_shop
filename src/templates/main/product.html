@@ -248,6 +248,9 @@
                                 <div class=" col-md-12 comment">
                                     <strong>نویسنده: {{ comment.name }}</strong>
                                     <p>دیدگاه: <br> {{ comment.body|safe }}</p>
+                                    {% if request.user == comment.user %}
+                                        <p style="color: red;"><a href="{% url 'product:comment-delete' comment.id %}">حدف</a></p>
+                                    {% endif %}
                                 </div>
                             {% empty %}
                                 <p>نظری وجود ندارد ...</p>
