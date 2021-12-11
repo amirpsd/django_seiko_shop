@@ -9,13 +9,13 @@ admin.site.site_header = "مدیریت سایت"
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "position", "slug", "parent", "status"]
+    list_display = ["__str__", "id", "slug", "parent", "status"]
     list_filter = ["status"]
     search_fields = ("title", "slug")
     fields = (
         "parent",
         ("title", "slug"),
-        ("status", "position"),
+        "status",
     )
 
 

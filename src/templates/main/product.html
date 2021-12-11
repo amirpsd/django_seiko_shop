@@ -325,7 +325,7 @@
                                         <div class="blog-item-links"><span class="pull-right"> <span><a
                                                 href="{% url 'blog:detail' blog.slug %}"
                                                 class="readmore">مشاهده بیشتر</a></span> </span>
-                                            <span class="pull-left"> <span> نویسنده:<a href="#">ادمین</a></span> </span>
+                                            <span class="pull-left"> <span> نویسنده:<a href="#"> {{ blog.author.get_full_name }} </a></span> </span>
                                         </div>
                                     </div>
                                 </div>

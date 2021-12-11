@@ -1,4 +1,5 @@
 from django.contrib.admin.decorators import display
+from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.utils import timezone
 from django.db import models
@@ -32,12 +33,11 @@ class Category(models.Model):
     title = models.CharField(max_length=200, verbose_name="عنوان دسته بندی")
     slug = models.SlugField(max_length=100, unique=True, verbose_name="آدرس دسته بندی ")
     status = models.BooleanField(default=False, verbose_name="آیا نمایش داده شود")
-    position = models.IntegerField(verbose_name="پوزیشن")
 
     class Meta:
         verbose_name = "دسته بندی مقاله"
         verbose_name_plural = "دسته بندی مقالات"
-        ordering = ["parent__id", "position"]
+        ordering = ["-id"]
 
     def __str__(self):
         return self.title
@@ -50,6 +50,16 @@ class Blog(models.Model):
         ("d", "پیش نویس"),
         ("p", "منتشر شده"),
     )
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        related_name="blogs",
+        default=None,
+        blank=False,
+        null=False,
+        verbose_name="نویسنده",
+
+    ) 
     title = models.CharField(max_length=200, verbose_name="عنوان")
     slug = models.SlugField(
         max_length=100, unique=True, verbose_name="آدرس", blank=True

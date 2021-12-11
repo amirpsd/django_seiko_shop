@@ -27,7 +27,7 @@
                             <div class="pull-left">
                                 <span>تاریخ انتشار</span>
                                 <span>{{ blog.publish | naturaltime }}</span>
-                                <span> نویسنده <a href="#">ادمین</a></span>
+                                <span> نویسنده <a href="#"> {{ blog.author.get_full_name }} </a></span>
                             </div>
                             <div class="pull-right">
                                 <div class="share-button toRight">
