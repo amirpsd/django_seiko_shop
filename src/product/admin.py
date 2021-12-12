@@ -9,7 +9,7 @@ from .models import (
     Slider,
     Comment,
 )
-
+from .actions import make_draft, make_published
 
 # Register your models here.
 class CategoryImageInline(admin.TabularInline):
@@ -47,6 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
     radio_fields = {"status": admin.HORIZONTAL}
     filter_horizontal = ["category", "color", "size"]
     ordering = ["-create", "-updated"]
+    actions = (make_published, make_draft)
     exclude = ("slug",)
     list_per_page = 40
 
@@ -66,5 +67,3 @@ admin.site.register(Color)
 admin.site.register(Size)
 admin.site.register(Slider, SliderAdmin)
 admin.site.register(Comment, CommentAdmin)
-# admin action
-# https://docs.djangoproject.com/en/3.2/ref/contrib/admin/actions/
