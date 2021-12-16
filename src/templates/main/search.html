@@ -113,10 +113,17 @@
                                                         <h3>{{ product.publish | naturaltime }}</h3>
                                                     </div>
                                                     <div class="product-item-description">{{ product.description | truncatewords:30 }}</div>
-                                                    <div class="price-box"> <span class="price-container"> <span
-                                                            class="price-wrapper"><span
-                                                            class="special-price">{{ product.price }} تومان</span> </span>
-													</span>
+                                                    <div class="price-box"> 
+                                                        <span class="price-container"> 
+                                                            <span class="price-wrapper"> 
+                                                                {% if product.discount %}
+                                                                    <span class="old-price">{{product.price}} تومان</span> 
+                                                                    <span class="special-price">{{product.get_final_price}} تومان</span> 
+                                                                {% else %}
+                                                                <span class="special-price">{{product.get_final_price}} تومان</span> 
+                                                                {% endif %}
+                                                            </span>
+                                                        </span>
                                                     </div>
                                                     <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
                                                             class="icon icon-star-fill"></i><i
@@ -214,10 +221,17 @@
                                                         <h3>{{ product_filter.publish | naturaltime }}</h3>
                                                     </div>
                                                     <div class="product-item-description">{{ product_filter.description | truncatewords:30 }}</div>
-                                                    <div class="price-box"> <span class="price-container"> <span
-                                                            class="price-wrapper"><span
-                                                            class="special-price">{{ product_filter.price }} تومان</span> </span>
-													</span>
+                                                    <div class="price-box"> 
+                                                        <span class="price-container"> 
+                                                            <span class="price-wrapper"> 
+                                                                {% if product_filter.discount %}
+                                                                    <span class="old-price">{{product_filter.price}} تومان</span> 
+                                                                    <span class="special-price">{{product_filter.get_final_price}} تومان</span> 
+                                                                {% else %}
+                                                                <span class="special-price">{{product_filter.get_final_price}} تومان</span> 
+                                                                {% endif %}
+                                                            </span>
+                                                        </span>
                                                     </div>
                                                     <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
                                                             class="icon icon-star-fill"></i><i

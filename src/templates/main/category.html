@@ -137,9 +137,16 @@
                                     <div class="product-item-name"><a title="Long sleeve overall" href="{% url 'product:detail' cat.slug cat.id %}" class="product-item-link">{{ cat.title }}</a>
                                     </div>
                                     <div class="product-item-description"></div>
-                                    <div class="price-box"> <span class="price-container"> <span
-                                                    class="price-wrapper"><span class="special-price">{{ cat.price }}
-                                                    تومان</span> </span>
+                                    <div class="price-box"> 
+                                        <span class="price-container"> 
+                                            <span class="price-wrapper"> 
+                                                {% if cat.discount %}
+                                                    <span class="old-price">{{cat.price}} تومان</span> 
+                                                    <span class="special-price">{{cat.get_final_price}} تومان</span> 
+                                                {% else %}
+                                                <span class="special-price">{{cat.get_final_price}} تومان</span> 
+                                                {% endif %}
+                                            </span>
                                         </span>
                                     </div>
 

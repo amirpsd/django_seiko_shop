@@ -172,10 +172,17 @@
 
                                             </div>
                                             <div class="product-item-description">{{ product.description | truncatechars:20 }}</div>
-                                            <div class="price-box"> <span class="price-container"> <span
-                                                    class="price-wrapper"> <span
-                                                    class="special-price">{{ product.price }} تومان</span> </span>
-                                        </span>
+                                            <div class="price-box"> 
+                                                <span class="price-container"> 
+                                                    <span class="price-wrapper"> 
+                                                        {% if product.discount %}
+                                                            <span class="old-price">{{product.price}} تومان</span> 
+                                                            <span class="special-price">{{product.get_final_price}} تومان</span> 
+                                                        {% else %}
+                                                        <span class="special-price">{{product.get_final_price}} تومان</span> 
+                                                        {% endif %}
+                                                    </span>
+												</span>
                                             </div>
                                             <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
                                                     class="icon icon-star-fill"></i><i
@@ -359,10 +366,17 @@
                                         <div class="product-item-description">لورم ایپسوم متن ساختگی با تولید سادگی
                                             نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است
                                         </div>
-                                        <div class="price-box"> <span class="price-container"> <span
-                                                class="price-wrapper"> <span
-                                                class="price">{{ special_offer.price }} تومان </span></span>
-                                    </span>
+                                        <div class="price-box"> 
+                                            <span class="price-container"> 
+                                                <span class="price-wrapper"> 
+                                                    {% if special_offer.discount %}
+                                                        <span class="old-price">{{special_offer.price}} تومان</span> 
+                                                        <span class="special-price">{{special_offer.get_final_price}} تومان</span> 
+                                                    {% else %}
+                                                    <span class="special-price">{{special_offer.get_final_price}} تومان</span> 
+                                                    {% endif %}
+                                                </span>
+                                            </span>
                                         </div>
                                         <div class="product-item-rating"><i class="icon icon-star-fill"></i><i
                                                 class="icon icon-star-fill"></i><i class="icon icon-star-fill"></i><i

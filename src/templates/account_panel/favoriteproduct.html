@@ -48,7 +48,7 @@
                                                 منتشر نشده
                                             {% endif %} </td>
                                             <td>{{ favorite_products.publish | naturaltime }}</td>
-                                            <td><span>{{ favorite_products.price }} تومان</span></td>
+                                            <td><span>{{ favorite_products.get_final_price }} تومان</span></td>
                                             <td>{{ favorite_products.size_to_str }}</td>
                                             <td>{{ favorite_products.color_to_str }}</td>
                                             <td><a href="{% url 'favorite-product:remove' favorite_products.id %}"
