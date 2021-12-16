@@ -74,6 +74,12 @@ class Product(models.Model):
     title = models.CharField(max_length=100, verbose_name="عنوان")
     slug = models.SlugField(verbose_name="آدرس", null=False, blank=True, unique=True)
     price = models.PositiveIntegerField(verbose_name="قیمت", default=0, blank=False)
+    discount = models.IntegerField(
+        default=0,
+        verbose_name="تخفیف",
+        blank=True,
+        null=True,
+    )
     description = RichTextUploadingField(
         default=None, verbose_name="توضیحات", blank=True
     )
@@ -143,6 +149,17 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("product:detail", args=[self.slug, self.id])
+
+    @display(description="قیمت نهایی کالا با تخفیف")
+    def get_final_price(self):
+        if self.discount:
+            from math import ceil
+            multiplier = self.discount / 100
+            old_price = self.price
+            new_price = ceil(old_price - (old_price * multiplier))
+            return new_price
+        else:
+            return self.price
 
     objects = ProductManager()
 

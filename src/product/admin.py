@@ -41,6 +41,7 @@ class ProductAdmin(admin.ModelAdmin):
         "is_new_product",
         "category_to_str",
         "price",
+        "get_final_price",
     )
     list_filter = ("status", "special_offer")
     search_fields = ("title", "slug", "id")
