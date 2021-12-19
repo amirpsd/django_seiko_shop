@@ -150,6 +150,7 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse("product:detail", args=[self.slug, self.id])
 
+    @property
     @display(description="قیمت نهایی کالا با تخفیف")
     def get_final_price(self):
         if self.discount:
