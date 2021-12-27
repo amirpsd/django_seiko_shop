@@ -67,22 +67,41 @@
 
                     {% endfor %}
 
-                    {% if is_paginated %}
-                        <ul class="pagination pull-right">
-                            {% if page_obj.has_previous %}
-                                <li><a href="?page={{ page_obj.previous_page_number }}"><i
-                                        class="icon icon-angle-right"></i></a></li>
-                            {% endif %}
-                            {% for page in paginator.page_range %}
-                                <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                {% if is_paginated %}
+                    <ul class="pagination pull-right">
+                        {% if page_obj.has_previous %}
+                            <li>
+                                <a href="?page={{ page_obj.previous_page_number }}"><i class="icon icon-angle-right"></i></a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.number|add:'-4' > 1 %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a>
+                            </li>
+                        {% endif %}
+                        {% for page in paginator.page_range %}
+                            {% if page_obj.number == page %}
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link">
+                                        {{ page }}
+                                    </span>
                                 </li>
-                            {% endfor %}
-                            {% if page_obj.has_next %}
-                                <li><a href="?page={{ page_obj.next_page_number }}"><i class="icon icon-angle-left"></i></a>
-                                </li>
+                            {% elif page > page_obj.number|add:'-5' and page < page_obj.number|add:'5' %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
                             {% endif %}
-                        </ul>
-                    {% endif %}
+                        {% endfor %}
+                        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <li>
+                                <a href="?page={{ page_obj.next_page_number }}"><i class="icon icon-angle-left"></i></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
                 </div>
                 <!-- /Center column -->
                 <!-- Right column -->

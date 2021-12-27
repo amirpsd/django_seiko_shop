@@ -164,17 +164,36 @@
 
                 <ul class="pagination pull-right">
                     {% if object_list.has_previous %}
-                        <li><a href="?page={{ object_list.previous_page_number }}"><i
-                                class="icon icon-angle-right"></i></a></li>
-                    {% endif %} {% for page in paginator.page_range %}
-                    <li class="page-item active"><a class="page-link" href="?page={{ page }}">{{ page }}</a>
-                    </li>
-                {% endfor %} {% if object_list.has_next %}
-                    <li><a href="?page={{ object_list.next_page_number }}"><i
-                            class="icon icon-angle-left"></i></a>
-                    </li>
-                {% endif %}
-
+                        <li>
+                            <a href="?page={{ object_list.previous_page_number }}"><i class="icon icon-angle-right"></i></a>
+                        </li>
+                    {% endif %}
+                    {% if object_list.number|add:'-4' > 1 %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ object_list.number|add:'-5' }}">&hellip;</a>
+                        </li>
+                    {% endif %}
+                    {% for page in paginator.page_range %}
+                        {% if object_list.number == page %}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">
+                                    {{ page }}
+                                </span>
+                            </li>
+                        {% elif page > object_list.number|add:'-5' and page < object_list.number|add:'5' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if object_list.paginator.num_pages > object_list.number|add:'4' %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ object_list.number|add:'5' }}">&hellip;</a>
+                        </li>
+                    {% endif %}
+                    {% if object_list.has_next %}
+                        <li>
+                            <a href="?page={{ object_list.next_page_number }}"><i class="icon icon-angle-left"></i></a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <!-- /Products Grid -->
 
