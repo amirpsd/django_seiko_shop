@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 services:
   web:
@@ -7,20 +7,20 @@ services:
       dockerfile: Dockerfile
     container_name: 'web'
     restart: 'always'
-    ports:
-      - '8000:8000'
+    expose:
+      - 80
     env_file:
       - './.env'
     networks:
       - web_network
       - nginx_network
     volumes:
-      - ./src:/blogpy
-      - src_static_volume:/src/static
-      - src_media_volume:/src/media
+      - type: "bind"
+        source: "./src/"
+        target: "/src/"
+      
     depends_on:
       - db
-
 
   db:
     image: postgres:latest
@@ -36,14 +36,10 @@ services:
       - web_network
 
 
-
 volumes:
   seiko_postgresql:
     external: true
-  src_static_volume:
-    external: true
-  src_media_volume:
-    external: true
+
 networks:
   web_network:
     external: true

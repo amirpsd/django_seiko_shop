@@ -1,24 +1,27 @@
-version: '3'
+version: "3.8"
 
 services:
   nginx:
-    container_name: nginx
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: "nginx:alpine"
+    container_name: "nginx"
     ports:
       - "80:80"
     volumes:
-      - src_static_volume:/src/static
-      - src_media_volume:/src/media
+      - type: "bind"
+        source: "../src/static/"
+        target: "/src/static/"
+
+      - type: "bind"
+        source: "../src/media/"
+        target: "/src/media/"
+
+      - type: "bind"
+        source: "./nginx.conf"
+        target: "/etc/nginx/conf.d/default.conf"
     networks:
       - nginx_network
 
-volumes:
-  src_static_volume:
-    external: true
-  src_media_volume:
-    external: true
+
 networks:
   nginx_network:
     external: true
