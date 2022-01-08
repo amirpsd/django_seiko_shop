@@ -70,7 +70,7 @@
 
                                                     <!-- Product Actions -->
                                                     {% if request.user.is_authenticated %}
-                                                        <a href="{% url 'favorite-product:add' product.id %}"
+                                                        <a href="{% url 'favorite:product-add' product.id %}"
                                                            title="افزودن به علاقه مندی ها"
                                                            class="no_wishlist"> <i
                                                                 class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
@@ -178,7 +178,7 @@
 
                                                     <!-- Product Actions -->
                                                     {% if request.user.is_authenticated %}
-                                                        <a href="{% url 'favorite-product:add' product_filter.id %}"
+                                                        <a href="{% url 'favorite:product-add' product_filter.id %}"
                                                            title="افزودن به علاقه مندی ها"
                                                            class="no_wishlist"> <i
                                                                 class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>

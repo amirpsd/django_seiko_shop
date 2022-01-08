@@ -39,8 +39,7 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("contact/", include("contact.urls")),
     path("account/", include("account.urls")),
-    path("account/favorite/product/", include("favorite_product.urls")),
-    path("account/favorite/blog/", include("favorite_blog.urls")),
+    path("account/favorite/", include("favorite.urls")),
     path("ckeditor", include("ckeditor_uploader.urls")),
 ]
 

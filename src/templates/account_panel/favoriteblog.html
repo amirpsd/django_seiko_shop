@@ -29,7 +29,7 @@
                                     منتشر
                                     شده{% else %}پیش نویس{% endif %}</span></td>
                         <td>{{ favorite_blogs.description | safe | striptags | truncatechars:30 }}</td>
-                        <td><a href="{% url 'favorite-blog:remove' favorite_blogs.id %}">حذف</a></td>
+                        <td><a href="{% url 'favorite:blog-remove' favorite_blogs.id %}">حذف</a></td>
                     </tr>
                     {% endfor %} {% empty %}
                     <h2 class="text-center">لیست مقاله علاقه مندی شما خالی است</h2>

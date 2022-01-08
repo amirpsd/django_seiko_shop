@@ -82,7 +82,7 @@
                         <li><a href="{% url 'blog:category' category.slug %}"><span class="value"><span>{{ category.title }}</span></span></a></li>
                         {% endfor %}
                         <li>
-                            <a href="{% url 'favorite-blog:add' blog.id %}" class="btn" data-product="789123"><i
+                            <a href="{% url 'favorite:blog-add' blog.id %}" class="btn" data-product="789123"><i
                                         class="icon "></i><span>افزودن به علاقه مندی ها</span></a>
                         </li>
                     </ul>

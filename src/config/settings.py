@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # my app
-    'favorite_product.apps.FavoriteProductConfig',
-    'favorite_blog.apps.FavoriteBlogConfig',
+    'favorite.apps.FavoriteConfig',
     'contact.apps.ContactConfig',
     'product.apps.ProductConfig',
     'account.apps.AccountConfig',

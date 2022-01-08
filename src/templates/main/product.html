@@ -109,7 +109,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="product-meta">
-                                            <span><a href="{% url 'favorite-product:add' product.id %}"><i
+                                            <span><a href="{% url 'favorite:product-add' product.id %}"><i
                                                     class="icon icon-heart"> </i> افزودن به لیست خواسته ها </a> </span>
                                         </div>
                                         <div class="social">
@@ -368,7 +368,7 @@
                                                     </div>
                                                     <!-- /product main photo  -->
                                                     {% if request.user.is_authenticated %}
-                                                        <a href="{% url 'favorite-product:add' special_offer.id %}"
+                                                        <a href="{% url 'favorite:product-add' special_offer.id %}"
                                                            title="Add to Wishlist"
                                                            class="no_wishlist"> <i
                                                                 class="icon icon-heart"></i><span>افزودن به علاقه مندی ها </span>
