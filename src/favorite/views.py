@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, get_object_or_404, render
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET
 
 from .models import FavoriteProduct, FavoriteBlog
 from product.models import Product
@@ -8,7 +10,8 @@ from blog.models import Blog
 
 # Create your views here.
 
-
+@csrf_exempt
+@require_GET
 @login_required
 def favorite_product_add(request, product_id):
     product = get_object_or_404(Product, status="pub", id=product_id)
@@ -27,11 +30,12 @@ def favorite_product_add(request, product_id):
 @login_required
 def favorite_product_list(request):
     favorite_product = FavoriteProduct.objects.filter(user=request.user)
-    favorite_product.all()
     context = {"favorite": favorite_product}
     return render(request, "account_panel/favoriteproduct.html", context)
 
 
+@csrf_exempt
+@require_GET
 @login_required
 def favorite_product_remove(request, product_id):
     product = get_object_or_404(Product, status="pub", id=product_id)
@@ -43,6 +47,8 @@ def favorite_product_remove(request, product_id):
     return redirect("favorite:product-list")
 
 
+@csrf_exempt
+@require_GET
 @login_required
 def favorite_blog_add(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
@@ -65,6 +71,8 @@ def favorite_blog_list(request):
     return render(request, "account_panel/favoriteblog.html", context)
 
 
+@csrf_exempt
+@require_GET
 @login_required
 def favorite_blog_remove(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
