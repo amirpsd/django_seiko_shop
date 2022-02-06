@@ -41,7 +41,7 @@ class SearchProduct(ListView):
     paginate_by = 16
 
     def get_queryset(self):
-        global product  # noqa
+        global product
         product = Product.objects.publish()
         search = self.request.GET.get("q")
         if search is not None:
@@ -70,13 +70,11 @@ def category_list(request, slug):
     # or
     # product = Product.objects.publish().filter(category=category)
 
-    paginator = Paginator(category_list, 8)
+    page = request.GET.get("pagination")
+    if page:
+        paginator = Paginator(category_list, page)
 
-    if request.method == "POST":
-        form = Paginate_by_form(request.POST)
-        if form.is_valid():
-            page = form.cleaned_data.get("pagination")
-            paginator = Paginator(category_list, page)
+    paginator = Paginator(category_list, 8)
 
     page_number = request.GET.get("page")
     category_list = paginator.get_page(page_number)
@@ -160,7 +158,3 @@ def comment_delete(request, comment_id):
     comment.delete()
     return redirect(reverse("product:detail", args=[slug, id]))
 
-
-def about_us(request):
-    context = {}
-    return render(request, "main/about.html", context)

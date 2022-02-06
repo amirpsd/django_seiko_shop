@@ -2,7 +2,7 @@ from django import forms
 
 from .models import Comment
 
-# create forms
+# Create your forms here.
 
 
 class Paginate_by_form(forms.Form):
