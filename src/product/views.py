@@ -3,7 +3,6 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
-from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
 
@@ -103,9 +102,8 @@ class ProductDetail(FormMixin, DetailView):
         )
 
     def get_object(self, *args, **kwargs):
-        global product_detail
         slug = self.kwargs.get("slug")
-        id = self.kwargs.get("id")  # noqa
+        id = self.kwargs.get("id")
         product_detail = get_object_or_404(Product, slug=slug, id=id, status="pub")
         return product_detail
 
@@ -113,8 +111,8 @@ class ProductDetail(FormMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["cart_product_form"] = CartAddProductForm(
             initial={
-                "color":product_detail.color.all(),
-                "size":product_detail.size.all(),
+                "color":self.object.color.all(),
+                "size":self.object.size.all(),
             }
         )
         context["comment_form"] = CommentForm()
@@ -134,16 +132,19 @@ class ProductDetail(FormMixin, DetailView):
                 myform = form.save(commit=False)
                 myform.user = self.request.user
                 myform.product = self.object
-                myform.body = form.cleaned_data.get("body")
-                myform.name = form.cleaned_data.get("name")
-                myform.created = timezone.now()
-                form.save()
+                myform.save()
             except:
                 messages.add_message(
                     self.request,
                     messages.ERROR,
                     "شما نمیتوانید در یک روز بیش از یک نظر بگذارید",
                 )
+        else:
+            messages.add_message(
+                self.request,
+                messages.ERROR,
+                "برای افزودن نظر باید وارد شوید",
+            )       
 
         return super(ProductDetail, self).form_valid(form)
 
