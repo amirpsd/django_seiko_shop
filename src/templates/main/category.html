@@ -164,12 +164,24 @@
                 <ul class="pagination pull-right">
                     {% if object_list.has_previous %}
                         <li>
-                            <a href="?page={{ object_list.previous_page_number }}"><i class="icon icon-angle-right"></i></a>
+                            <a 
+                            {% if "?" in request.get_full_path %} 
+                                href="{{request.get_full_path}}&page={{ object_list.previous_page_number }}"
+                            {% else %}
+                                href="{{request.get_full_path}}?&page={{ object_list.previous_page_number }}"
+                            {% endif %}
+                            ><i class="icon icon-angle-right"></i></a>
                         </li>
                     {% endif %}
                     {% if object_list.number|add:'-4' > 1 %}
                         <li class="page-item active">
-                            <a class="page-link" href="?page={{ object_list.number|add:'-5' }}">&hellip;</a>
+                            <a class="page-link"  
+                            {% if "?" in request.get_full_path %} 
+                                href="{{request.get_full_path}}&page={{ object_list.number|add:'-5' }}"
+                            {% else %}
+                                href="{{request.get_full_path}}?&page={{ object_list.number|add:'-5' }}"
+                            {% endif %}
+                            >&hellip;</a>
                         </li>
                     {% endif %}
                     {% for page in paginator.page_range %}
@@ -180,17 +192,36 @@
                                 </span>
                             </li>
                         {% elif page > object_list.number|add:'-5' and page < object_list.number|add:'5' %}
-                            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                            <li class="page-item"><a class="page-link" 
+                            {% if "?" in request.get_full_path %} 
+                                href="{{request.get_full_path}}&page={{ page }}"
+                            {% else %}
+                                href="{{request.get_full_path}}?&page={{ page }}"
+                            {% endif %} 
+                            >{{ page }}</a></li>
                         {% endif %}
                     {% endfor %}
                     {% if object_list.paginator.num_pages > object_list.number|add:'4' %}
                         <li class="page-item active">
-                            <a class="page-link" href="?page={{ object_list.number|add:'5' }}">&hellip;</a>
+                            <a class="page-link" 
+                            {% if "?" in request.get_full_path %}
+                                href="{{request.get_full_path}}&page={{ object_list.number|add:'5' }}"
+                            {% else %}
+                                href="{{request.get_full_path}}?&page={{ object_list.number|add:'5' }}"
+                            {% endif %}
+
+                            >&hellip;</a>
                         </li>
                     {% endif %}
                     {% if object_list.has_next %}
                         <li>
-                            <a href="?page={{ object_list.next_page_number }}"><i class="icon icon-angle-left"></i></a>
+                            <a 
+                            {% if "?" in request.get_full_path %}
+                                href="{{request.get_full_path}}&page={{ object_list.next_page_number }}"
+                            {% else %}
+                                href="{{request.get_full_path}}?&page={{ object_list.next_page_number }}"
+                            {% endif %}
+                            ><i class="icon icon-angle-left"></i></a>
                         </li>
                     {% endif %}
                 </ul>

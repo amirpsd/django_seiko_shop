@@ -6,7 +6,7 @@ from .models import Comment
 
 
 class Paginate_by_form(forms.Form):
-    paginate_chices = (
+    paginate_choice = (
         (8, "8"),
         (16, "16"),
         (24, "24"),
@@ -14,7 +14,7 @@ class Paginate_by_form(forms.Form):
     )
     pagination = forms.ChoiceField(
         label="نشان داده شود",
-        choices=paginate_chices,
+        choices=paginate_choice,
     )
 
 

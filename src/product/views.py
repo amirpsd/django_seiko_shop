@@ -73,8 +73,8 @@ def category_list(request, slug):
     page = request.GET.get("pagination")
     if page:
         paginator = Paginator(category_list, page)
-
-    paginator = Paginator(category_list, 8)
+    else:
+        paginator = Paginator(category_list, 8)
 
     page_number = request.GET.get("page")
     category_list = paginator.get_page(page_number)
