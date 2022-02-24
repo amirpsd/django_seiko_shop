@@ -14,7 +14,7 @@ from blog.models import Blog
 @require_GET
 @login_required
 def favorite_product_add(request, product_id):
-    product = get_object_or_404(Product, status="pub", id=product_id)
+    product = get_object_or_404(Product, status="a", id=product_id)
     favorite, created = FavoriteProduct.objects.get_or_create(user=request.user)
 
     if product in favorite.products.all():
@@ -38,7 +38,7 @@ def favorite_product_list(request):
 @require_GET
 @login_required
 def favorite_product_remove(request, product_id):
-    product = get_object_or_404(Product, status="pub", id=product_id)
+    product = get_object_or_404(Product, status="a", id=product_id)
     favorite_remove = FavoriteProduct.objects.get(user=request.user)
     favorite_remove.products.remove(product)
     if not favorite_remove.products.all().exists():

@@ -69,7 +69,7 @@
                                         </select>
                                     </div>
                                     <ul class="size-list">
-                                        {% for product_size in product.size.all %}
+                                        {% for product_size in product.sizes.all %}
                                             <li><a href="#" data-value='{{ product_size }}'><span
                                                     class="value">{{ product_size }}</span></a></li>
                                         {% endfor %}
@@ -79,7 +79,7 @@
                                     <span class="option-label">تاریخ انتشار :</span>
                                     <div class="select-wrapper-sm">
                                         <select class="form-control input-sm">
-                                            <option value="{{ product.color }}">{{ product.color }}</option>
+                                            <option value="{{ product.colors }}">{{ product.colors }}</option>
                                         </select>
                                     </div>
                                     <ul class="color-list" style="font-size: 20px;">

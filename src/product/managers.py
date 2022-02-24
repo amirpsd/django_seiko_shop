@@ -11,4 +11,4 @@ class CategoryManager(Manager):
 
 class ProductManager(Manager):
     def publish(self):
-        return self.filter(status="pub")
+        return self.filter(status="a")

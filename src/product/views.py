@@ -102,15 +102,15 @@ class ProductDetail(FormMixin, DetailView):
     def get_object(self, *args, **kwargs):
         slug = self.kwargs.get("slug")
         id = self.kwargs.get("id")
-        product_detail = get_object_or_404(Product, slug=slug, id=id, status="pub")
+        product_detail = get_object_or_404(Product, slug=slug, id=id, status="a")
         return product_detail
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["cart_product_form"] = CartAddProductForm(
             initial={
-                "color":self.object.color.all(),
-                "size":self.object.size.all(),
+                "color":self.object.colors.all(),
+                "size":self.object.sizes.all(),
             }
         )
         context["comment_form"] = CommentForm()

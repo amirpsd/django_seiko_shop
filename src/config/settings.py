@@ -48,12 +48,12 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'blog.apps.BlogConfig',
     'cart.apps.CartConfig',
+    'common',
     # install app
     'django.contrib.humanize',
     'ckeditor_uploader',
     'django_filters',
     'crispy_forms',
-    'extensions',
     'ckeditor',
     'captcha',
 ]

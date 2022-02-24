@@ -21,7 +21,6 @@ class ProfileForm(forms.ModelForm):
             "email",
             "first_name",
             "last_name",
-            "phone_number",
             "image",
         ]
 

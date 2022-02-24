@@ -13,7 +13,7 @@ from .forms import CartAddProductForm
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)  # create a new cart object passing it the request object
-    product = get_object_or_404(Product, status='pub', id=product_id)
+    product = get_object_or_404(Product, status='a', id=product_id)
     form = CartAddProductForm(request.POST)
     if form.is_valid():
         add_product_form  = form.cleaned_data
@@ -30,7 +30,7 @@ def cart_add(request, product_id):
 @login_required
 def cart_remove(request, product_id):
     cart = Cart(request)
-    product = get_object_or_404(Product, status='pub', id=product_id)
+    product = get_object_or_404(Product, status='a', id=product_id)
     cart.remove(product)
     return redirect("cart:cart_detail")
 

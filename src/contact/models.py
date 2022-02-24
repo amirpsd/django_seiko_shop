@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.db import models
 
 
@@ -5,17 +6,18 @@ from django.db import models
 
 
 class Contact(models.Model):
-    name = models.CharField(max_length=100, blank=False, verbose_name="نام")
+    name = models.CharField(
+        max_length=100, blank=False, 
+        verbose_name=_("name"),
+    )
     email = models.EmailField(
-        blank=False,
-        verbose_name="ایمیل",
-        unique=True,
-        help_text="ایمیل نباید تکراری باشد",
+        blank=False, unique=True,
+        verbose_name=_("email"), help_text=_("Email should not be duplicate."),
     )
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = "مخاطب"
-        verbose_name_plural = "مخاطبین"
+        verbose_name = _("Contact")
+        verbose_name_plural = _("Contacts")

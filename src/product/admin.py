@@ -20,11 +20,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "status", "parent")
     list_filter = ("status", "title")
     search_fields = ("title", "slug", "id")
-    fields = (
-        "parent",
-        ("title", "slug"),
-        ("status", "has_image"),
-    )
+
     ordering = ("status", "-id",)
     inlines = (CategoryImageInline,)
 
@@ -46,7 +42,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("status", "special_offer")
     search_fields = ("title", "slug", "id")
     radio_fields = {"status": admin.HORIZONTAL}
-    filter_horizontal = ["category", "color", "size"]
+    filter_horizontal = ["category", "colors", "sizes"]
     ordering = ["-create", "-updated"]
     actions = (make_published, make_draft)
     exclude = ("slug",)
