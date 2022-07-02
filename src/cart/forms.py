@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django import forms
 
 from product.models import Color, Size
@@ -22,7 +23,7 @@ class CartAddProductForm(forms.Form):
             pass
 
     quantity = forms.TypedChoiceField(
-        choices=PRODUCT_QUANTITY_CHOICES, coerce=int, label="تعداد"
+        choices=PRODUCT_QUANTITY_CHOICES, coerce=int, label=_("quantity"),
     )
     override = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
     color = forms.ModelChoiceField(queryset=Color.objects.all())

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.forms import ModelForm
 from django.core.validators import ValidationError
 
@@ -32,6 +33,6 @@ class ContactForm(ModelForm):
 
         if not is_valid:
             raise ValidationError(
-                message="ایمیل معتبر نیست لطفا ایمیل دیگری را امتحان کنید"
+                message=_("The email is not valid. Please try another email"),
             )
         return email

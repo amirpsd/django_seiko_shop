@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.contrib import admin
 
 from .models import Blog, Category
@@ -5,7 +6,7 @@ from .models import Blog, Category
 # Register your models here.
 
 
-admin.site.site_header = "مدیریت سایت"
+admin.site.site_header = _("site management")
 
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
+from django.utils.translation import gettext as _
 from django.views.generic.edit import FormMixin
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -135,13 +136,13 @@ class ProductDetail(FormMixin, DetailView):
                 messages.add_message(
                     self.request,
                     messages.ERROR,
-                    "شما نمیتوانید در یک روز بیش از یک نظر بگذارید",
+                    _("You cannot leave more than one comment in a day"),
                 )
         else:
             messages.add_message(
                 self.request,
                 messages.ERROR,
-                "برای افزودن نظر باید وارد شوید",
+                _("You must be logged in to write a comment"),
             )       
 
         return super(ProductDetail, self).form_valid(form)

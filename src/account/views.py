@@ -3,6 +3,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.encoding import force_bytes, force_text
 from django.template.loader import render_to_string
+from django.utils.translation import gettext as _
 from django.views.generic import UpdateView
 from django.core.mail import EmailMessage
 from django.urls import reverse_lazy
@@ -40,7 +41,7 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = "اکانت خود را فعال کنید"
+            mail_subject = _("Active your account")
             message = render_to_string(
                 "registration/acc_active_email.html",
                 {
@@ -53,7 +54,7 @@ def signup(request):
             to_email = form.cleaned_data.get("email")
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            return HttpResponse("لطفاً آدرس ایمیل خود را برای تکمیل ثبت نام تأیید کنید")
+            return HttpResponse(_("Please confirm your email address to complete registration"))
     else:
         form = SignupForm()
     return render(request, "registration/account-create.html", {"form": form})
@@ -70,7 +71,7 @@ def activate(request, uidb64, token):
         user.save()
         # return redirect('home')
         return HttpResponse(
-            "از تأیید ایمیل شما متشکریم. اکنون می توانید حساب خود را وارد کنید."
+            _("Thank you for verifying your email. You can now enter your account.")
         )
     else:
-        return HttpResponse("پیوند فعال سازی نامعتبر است!")
+        return HttpResponse(_("The activation link is invalid!"))

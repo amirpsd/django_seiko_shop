@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django import forms
 
 from .models import Comment
@@ -13,7 +14,7 @@ class Paginate_by_form(forms.Form):
         (32, "32"),
     )
     pagination = forms.ChoiceField(
-        label="نشان داده شود",
+        label=_("be shown"),
         choices=paginate_choice,
     )
 
