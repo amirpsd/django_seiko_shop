@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-01 18:33-0700\n"
+"POT-Creation-Date: 2022-07-02 19:06-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,14 @@ msgstr "دسته بندی مقاله"
 #: .\blog\models.py:45
 msgid "blogs category"
 msgstr "دسته بندی مقالات"
+
+#: .\blog\models.py:55
+msgid "draft"
+msgstr "پیش نویس"
+
+#: .\blog\models.py:56
+msgid "publish"
+msgstr "منتشر شده"
 
 #: .\blog\models.py:62
 msgid "author"
@@ -257,8 +265,8 @@ msgstr "محصولات را موجود کنید"
 
 #: .\product\actions.py:10
 #, python-brace-format
-msgid "{updated} محصولات موجود شدند"
-msgstr ""
+msgid "{updated} products were available"
+msgstr "{updated} محصولات موجود شدند"
 
 #: .\product\actions.py:14
 msgid "Make products unavailable"
@@ -266,8 +274,8 @@ msgstr "محصولات را ناموجود کنید"
 
 #: .\product\actions.py:19
 #, python-brace-format
-msgid "{updated} محصولات ناموجود شدند"
-msgstr ""
+msgid "{updated} products were unavailable"
+msgstr "{updated} محصولات ناموجود شدند"
 
 #: .\product\forms.py:17
 msgid "be shown"

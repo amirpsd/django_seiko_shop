@@ -52,8 +52,8 @@ class Category(models.Model):
 
 class Blog(models.Model):
     STATUS_CHOICES = (
-        ("d", "draft"),
-        ("p", "publish"),
+        ("d", _("draft")),
+        ("p", _("publish")),
     )
     author = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE,
