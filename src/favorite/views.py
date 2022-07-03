@@ -1,7 +1,9 @@
-from django.shortcuts import redirect, get_object_or_404, render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
+from django.views.generic import ListView
 
 from .models import FavoriteProduct, FavoriteBlog
 from product.models import Product
@@ -27,12 +29,16 @@ def favorite_product_add(request, product_id):
     return redirect("favorite:product-list")
 
 
-@login_required
-def favorite_product_list(request):
-    favorite_product = FavoriteProduct.objects.filter(user=request.user)
-    context = {"favorite": favorite_product}
-    return render(request, "account_panel/favoriteproduct.html", context)
+class FavoriteProductList(LoginRequiredMixin, ListView):
+    template_name = "account_panel/favoriteproduct.html"
+    paginate_by = 24
 
+    def get_queryset(self):
+        favorite_product = FavoriteProduct.objects.filter(user=self.request.user)
+        if favorite_product:
+            return favorite_product.first().products.all()
+        return favorite_product
+    
 
 @csrf_exempt
 @require_GET
@@ -64,11 +70,15 @@ def favorite_blog_add(request, blog_id):
     return redirect("favorite:blog-list")
 
 
-@login_required
-def favorite_blog_list(request):
-    favorite_list = FavoriteBlog.objects.filter(user=request.user)
-    context = {"favorite_list": favorite_list}
-    return render(request, "account_panel/favoriteblog.html", context)
+class FavoriteBlogList(LoginRequiredMixin, ListView):
+    template_name = "account_panel/favoriteblog.html"
+    paginate_by = 1
+
+    def get_queryset(self):
+        favorite_blog = FavoriteBlog.objects.filter(user=self.request.user)
+        if favorite_blog:
+            return favorite_blog.first().blogs.all()
+        return favorite_blog
 
 
 @csrf_exempt

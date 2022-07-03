@@ -10,7 +10,7 @@
             <table class="table table-hover">
                 <tbody>
                     <tr>
-                        {% if favorite_list %}
+                        {% if object_list %}
                         <th>عنوان</th>
                         <th>تصویر</th>
                         <th>تاریخ</th>
@@ -19,7 +19,7 @@
                         <th>حذف</th>
                         {% endif %}
                     </tr>
-                    {% for favorite in favorite_list %} {% for favorite_blogs in favorite.blogs.get_published_post %}
+                    {% for favorite_blogs in object_list %}
                     <tr>
                         <td><a href="{% url 'blog:detail' favorite_blogs.slug %}">{{ favorite_blogs.title }}</a>
                         </td>
@@ -31,14 +31,49 @@
                         <td>{{ favorite_blogs.description | safe | striptags | truncatechars:30 }}</td>
                         <td><a href="{% url 'favorite:blog-remove' favorite_blogs.id %}">حذف</a></td>
                     </tr>
-                    {% endfor %} {% empty %}
-                    <h2 class="text-center">لیست مقاله علاقه مندی شما خالی است</h2>
-                    {% endfor %}
+                    {% empty %}
+                    <h2 class="text-center">لیست مقالات علاقه مندی شما خالی است</h2>
+                    {% endfor %} 
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
+    {% if is_paginated %}
+    <ul class="pagination pull-right">
+        {% if page_obj.has_previous %}
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}"><i class="icon icon-angle-right"></i></a>
+            </li>
+        {% endif %}
+        {% if page_obj.number|add:'-4' > 1 %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a>
+            </li>
+        {% endif %}
+        {% for page in paginator.page_range %}
+            {% if page_obj.number == page %}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">
+                        {{ page }}
+                    </span>
+                </li>
+            {% elif page > page_obj.number|add:'-5' and page < page_obj.number|add:'5' %}
+                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a>
+            </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}"><i class="icon icon-angle-left"></i></a>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}
 </div>
 {% endblock %}

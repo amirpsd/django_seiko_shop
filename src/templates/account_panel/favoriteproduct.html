@@ -20,7 +20,7 @@
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover">
-                                {% if favorite %}
+                                {% if object_list %}
                                     <tr>
                                         <th>محصول</th>
                                         <th>تصویر</th>
@@ -32,31 +32,29 @@
                                         <th class="remove">حذف محصول</th>
                                     </tr>
                                 {% endif %}
-                                {% for favorite in favorite %}
 
-                                    {% for favorite_products in favorite.products.all %}
-                                        <tr>
-                                            <td>
-                                                <a href="{% url 'product:detail' favorite_products.slug favorite_products.id %}">{{ favorite_products.title }}</a>
-                                            </td>
-                                            <td><img src="{{ favorite_products.image_1.url }}" height="60px"
-                                                     width="100px" alt="{{ favorite_products.title }}"
-                                                     style="border-radius: 5px;"></td>
-                                            <td>{% if favorite_products.status %}
-                                                منتشر شده
-                                            {% else %}
-                                                منتشر نشده
-                                            {% endif %} </td>
-                                            <td>{{ favorite_products.publish | naturaltime }}</td>
-                                            <td><span>{{ favorite_products.get_final_price }} تومان</span></td>
-                                            <td>{{ favorite_products.size_to_str }}</td>
-                                            <td>{{ favorite_products.color_to_str }}</td>
-                                            <td><a href="{% url 'favorite:product-remove' favorite_products.id %}"
-                                                   class="remove">حذف</a></td>
-                                        </tr>
-                                    {% endfor %}
-                                    {% empty %}
-                                    <h3 class="text-center">لیست محصولات علاقه مندی شما خالی است</h3>
+                                {% for favorite_products in object_list %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'product:detail' favorite_products.slug favorite_products.id %}">{{ favorite_products.title }}</a>
+                                        </td>
+                                        <td><img src="{{ favorite_products.image_1.url }}" height="60px"
+                                                    width="100px" alt="{{ favorite_products.title }}"
+                                                    style="border-radius: 5px;"></td>
+                                        <td>{% if favorite_products.status %}
+                                            منتشر شده
+                                        {% else %}
+                                            منتشر نشده
+                                        {% endif %} </td>
+                                        <td>{{ favorite_products.publish | naturaltime }}</td>
+                                        <td><span>{{ favorite_products.get_final_price }} تومان</span></td>
+                                        <td>{{ favorite_products.size_to_str }}</td>
+                                        <td>{{ favorite_products.color_to_str }}</td>
+                                        <td><a href="{% url 'favorite:product-remove' favorite_products.id %}"
+                                                class="remove">حذف</a></td>
+                                    </tr>
+                                {% empty %}
+                                <h3 class="text-center">لیست محصولات علاقه مندی شما خالی است</h3>
                                 {% endfor %}
 
                             </table>
@@ -64,6 +62,41 @@
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
+                    {% if is_paginated %}
+                    <ul class="pagination pull-right">
+                        {% if page_obj.has_previous %}
+                            <li>
+                                <a href="?page={{ page_obj.previous_page_number }}"><i class="icon icon-angle-right"></i></a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.number|add:'-4' > 1 %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a>
+                            </li>
+                        {% endif %}
+                        {% for page in paginator.page_range %}
+                            {% if page_obj.number == page %}
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link">
+                                        {{ page }}
+                                    </span>
+                                </li>
+                            {% elif page > page_obj.number|add:'-5' and page < page_obj.number|add:'5' %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <li>
+                                <a href="?page={{ page_obj.next_page_number }}"><i class="icon icon-angle-left"></i></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
