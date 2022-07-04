@@ -36,12 +36,11 @@ class CategoryBlog(ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        global category  # noqa
         slug = self.kwargs.get("slug")
-        category = get_object_or_404(Category, status=True, slug=slug)
-        return category.blogs.get_published_post()
+        self.category = get_object_or_404(Category, status=True, slug=slug)
+        return self.category.blogs.get_published_post()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["category"] = category
+        context["category"] = self.category
         return context
