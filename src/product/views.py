@@ -42,26 +42,26 @@ class SearchProduct(ListView):
     paginate_by = 16
 
     def get_queryset(self):
-        global product
-        product = Product.objects.publish()
-        search = self.request.GET.get("q")
-        if search is not None:
-            return (
-                product.filter(
-                    Q(title__icontains=search)
-                    | Q(description__icontains=search)
-                    | Q(category__title__icontains=search)
-                )
-                .distinct()
-                .order_by("-publish")
-            )
+        data = self.request.GET
+        self.search = self.request.GET.get("q")
+        self.product = Product.objects.publish()
+
+        if self.search is None:
+            self.product_filter = ProductFilter(data, queryset=self.product.order_by("-publish")) 
+            return self.product_filter.qs
         else:
-            return product.order_by("-publish")
+            search_product = self.product.filter(
+                        Q(title__icontains=self.search)
+                        | Q(description__icontains=self.search)
+                        | Q(category__title__icontains=self.search)
+                    ).distinct().order_by("-publish")
+            self.product_filter = ProductFilter(data, queryset=search_product)
+            return self.product_filter.qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["search"] = self.request.GET.get("q")
-        context["filter"] = ProductFilter(self.request.GET, queryset=product)
+        context["search"] = self.search
+        context["filter"] = self.product_filter
         return context
 
 
